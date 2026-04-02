@@ -119,6 +119,8 @@ def process_event(event: dict):
 # ─── Main Loop ────────────────────────────────────────────────────────────────
 
 def main():
+    print("[CONTROLLER] Waiting 15s for USB devices to initialize...")
+    time.sleep(15)
     setup_gpio()
     print("[CONTROLLER] Goal horn controller running...")
 

@@ -1,1 +1,2 @@
-goal_horn.log
+*.log
+goal_horn_events.json

@@ -114,6 +114,8 @@ def get_game_data(game_pk: int) -> dict | None:
         outs == 3 and
         inning_half == opponent_half and
         yankees_runs > opponent_runs
+    ) and (
+        game_state != "Final"
     )
 
     all_plays       = data.get("liveData", {}).get("plays", {}).get("allPlays", [])

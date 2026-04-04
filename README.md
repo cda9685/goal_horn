@@ -80,8 +80,9 @@ This project requires the following pieces of hardware:
 - Switching and control
   - 1-channel 5V relay module (3.3V logic compatible)
 - Audio
-  - MAX98357 I2S DAC amplifier module
-  - 3W 4 or 8 ohm speaker
+  - Mini External USB Stereo Speaker (micro USB or with a micro USB to USB-A adapter) 
+  - (Optionally, instead of USB speaker) MAX98357 I2S DAC amplifier module
+  - (Optionally, instead of USB speaker) 3W 4 or 8 ohm speaker
 - Wiring
   - Female-female and male-female DuPont wires
   - 22AWG hook-up wire kit
@@ -97,27 +98,16 @@ Wire mapping:
   - 5V relay NO -> lamp positive
   - 5V relay COM -> 12V wall wart positive
   - 5V relay DC+ -> Pi pin 2 (5V supply)
-  - 5V relay DC- -> Pi pin 14 (ground)
-  - 5V relay IN -> Pi pin 11 (GPIO 17)
+  - 5V relay DC- -> Pi pin 6 (ground)
+  - 5V relay IN -> Pi pin 12 (GPIO 18)
 - 12V to 5V buck converter
   - Buck converter positive -> 12V wall wart positive
   - Buck converter negative -> 12V wall wart negative
   - Buck converter micro USB -> Pi power
-- MAX98357 I2S DAC amplifier module
-  - Amplifier module G -> Pi pin 6 (ground)
-  - Amplifier module V -> Pi pin 4 (5V supply)
-  - Amplifier module BCLK -> Pi pin 12 (GPIO 18/PCM CLK)
-  - Amplifier module LRCLK -> Pi pin 35 (GPIO 19/PCM FS)
-  - Amplifier module DIN -> Pi pin 40 (GPIO 21/PCM DOUT)
 - Raspberry Pi pins
   - Pi pin 2 (5V supply) -> 5V relay DC+
-  - Pi pin 4 (5V supply) -> amplifier module V
-  - Pi pin 6 (ground) -> amplifier module G
-  - Pi pin 11 (GPIO 17) -> 5V relay IN
-  - Pi pin 12 (GPIO 18/PCM CLK) -> amplifier module BCLK
-  - Pi pin 14 (ground) -> 5V relay DC-
-  - Pi pin 35 (GPIO 19/PCM FS) -> amplifier module LRCLK
-  - Pi pin 40 (GPIO 21/PCM DOUT) -> amplifier module DIN
+  - Pi pin 6 (ground) -> 5V relay DC-
+  - Pi pin 12 (GPIO 18/PCM CLK) -> 5V relay IN
 
 #### Software
 
@@ -125,28 +115,34 @@ Install the Raspberry Pi Imager at [https://www.raspberrypi.com/software/](https
 Flash the 32GB microSD card with Raspberry Pi OS Lite (this is a headless version of the normal OS).
 Install the microSD card into the Raspberry Pi and power it on. You can now SSH into the Pi from an external device.
 
--- THE REST BELOW THIS IS A TEMPLATE --
-
 ### Installation
 
-1. Get a free API Key at [https://www.raspberrypi.com/software/](https://www.raspberrypi.com/software/)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/cda9685/goal_horn.git
    ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin cda9685/goal_horn
-   git remote -v # confirm the changes
-   ```
+2. Start a cron job:
+  `sudo crontab -e`
+  Add the following to the bottom of the file:
+```
+  @reboot sudo python3 -u /path/to/goal_horn/controller.py >> /path/to/goal_horn/controller.log 2>&1
+  @reboot python3 -u /path/to/goal_horn/rangers_monitor.py >> /path/to/goal_horn/rangers_monitor.log 2>&1
+  @reboot python3 -u /path/to/goal_horn/yankees_monitor.py >> /path/to/goal_horn/yankees_monitor.log 2>&1
+```
+  This will start the script in the background on boot and write its status to a log.
+4. Set up a log rotation:
+  `sudo vim /etc/logrotate.d/goal_horn`
+  Add the following:
+  ```
+  /home/coledallen/projects/goal_horn/*.log {
+          daily
+          rotate 3
+          compress
+          missingok
+          notifempty
+          copytruncate
+  }
+  ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -155,9 +151,24 @@ Install the microSD card into the Raspberry Pi and power it on. You can now SSH 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+These scripts are designed to run at boot and remain running in the background. In each script, there are static variables that can be edited to change the functionality of the script:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+- rangers_monitor.py
+  - RANGERS_TEAM_ID: The acronym for the NHL team that the script will track
+  - POLL_INTERVAL: How often the script checks the API during gametime
+  - IDLE_INTERVAL: How often the script checks the API with no active game
+  - STREAM_DELAY_SECONDS: The delay between the API and streaming service
+  - PRIORITY: The priority given to the controller; if two scripts activate the light at the same time, the script with a higher priority (lower integer) will activate first
+- yankees_monitor.py
+  - YANKEES_TEAM_ID: The ID of the MLB team that the script will track
+  - POLL_INTERVAL: How often the script checks the API during gametime
+  - IDLE_INTERVAL: How often the script checks the API with no active game
+  - STREAM_DELAY_SECONDS: The delay between the API and streaming service
+  - PRIORITY: The priority given to the controller; if two scripts activate the light at the same time, the script with a higher priority (lower integer) will activate first
+- controller.py
+  - GOAL_LIGHT_PIN: The GPIO pin used to trip the relay (NOT the physical pin number)
+  - ALSA_DEVICE: The card and device value assigned to the USB speaker
+  - POLL_INTERVAL: How often the script will view the event queue from the other scripts (changing is NOT recommended)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -166,10 +177,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] Add a branch for users using the MAX98357 I2S DAC amplifier module
+- [ ] Add NFL script (Miami Dolphins)
+- [ ] Add NBA script (New York Knicks)
 
 See the [open issues](https://github.com/cda9685/goal_horn/issues) for a full list of proposed features (and known issues).
 
@@ -177,45 +187,10 @@ See the [open issues](https://github.com/cda9685/goal_horn/issues) for a full li
 
 
 
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Top contributors:
-
-<a href="https://github.com/cda9685/goal_horn/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=cda9685/goal_horn" alt="contrib.rocks image" />
-</a>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
 Project Link: [https://github.com/cda9685/goal_horn](https://github.com/cda9685/goal_horn)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

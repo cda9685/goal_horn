@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 RANGERS_TEAM_ID         = "NYR"
 POLL_INTERVAL           = 5         # Seconds between API calls during a live game
 IDLE_INTERVAL           = 60        # Seconds between checks when no game is live
-STREAM_DELAY_SECONDS    = 20        # Delay to sync with Fubo streaming delay
+STREAM_DELAY_SECONDS    = 25        # Delay to sync with Fubo streaming delay
 PRIORITY                = 2         # 1 = highest priority, 2 = lower priority
 BASE_DIR                = os.path.dirname(os.path.abspath(__file__))
 EVENT_FILE              = os.path.join(BASE_DIR, "goal_horn_events.json")

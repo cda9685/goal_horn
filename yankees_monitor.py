@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 YANKEES_TEAM_ID         = 147
 POLL_INTERVAL           = 5         # Seconds between API calls during a live game
 IDLE_INTERVAL           = 60        # Seconds between checks when no game is live
-STREAM_DELAY_SECONDS    = 20        # Delay to sync with Fubo streaming delay
+STREAM_DELAY_SECONDS    = 25        # Delay to sync with Fubo streaming delay
 PRIORITY                = 1         # 1 = highest priority, 2 = lower priority
 BASE_DIR                = os.path.dirname(os.path.abspath(__file__))
 EVENT_FILE              = os.path.join(BASE_DIR, "goal_horn_events.json")
@@ -110,7 +110,7 @@ def get_game_data(game_pk: int) -> dict | None:
     outs           = linescore.get("outs", 0)
 
     yankees_won = (
-        current_inning >= 0 and
+        current_inning >= 9 and
         outs == 3 and
         inning_half == opponent_half and
         yankees_runs > opponent_runs

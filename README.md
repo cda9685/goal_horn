@@ -130,6 +130,7 @@ Install the microSD card into the Raspberry Pi and power it on. You can now SSH 
   @reboot python3 -u /path/to/goal_horn/yankees_monitor.py >> /path/to/goal_horn/yankees_monitor.log 2>&1
 ```
   This will start the script in the background on boot and write its status to a log.
+  
 3. Set up a log rotation:
   `sudo vim /etc/logrotate.d/goal_horn`
   Add the following:

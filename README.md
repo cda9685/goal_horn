@@ -175,6 +175,7 @@ These scripts are designed to run at boot and remain running in the background. 
 <!-- ROADMAP -->
 ## Roadmap
 
+- [ ] Add a requirements.txt
 - [ ] Add a branch for users using the MAX98357 I2S DAC amplifier module
 - [ ] Add NFL script (Miami Dolphins)
 - [ ] Add NBA script (New York Knicks)

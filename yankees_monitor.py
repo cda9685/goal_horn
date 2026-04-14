@@ -201,20 +201,27 @@ def main():
                           f"(baseline set)")
 
                 elif current_runs > last_run_count:
-                    new_runs    = current_runs - last_run_count
-                    is_home_run = play_is_hr and play_index != last_play_index
+                    new_runs       = current_runs - last_run_count
+                    last_run_count = current_runs
+                    last_play_index = play_index
+
+                    print(f"[{now}] YANKEES SCORED! (+{new_runs}) | Total: {current_runs} "
+                          f"| Checking if it was a home run...")
+
+                    # Wait a few seconds then re-check the play type
+                    time.sleep(5)
+                    recheck = get_game_data(game_pk)
+                    if recheck:
+                        recent_plays = recheck_plays = recheck.get("last_play_is_hr", False)
+                        is_home_run  = recheck["last_play_is_hr"]
+                    else:
+                        is_home_run = False
 
                     if is_home_run:
-                        print(f"[{now}] YANKEES HOME RUN! (+{new_runs}) | "
-                              f"Total: {current_runs}")
+                        print(f"[{now}] Confirmed home run!")
                         queue_event("yankees_home_run")
                     else:
-                        print(f"[{now}] YANKEES SCORED! (+{new_runs}) | "
-                              f"Total: {current_runs}")
                         queue_event("yankees_run")
-
-                    last_run_count  = current_runs
-                    last_play_index = play_index
 
                 else:
                     print(f"[{now}] {matchup} | State={game_state} | "

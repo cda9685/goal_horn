@@ -211,9 +211,7 @@ def main():
                     else:
                         print(f"[{now}] YANKEES SCORED! (+{new_runs}) | "
                               f"Total: {current_runs}")
-                        for _ in range(new_runs):
-                            queue_event("yankees_run")
-                            time.sleep(1)
+                        queue_event("yankees_run")
 
                     last_run_count  = current_runs
                     last_play_index = play_index

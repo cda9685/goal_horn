@@ -208,14 +208,17 @@ def main():
                     print(f"[{now}] YANKEES SCORED! (+{new_runs}) | Total: {current_runs} "
                           f"| Checking if it was a home run...")
 
-                    # Wait a few seconds then re-check the play type
-                    time.sleep(5)
-                    recheck = get_game_data(game_pk)
-                    if recheck:
-                        recent_plays = recheck_plays = recheck.get("last_play_is_hr", False)
-                        is_home_run  = recheck["last_play_is_hr"]
-                    else:
-                        is_home_run = False
+                    # Poll for up to 15 seconds waiting for API to confirm
+                    # play type — home run label often lags behind run total
+                    is_home_run = False
+                    for attempt in range(5):
+                        time.sleep(3)
+                        recheck = get_game_data(game_pk)
+                        if recheck and recheck["last_play_is_hr"]:
+                            is_home_run = True
+                            print(f"[{now}] Home run confirmed on attempt {attempt + 1}.")
+                            break
+                        print(f"[{now}] Play type recheck {attempt + 1}/5 — not yet a home run.")
 
                     if is_home_run:
                         print(f"[{now}] Confirmed home run!")

@@ -109,12 +109,17 @@ def get_game_data(game_pk: int) -> dict | None:
     inning_half    = linescore.get("inningHalf", "") # "Top" or "Bottom"
     outs           = linescore.get("outs", 0)
 
-    yankees_won = (
+    yankees_won = ((
         current_inning >= 9 and
         outs == 3 and
         inning_half == opponent_half and
         yankees_runs > opponent_runs
-    ) and (
+    ) or (  # In case of a walk-off win
+        current_inning >= 9 and
+        inning_half != opponent_half and
+        yankees_runs > opponent_runs and
+        home_team.get("id") == YANKEES_TEAM_ID
+    )) and (
         game_state != "Final"
     )
 

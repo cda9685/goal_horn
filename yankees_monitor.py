@@ -129,6 +129,9 @@ def get_game_data(game_pk: int) -> dict | None:
 
     if all_plays:
         event_type      = all_plays[-1].get("result", {}).get("eventType", "")
+        print(f"[DEBUG] Last play event type: {event_type}")
+        print(f"[DEBUG] Last play description: {all_plays[-1].get('result', {}).get('description', '')}")
+        print(f"[DEBUG] Last play details: {all_plays[-1].get('result', {}).get('details', {})}")
         last_play_is_hr = event_type == "home_run"
 
     return {

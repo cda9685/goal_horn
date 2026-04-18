@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 # ─── Configuration ────────────────────────────────────────────────────────────
 
 YANKEES_TEAM_ID         = 147
-POLL_INTERVAL           = 5         # Seconds between API calls during a live game
+POLL_INTERVAL           = 2         # Seconds between API calls during a live game
 IDLE_INTERVAL           = 60        # Seconds between checks when no game is live
 STREAM_DELAY_SECONDS    = 25        # Delay to sync with Fubo streaming delay
 PRIORITY                = 1         # 1 = highest priority, 2 = lower priority

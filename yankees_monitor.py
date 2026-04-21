@@ -130,11 +130,16 @@ def get_game_data(game_pk: int) -> dict | None:
     if all_plays:
         last_play                   = all_plays[-1]
         event_type                  = all_plays[-1].get("result", {}).get("eventType", "")
-        two_plays_ago_event_type    = all_plays[-2].get("result", {}).get("eventType", "")
+        if len(all_plays) >= 2:
+            two_plays_ago_event_type    = all_plays[-2].get("result", {}).get("eventType", "")
+            two_plays_ago_description     = all_plays[-2].get("result", {}).get("description", "")
+        else:
+            two_plays_ago_event_type = ""
+            two_plays_ago_description = ""
         print(f"[DEBUG] Last play event type: {event_type}")
         print(f"[DEBUG] Last play description: {all_plays[-1].get('result', {}).get('description', '')}")
         print(f"[DEBUG] Two plays ago event type: {two_plays_ago_event_type}")
-        print(f"[DEBUG] Two plays ago description: {all_plays[-2].get('result', {}).get('description', '')}")
+        print(f"[DEBUG] Two plays ago description: {two_plays_ago_description}")
         print(f"[DEBUG] Last play raw: {json.dumps(last_play, indent=2)[:500]}")
         last_play_is_hr = event_type == "home_run" or two_plays_ago_event_type == "home_run"
 

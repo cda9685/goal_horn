@@ -128,13 +128,20 @@ def get_game_data(game_pk: int) -> dict | None:
     last_play_is_hr = False
 
     if all_plays:
-        last_play       = all_plays[-1]
-        event_type      = all_plays[-1].get("result", {}).get("eventType", "")
+        last_play                   = all_plays[-1]
+        event_type                  = all_plays[-1].get("result", {}).get("eventType", "")
+        if len(all_plays) >= 2:
+            two_plays_ago_event_type    = all_plays[-2].get("result", {}).get("eventType", "")
+            two_plays_ago_description     = all_plays[-2].get("result", {}).get("description", "")
+        else:
+            two_plays_ago_event_type = ""
+            two_plays_ago_description = ""
         print(f"[DEBUG] Last play event type: {event_type}")
         print(f"[DEBUG] Last play description: {all_plays[-1].get('result', {}).get('description', '')}")
-        print(f"[DEBUG] Last play details: {all_plays[-1].get('result', {}).get('details', {})}")
+        print(f"[DEBUG] Two plays ago event type: {two_plays_ago_event_type}")
+        print(f"[DEBUG] Two plays ago description: {two_plays_ago_description}")
         print(f"[DEBUG] Last play raw: {json.dumps(last_play, indent=2)[:500]}")
-        last_play_is_hr = event_type == "home_run"
+        last_play_is_hr = event_type == "home_run" or two_plays_ago_event_type == "home_run"
 
     return {
         "yankees_runs":     yankees_runs,
@@ -218,22 +225,11 @@ def main():
                     print(f"[{now}] YANKEES SCORED! (+{new_runs}) | Total: {current_runs} "
                           f"| Checking if it was a home run...")
 
-                    # Poll for up to 15 seconds waiting for API to confirm
-                    # play type — home run label often lags behind run total
-                    is_home_run = False
-                    for attempt in range(5):
-                        time.sleep(3)
-                        recheck = get_game_data(game_pk)
-                        if recheck and recheck["last_play_is_hr"]:
-                            is_home_run = True
-                            print(f"[{now}] Home run confirmed on attempt {attempt + 1}.")
-                            break
-                        print(f"[{now}] Play type recheck {attempt + 1}/5 — not yet a home run.")
-
-                    if is_home_run:
+                    if play_is_hr:
                         print(f"[{now}] Confirmed home run!")
                         queue_event("yankees_home_run")
                     else:
+                        print(f"[{now}] Confirmed non-home run.")
                         queue_event("yankees_run")
 
                 else:

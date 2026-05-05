@@ -30,7 +30,7 @@ AUDIO = {
     # Yankees
     "yankees_run":      f"{AUDIO_DIR}/yankees_doorbell.mp3",
     "yankees_home_run": f"{AUDIO_DIR}/yankees_home_run.mp3",
-    "yankees_win":      f"{AUDIO_DIR}/new_york_new_york.mp3",
+    "yankees_win":      f"{AUDIO_DIR}/new_york_new_york_rip_sterling.mp3",
 }
 
 # ─── Light Durations (seconds) ────────────────────────────────────────────────

@@ -24,6 +24,39 @@ EVENT_FILE              = os.path.join(BASE_DIR, "goal_horn_events.json")
 
 MLB_SCHEDULE_URL        = "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId={team_id}"
 MLB_GAME_URL            = "https://statsapi.mlb.com/api/v1.1/game/{game_pk}/feed/live"
+COMPLETED_GAMES_FILE    = os.path.join(BASE_DIR, "completed_games.json")
+
+# ─── Completed Games Persistence ─────────────────────────────────────────────
+
+def load_completed_games() -> set:
+    """Load completed game PKs from disk, pruning any older than 2 days."""
+    if not os.path.exists(COMPLETED_GAMES_FILE):
+        return set()
+    try:
+        with open(COMPLETED_GAMES_FILE, "r") as f:
+            data = json.load(f)
+        now = time.time()
+        # Each entry is {pk, timestamp} — prune entries older than 2 days
+        valid = {e["pk"] for e in data if now - e["timestamp"] < 172800}
+        return valid
+    except Exception as e:
+        print(f"[COMPLETED] Failed to load completed games: {e}")
+        return set()
+
+
+def save_completed_game(game_pk: int, completed_games: set):
+    """Save a completed game PK to disk."""
+    try:
+        existing = []
+        if os.path.exists(COMPLETED_GAMES_FILE):
+            with open(COMPLETED_GAMES_FILE, "r") as f:
+                existing = json.load(f)
+        existing.append({"pk": game_pk, "timestamp": time.time()})
+        with open(COMPLETED_GAMES_FILE, "w") as f:
+            json.dump(existing, f)
+        completed_games.add(game_pk)
+    except Exception as e:
+        print(f"[COMPLETED] Failed to save completed game: {e}")
 
 # ─── Event Queue ──────────────────────────────────────────────────────────────
 
@@ -55,7 +88,11 @@ def queue_event(event_type: str):
 
 # ─── MLB API Helpers ──────────────────────────────────────────────────────────
 
-def get_todays_yankees_game() -> dict | None:
+def get_todays_yankees_game(skip_pks: set = None) -> dict | None:
+    """
+    Fetch today's schedule and return the next Yankees game that hasn't
+    been completed yet. Skips any game PKs in skip_pks.
+    """
     try:
         url = MLB_SCHEDULE_URL.format(team_id=YANKEES_TEAM_ID)
         response = requests.get(url, timeout=5)
@@ -69,14 +106,19 @@ def get_todays_yankees_game() -> dict | None:
         for game in date.get("games", []):
             home_id = game.get("teams", {}).get("home", {}).get("team", {}).get("id")
             away_id = game.get("teams", {}).get("away", {}).get("team", {}).get("id")
-            if YANKEES_TEAM_ID in (home_id, away_id):
-                status = game.get("status", {}).get("abstractGameState", "")
-                return {
-                    "game_pk": game["gamePk"],
-                    "state":   status,
-                    "home":    game["teams"]["home"]["team"]["name"],
-                    "away":    game["teams"]["away"]["team"]["name"],
-                }
+            if YANKEES_TEAM_ID not in (home_id, away_id):
+                continue
+            game_pk = game["gamePk"]
+            if skip_pks and game_pk in skip_pks:
+                continue
+
+            status = game.get("status", {}).get("abstractGameState", "")
+            return {
+                "game_pk": game_pk,
+                "state":   status,
+                "home":    game["teams"]["home"]["team"]["name"],
+                "away":    game["teams"]["away"]["team"]["name"],
+            }
     return None
 
 
@@ -106,7 +148,7 @@ def get_game_data(game_pk: int) -> dict | None:
         opponent_half = "Bottom"  # Opponent (home) bats in the bottom of the inning
 
     current_inning = linescore.get("currentInning", 0)
-    inning_half    = linescore.get("inningHalf", "") # "Top" or "Bottom"
+    inning_half    = linescore.get("inningHalf", "")  # "Top" or "Bottom"
     outs           = linescore.get("outs", 0)
 
     yankees_won = ((
@@ -160,11 +202,13 @@ def main():
     last_play_index = None
     win_triggered   = False
     active_game_pk  = None
+    completed_games = load_completed_games()
+    print(f"[START] Loaded {len(completed_games)} completed game(s) from disk.")
 
     try:
         while True:
             now = datetime.now(timezone.utc).strftime("%H:%M:%S UTC")
-            game = get_todays_yankees_game()
+            game = get_todays_yankees_game(skip_pks=completed_games)
 
             if game is None:
                 print(f"[{now}] No Yankees game today. Checking again in {IDLE_INTERVAL}s.")
@@ -244,6 +288,7 @@ def main():
                 if game_state == "Final":
                     print(f"[{now}] Game over. Final Yankees runs: {current_runs}. "
                           f"Resuming idle checks in {IDLE_INTERVAL}s.")
+                    save_completed_game(game_pk, completed_games)
                     last_run_count  = None
                     last_play_index = None
                     win_triggered   = False

@@ -48,7 +48,7 @@ LIGHT_DURATION = {
     "yankees_home_run": 31,
     "yankees_win":      210,
     # Giants
-    "giants_run":       13,
+    "giants_run":       11,
     "giants_home_run":  37,
     "giants_win":       171,
 }

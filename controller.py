@@ -31,16 +31,26 @@ AUDIO = {
     "yankees_run":      f"{AUDIO_DIR}/yankees_doorbell.mp3",
     "yankees_home_run": f"{AUDIO_DIR}/yankees_home_run.mp3",
     "yankees_win":      f"{AUDIO_DIR}/new_york_new_york_rip_sterling.mp3",
+    # Giants
+    "giants_run":       f"{AUDIO_DIR}/giants_run.mp3",
+    "giants_home_run":  f"{AUDIO_DIR}/giants_home_run.mp3",
+    "giants_win":       f"{AUDIO_DIR}/giants_win.mp3",
 }
 
 # ─── Light Durations (seconds) ────────────────────────────────────────────────
 
 LIGHT_DURATION = {
+    # Rangers
     "rangers_goal":     60,
     "rangers_shootout": 5,
+    # Yankees
     "yankees_run":      13,
     "yankees_home_run": 31,
     "yankees_win":      210,
+    # Giants
+    "giants_run":       13,
+    "giants_home_run":  37,
+    "giants_win":       171,
 }
 
 # ─── GPIO Setup ───────────────────────────────────────────────────────────────

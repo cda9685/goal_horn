@@ -24,7 +24,7 @@ EVENT_FILE              = os.path.join(BASE_DIR, "goal_horn_events.json")
 
 MLB_SCHEDULE_URL        = "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId={team_id}"
 MLB_GAME_URL            = "https://statsapi.mlb.com/api/v1.1/game/{game_pk}/feed/live"
-COMPLETED_GAMES_FILE    = os.path.join(BASE_DIR, "completed_games.json")
+COMPLETED_GAMES_FILE    = os.path.join(BASE_DIR, "yankees_completed_games.json")
 
 # ─── Completed Games Persistence ─────────────────────────────────────────────
 

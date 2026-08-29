@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 GIANTS_TEAM_ID          = 137
 POLL_INTERVAL           = 2         # Seconds between API calls during a live game
 IDLE_INTERVAL           = 60        # Seconds between checks when no game is live
-STREAM_DELAY_SECONDS    = 25        # Delay to sync with Fubo streaming delay
+STREAM_DELAY_SECONDS    = 30        # Delay to sync with Fubo streaming delay
 PRIORITY                = 3         # 1 = highest priority, 3 = lower priority
 BASE_DIR                = os.path.dirname(os.path.abspath(__file__))
 EVENT_FILE              = os.path.join(BASE_DIR, "goal_horn_events.json")

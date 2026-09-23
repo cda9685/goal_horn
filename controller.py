@@ -9,7 +9,7 @@ import time
 import json
 import os
 import subprocess
-import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO # type: ignore
 from datetime import datetime, timezone
 
 # ─── Configuration ────────────────────────────────────────────────────────────
@@ -31,10 +31,16 @@ AUDIO = {
     "yankees_run":      f"{AUDIO_DIR}/yankees_doorbell.mp3",
     "yankees_home_run": f"{AUDIO_DIR}/yankees_home_run.mp3",
     "yankees_win":      f"{AUDIO_DIR}/new_york_new_york_rip_sterling.mp3",
-    # Giants
+    # SF Giants
     "giants_run":       f"{AUDIO_DIR}/giants_run.mp3",
     "giants_home_run":  f"{AUDIO_DIR}/giants_home_run.mp3",
     "giants_win":       f"{AUDIO_DIR}/giants_win.mp3",
+    # Dolphins
+    "dolphins_touchdown": f"{AUDIO_DIR}/dolphins_touchdown.mp3",
+    "dolphins_win":     f"{AUDIO_DIR}/dolphins_win.mp3",
+    # NY Giants
+    "nygiants_touchdown": f"{AUDIO_DIR}/nygiants_touchdown.mp3",
+    "nygiants_win":       f"{AUDIO_DIR}/nygiants_win.mp3",
 }
 
 # ─── Light Durations (seconds) ────────────────────────────────────────────────
@@ -47,10 +53,16 @@ LIGHT_DURATION = {
     "yankees_run":      13,
     "yankees_home_run": 31,
     "yankees_win":      210,
-    # Giants
+    # SF Giants
     "giants_run":       11,
     "giants_home_run":  37,
     "giants_win":       171,
+    # Dolphins
+    "dolphins_touchdown": 60,
+    "dolphins_win":     210,
+    # NY Giants
+    "nygiants_touchdown": 60,
+    "nygiants_win":       210,
 }
 
 # ─── GPIO Setup ───────────────────────────────────────────────────────────────

@@ -35,6 +35,9 @@ AUDIO = {
     "giants_run":       f"{AUDIO_DIR}/giants_run.mp3",
     "giants_home_run":  f"{AUDIO_DIR}/giants_home_run.mp3",
     "giants_win":       f"{AUDIO_DIR}/giants_win.mp3",
+    # Panthers
+    "panthers_goal":    f"{AUDIO_DIR}/panthers_goal_horn.mp3",
+    "panthers_shootout": None,       # No audio for shootout goals
 }
 
 # ─── Light Durations (seconds) ────────────────────────────────────────────────
@@ -51,6 +54,9 @@ LIGHT_DURATION = {
     "giants_run":       11,
     "giants_home_run":  37,
     "giants_win":       171,
+    # Panthers
+    "panthers_goal":    60,
+    "panthers_shootout": 5,
 }
 
 # ─── GPIO Setup ───────────────────────────────────────────────────────────────

@@ -61,8 +61,8 @@ LIGHT_DURATION = {
     "panthers_goal":    60,
     "panthers_shootout": 5,
     # Vols
-    "vols_touchdown":   45,
-    "vols_score":       30,
+    "vols_touchdown":   17,
+    "vols_score":       17,
 }
 
 # ─── GPIO Setup ───────────────────────────────────────────────────────────────

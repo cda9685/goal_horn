@@ -38,6 +38,9 @@ AUDIO = {
     # Panthers
     "panthers_goal":    f"{AUDIO_DIR}/panthers_goal_horn.mp3",
     "panthers_shootout": None,       # No audio for shootout goals
+    # Vols
+    "vols_touchdown":   f"{AUDIO_DIR}/vols_rocky_top.mp3",
+    "vols_score":       f"{AUDIO_DIR}/vols_rocky_top.mp3",
 }
 
 # ─── Light Durations (seconds) ────────────────────────────────────────────────
@@ -57,6 +60,9 @@ LIGHT_DURATION = {
     # Panthers
     "panthers_goal":    60,
     "panthers_shootout": 5,
+    # Vols
+    "vols_touchdown":   17,
+    "vols_score":       17,
 }
 
 # ─── GPIO Setup ───────────────────────────────────────────────────────────────

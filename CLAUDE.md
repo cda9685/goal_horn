@@ -19,6 +19,15 @@ A Raspberry Pi goal light: when a tracked team scores, a relay turns on a rotati
 4. In `README.md`, add the `@reboot` cron line and the monitor's config variables under Usage.
 5. Add the audio to `audio/`.
 
+### Team names shared across sports
+
+When a team shares its name with a team in another sport (e.g. the San Francisco Giants and the New York Giants), prefix everything for that team with its city: the monitor file, the event names, the config variables, the audio files, and the log file. For example:
+
+- `sf_giants_monitor.py` → `sf_giants_run`, `SF_GIANTS_TEAM_ID`, `audio/sf_giants_run.mp3`
+- `ny_giants_monitor.py` → `ny_giants_touchdown`, `NY_GIANTS_TEAM_ID`, `audio/ny_giants_touchdown.mp3`
+
+Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use the prefix for any new team whose name clashes, and don't rename existing files unless asked.
+
 ## Light durations
 
 - Set a new song's light duration to its audio length **rounded up**, so the light never turns off while the song is audible. Check length with `ffprobe -v error -show_entries format=duration -of csv=p=0 file.mp3`.

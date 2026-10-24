@@ -8,6 +8,7 @@ Monitors a shared event queue and processes events by priority.
 import time
 import json
 import os
+import random
 import subprocess
 import RPi.GPIO as GPIO # type: ignore
 from datetime import datetime, timezone
@@ -23,6 +24,12 @@ POLL_INTERVAL   = 0.5              # Seconds between event queue checks
 
 # ─── Audio Files ──────────────────────────────────────────────────────────────
 
+# Events with several versions pick one at random; each is (audio path, light duration)
+VOLS_ROCKY_TOP = [
+    (f"{AUDIO_DIR}/vols_rocky_top.mp3",       17),
+    (f"{AUDIO_DIR}/vols_rocky_top_dolly.mp3", 29),
+]
+
 AUDIO = {
     # Rangers
     "rangers_goal":     f"{AUDIO_DIR}/rangers_goal_song.mp3",
@@ -35,6 +42,12 @@ AUDIO = {
     "giants_run":       f"{AUDIO_DIR}/giants_run.mp3",
     "giants_home_run":  f"{AUDIO_DIR}/giants_home_run.mp3",
     "giants_win":       f"{AUDIO_DIR}/giants_win.mp3",
+    # Panthers
+    "panthers_goal":    f"{AUDIO_DIR}/panthers_goal_horn.mp3",
+    "panthers_shootout": None,       # No audio for shootout goals
+    # Vols
+    "vols_touchdown":   VOLS_ROCKY_TOP,
+    "vols_score":       VOLS_ROCKY_TOP,
     # Dolphins
     "dolphins_touchdown": f"{AUDIO_DIR}/dolphins_touchdown.mp3",
     "dolphins_win":     f"{AUDIO_DIR}/dolphins_win.mp3",
@@ -45,6 +58,7 @@ AUDIO = {
 
 # ─── Light Durations (seconds) ────────────────────────────────────────────────
 
+# Round audio lengths UP so the light never shuts off while the song is still playing
 LIGHT_DURATION = {
     # Rangers
     "rangers_goal":     60,
@@ -57,6 +71,10 @@ LIGHT_DURATION = {
     "giants_run":       11,
     "giants_home_run":  37,
     "giants_win":       171,
+    # Panthers
+    "panthers_goal":    60,
+    "panthers_shootout": 5,
+    # Vols durations are set per version in VOLS_ROCKY_TOP
     # Dolphins
     "dolphins_touchdown": 60,
     "dolphins_win":     210,
@@ -124,6 +142,9 @@ def process_event(event: dict):
 
     duration    = LIGHT_DURATION.get(event_type, 5)
     audio_path  = AUDIO.get(event_type)
+
+    if isinstance(audio_path, list):
+        audio_path, duration = random.choice(audio_path)
 
     print(f"[{now}] [CONTROLLER] Processing event: {event_type}")
 

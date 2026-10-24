@@ -272,9 +272,11 @@ def main():
                         print(f"[{now}] NY GIANTS SCORED! Play type: {play_type} | "
                               f"Score: {current_score}")
 
-                        # Only touchdowns trigger the light; field goals and safeties are skipped
                         if "Touchdown" in play_type:
                             queue_event("ny_giants_touchdown")
+                        else:
+                            # Field goal, safety, or any other scoring play
+                            queue_event("ny_giants_score")
 
                 else:
                     print(f"[{now}] {matchup} | {status_name} | "

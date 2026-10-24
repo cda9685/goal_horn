@@ -15,7 +15,7 @@ A Raspberry Pi goal light: when a tracked team scores, a relay turns on a rotati
 
 1. Write `<team>_monitor.py`.
 2. In `controller.py`, add the team's events to both `AUDIO` and `LIGHT_DURATION`, using the exact event names the monitor queues.
-3. In `restart.sh`, add the team's name (the monitor file name without `_monitor.py`) to `ALL`.
+3. In `restart.sh`, add a `pkill` line and a start line.
 4. In `README.md`, add the `@reboot` cron line and the monitor's config variables under Usage.
 5. Add the audio to `audio/`.
 
@@ -49,4 +49,4 @@ Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use
 
 ## Deployment
 
-- The Pi runs from `/home/coledallen/projects/goal_horn` on `master`. Scripts start on boot via `@reboot` cron jobs, and `restart.sh` restarts everything (`./restart.sh rangers vols` restarts only those; `-m` only starts scripts that aren't running).
+- The Pi runs from `/home/coledallen/projects/goal_horn` on `master`. Scripts start on boot via `@reboot` cron jobs, and `restart.sh` restarts everything.

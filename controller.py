@@ -26,8 +26,8 @@ POLL_INTERVAL   = 0.5              # Seconds between event queue checks
 
 # Events with several versions pick one at random; each is (audio path, light duration)
 VOLS_ROCKY_TOP = [
-    (f"{AUDIO_DIR}/vols_rocky_top.mp3",       16),
-    (f"{AUDIO_DIR}/vols_rocky_top_dolly.mp3", 28),
+    (f"{AUDIO_DIR}/vols_rocky_top.mp3",       17),
+    (f"{AUDIO_DIR}/vols_rocky_top_dolly.mp3", 29),
 ]
 
 AUDIO = {

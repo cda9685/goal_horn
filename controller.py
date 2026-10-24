@@ -77,8 +77,8 @@ LIGHT_DURATION = {
     "panthers_shootout": 5,
     # Vols durations are set per version in VOLS_ROCKY_TOP
     # Dolphins
-    "dolphins_touchdown": 60,
-    "dolphins_score":   60,
+    "dolphins_touchdown": 41,
+    "dolphins_score":   41,
     "dolphins_win":     210,
     # NY Giants
     "ny_giants_touchdown": 60,

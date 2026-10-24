@@ -49,11 +49,11 @@ AUDIO = {
     "vols_touchdown":   VOLS_ROCKY_TOP,
     "vols_score":       VOLS_ROCKY_TOP,
     # Dolphins
-    "dolphins_touchdown": f"{AUDIO_DIR}/dolphins_touchdown.mp3",
+    "dolphins_td":      f"{AUDIO_DIR}/dolphins_touchdown.mp3",
     "dolphins_win":     f"{AUDIO_DIR}/dolphins_win.mp3",
     # NY Giants
-    "nygiants_touchdown": f"{AUDIO_DIR}/nygiants_touchdown.mp3",
-    "nygiants_win":       f"{AUDIO_DIR}/nygiants_win.mp3",
+    "ny_giants_touchdown": f"{AUDIO_DIR}/ny_giants_touchdown.mp3",
+    "ny_giants_win":      f"{AUDIO_DIR}/ny_giants_win.mp3",
 }
 
 # ─── Light Durations (seconds) ────────────────────────────────────────────────
@@ -76,11 +76,11 @@ LIGHT_DURATION = {
     "panthers_shootout": 5,
     # Vols durations are set per version in VOLS_ROCKY_TOP
     # Dolphins
-    "dolphins_touchdown": 60,
+    "dolphins_td":      60,
     "dolphins_win":     210,
     # NY Giants
-    "nygiants_touchdown": 60,
-    "nygiants_win":       210,
+    "ny_giants_touchdown": 60,
+    "ny_giants_win":      210,
 }
 
 # ─── GPIO Setup ───────────────────────────────────────────────────────────────

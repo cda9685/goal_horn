@@ -52,6 +52,7 @@ AUDIO = {
 
 # ─── Light Durations (seconds) ────────────────────────────────────────────────
 
+# Round audio lengths UP so the light never shuts off while the song is still playing
 LIGHT_DURATION = {
     # Rangers
     "rangers_goal":     60,

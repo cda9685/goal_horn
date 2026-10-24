@@ -193,12 +193,14 @@ These scripts are designed to run at boot and remain running in the background. 
   - IDLE_INTERVAL: How often the script checks the API with no active game
   - STREAM_DELAY_SECONDS: The delay between the API and streaming service
   - PRIORITY: The priority given to the controller; if two scripts activate the light at the same time, the script with a higher priority (lower integer) will activate first
+  - CONVERSION_WINDOW: How long after a touchdown a 1 or 2 point score is treated as the extra point/two-point conversion (so the light only goes off once per touchdown)
 - ny_giants_monitor.py
   - NY_GIANTS_TEAM_ID: The ESPN ID of the NFL team that the script will track
   - POLL_INTERVAL: How often the script checks the API during gametime
   - IDLE_INTERVAL: How often the script checks the API with no active game
   - STREAM_DELAY_SECONDS: The delay between the API and streaming service
   - PRIORITY: The priority given to the controller; if two scripts activate the light at the same time, the script with a higher priority (lower integer) will activate first
+  - CONVERSION_WINDOW: How long after a touchdown a 1 or 2 point score is treated as the extra point/two-point conversion (so the light only goes off once per touchdown)
 - controller.py
   - GOAL_LIGHT_PIN: The GPIO pin used to trip the relay (NOT the physical pin number)
   - ALSA_DEVICE: The card and device value assigned to the USB speaker

@@ -273,11 +273,10 @@ def main():
                               f"Score: {current_score}")
 
                         if "Touchdown" in play_type:
-                            queue_event("dolphins_td")
-                        elif "Field Goal" in play_type:
-                            queue_event("dolphins_fg")
-                        elif "Safety" in play_type:
-                            queue_event("dolphins_safety")
+                            queue_event("dolphins_touchdown")
+                        else:
+                            # Field goal, safety, or any other scoring play
+                            queue_event("dolphins_score")
 
                 else:
                     print(f"[{now}] {matchup} | {status_name} | "

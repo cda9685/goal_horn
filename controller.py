@@ -49,7 +49,8 @@ AUDIO = {
     "vols_touchdown":   VOLS_ROCKY_TOP,
     "vols_score":       VOLS_ROCKY_TOP,
     # Dolphins
-    "dolphins_td":      f"{AUDIO_DIR}/miami_dolphins_fight_song.mp3",
+    "dolphins_touchdown": f"{AUDIO_DIR}/miami_dolphins_fight_song.mp3",
+    "dolphins_score":   f"{AUDIO_DIR}/miami_dolphins_fight_song.mp3",
     "dolphins_win":     f"{AUDIO_DIR}/dolphins_win.mp3",
     # NY Giants
     "ny_giants_touchdown": f"{AUDIO_DIR}/ny_giants_touchdown.mp3",
@@ -76,7 +77,8 @@ LIGHT_DURATION = {
     "panthers_shootout": 5,
     # Vols durations are set per version in VOLS_ROCKY_TOP
     # Dolphins
-    "dolphins_td":      60,
+    "dolphins_touchdown": 60,
+    "dolphins_score":   60,
     "dolphins_win":     210,
     # NY Giants
     "ny_giants_touchdown": 60,

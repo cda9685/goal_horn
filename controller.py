@@ -53,7 +53,8 @@ AUDIO = {
     "dolphins_score":   f"{AUDIO_DIR}/miami_dolphins_fight_song.mp3",
     "dolphins_win":     f"{AUDIO_DIR}/dolphins_win.mp3",
     # NY Giants
-    "ny_giants_touchdown": f"{AUDIO_DIR}/ny_giants_touchdown.mp3",
+    "ny_giants_touchdown": f"{AUDIO_DIR}/ny_groove.mp3",
+    "ny_giants_score":  f"{AUDIO_DIR}/ny_groove.mp3",
     "ny_giants_win":      f"{AUDIO_DIR}/ny_giants_win.mp3",
 }
 
@@ -79,10 +80,11 @@ LIGHT_DURATION = {
     # Dolphins
     "dolphins_touchdown": 41,
     "dolphins_score":   41,
-    "dolphins_win":     210,
+    "dolphins_win":     5,
     # NY Giants
-    "ny_giants_touchdown": 60,
-    "ny_giants_win":      210,
+    "ny_giants_touchdown": 26,
+    "ny_giants_score":  26,
+    "ny_giants_win":    5,
 }
 
 # ─── GPIO Setup ───────────────────────────────────────────────────────────────

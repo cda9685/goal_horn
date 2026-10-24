@@ -8,6 +8,7 @@ Monitors a shared event queue and processes events by priority.
 import time
 import json
 import os
+import random
 import subprocess
 import RPi.GPIO as GPIO
 from datetime import datetime, timezone
@@ -22,6 +23,12 @@ EVENT_FILE      = os.path.join(BASE_DIR, "goal_horn_events.json")
 POLL_INTERVAL   = 0.5              # Seconds between event queue checks
 
 # ─── Audio Files ──────────────────────────────────────────────────────────────
+
+# Events with several versions pick one at random; each is (audio path, light duration)
+VOLS_ROCKY_TOP = [
+    (f"{AUDIO_DIR}/vols_rocky_top.mp3",       16),
+    (f"{AUDIO_DIR}/vols_rocky_top_dolly.mp3", 28),
+]
 
 AUDIO = {
     # Rangers
@@ -39,8 +46,8 @@ AUDIO = {
     "panthers_goal":    f"{AUDIO_DIR}/panthers_goal_horn.mp3",
     "panthers_shootout": None,       # No audio for shootout goals
     # Vols
-    "vols_touchdown":   f"{AUDIO_DIR}/vols_rocky_top.mp3",
-    "vols_score":       f"{AUDIO_DIR}/vols_rocky_top.mp3",
+    "vols_touchdown":   VOLS_ROCKY_TOP,
+    "vols_score":       VOLS_ROCKY_TOP,
 }
 
 # ─── Light Durations (seconds) ────────────────────────────────────────────────
@@ -60,9 +67,7 @@ LIGHT_DURATION = {
     # Panthers
     "panthers_goal":    60,
     "panthers_shootout": 5,
-    # Vols
-    "vols_touchdown":   16,
-    "vols_score":       16,
+    # Vols durations are set per version in VOLS_ROCKY_TOP
 }
 
 # ─── GPIO Setup ───────────────────────────────────────────────────────────────
@@ -124,6 +129,9 @@ def process_event(event: dict):
 
     duration    = LIGHT_DURATION.get(event_type, 5)
     audio_path  = AUDIO.get(event_type)
+
+    if isinstance(audio_path, list):
+        audio_path, duration = random.choice(audio_path)
 
     print(f"[{now}] [CONTROLLER] Processing event: {event_type}")
 

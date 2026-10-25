@@ -51,11 +51,11 @@ AUDIO = {
     # Dolphins
     "dolphins_touchdown": f"{AUDIO_DIR}/miami_dolphins_fight_song.mp3",
     "dolphins_score":   f"{AUDIO_DIR}/miami_dolphins_fight_song.mp3",
-    "dolphins_win":     f"{AUDIO_DIR}/dolphins_win.mp3",
+    "dolphins_win":     None,       # No audio yet
     # NY Giants
     "ny_giants_touchdown": f"{AUDIO_DIR}/ny_groove.mp3",
     "ny_giants_score":  f"{AUDIO_DIR}/ny_groove.mp3",
-    "ny_giants_win":      f"{AUDIO_DIR}/ny_giants_win.mp3",
+    "ny_giants_win":    None,       # No audio yet
 }
 
 # ─── Light Durations (seconds) ────────────────────────────────────────────────

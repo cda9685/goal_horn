@@ -79,7 +79,7 @@ LIGHT_DURATION = {
     # Vols durations are set per version in VOLS_ROCKY_TOP
     # Dolphins
     "dolphins_touchdown": 41,
-    "dolphins_score":   41,
+    "dolphins_score":   16,
     "dolphins_win":     5,
     # NY Giants
     "ny_giants_touchdown": 26,

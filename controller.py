@@ -10,7 +10,7 @@ import json
 import os
 import random
 import subprocess
-import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO # type: ignore
 from datetime import datetime, timezone
 
 # ─── Configuration ────────────────────────────────────────────────────────────
@@ -38,7 +38,7 @@ AUDIO = {
     "yankees_run":      f"{AUDIO_DIR}/yankees_doorbell.mp3",
     "yankees_home_run": f"{AUDIO_DIR}/yankees_home_run.mp3",
     "yankees_win":      f"{AUDIO_DIR}/new_york_new_york_rip_sterling.mp3",
-    # Giants
+    # SF Giants
     "giants_run":       f"{AUDIO_DIR}/giants_run.mp3",
     "giants_home_run":  f"{AUDIO_DIR}/giants_home_run.mp3",
     "giants_win":       f"{AUDIO_DIR}/giants_win.mp3",
@@ -48,6 +48,14 @@ AUDIO = {
     # Vols
     "vols_touchdown":   VOLS_ROCKY_TOP,
     "vols_score":       VOLS_ROCKY_TOP,
+    # Dolphins
+    "dolphins_touchdown": f"{AUDIO_DIR}/miami_dolphins_fight_song.mp3",
+    "dolphins_score":   f"{AUDIO_DIR}/miami_dolphins_fight_song_shortened.mp3",
+    "dolphins_win":     None,       # No audio yet
+    # NY Giants
+    "ny_giants_touchdown": f"{AUDIO_DIR}/ny_groove.mp3",
+    "ny_giants_score":  f"{AUDIO_DIR}/ny_groove.mp3",
+    "ny_giants_win":    None,       # No audio yet
 }
 
 # ─── Light Durations (seconds) ────────────────────────────────────────────────
@@ -61,7 +69,7 @@ LIGHT_DURATION = {
     "yankees_run":      13,
     "yankees_home_run": 31,
     "yankees_win":      210,
-    # Giants
+    # SF Giants
     "giants_run":       11,
     "giants_home_run":  37,
     "giants_win":       171,
@@ -69,6 +77,14 @@ LIGHT_DURATION = {
     "panthers_goal":    60,
     "panthers_shootout": 5,
     # Vols durations are set per version in VOLS_ROCKY_TOP
+    # Dolphins
+    "dolphins_touchdown": 41,
+    "dolphins_score":   16,
+    "dolphins_win":     5,
+    # NY Giants
+    "ny_giants_touchdown": 26,
+    "ny_giants_score":  26,
+    "ny_giants_win":    5,
 }
 
 # ─── GPIO Setup ───────────────────────────────────────────────────────────────

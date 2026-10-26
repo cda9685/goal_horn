@@ -50,7 +50,7 @@ AUDIO = {
     "vols_score":       VOLS_ROCKY_TOP,
     # Dolphins
     "dolphins_touchdown": f"{AUDIO_DIR}/miami_dolphins_fight_song.mp3",
-    "dolphins_score":   f"{AUDIO_DIR}/miami_dolphins_fight_song.mp3",
+    "dolphins_score":   f"{AUDIO_DIR}/miami_dolphins_fight_song_shortened.mp3",
     "dolphins_win":     None,       # No audio yet
     # NY Giants
     "ny_giants_touchdown": f"{AUDIO_DIR}/ny_groove.mp3",

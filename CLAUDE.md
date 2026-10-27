@@ -18,6 +18,7 @@ A Raspberry Pi goal light: when a tracked team scores, a relay turns on a rotati
 3. In `restart.sh`, add the team's name (the monitor file name without `_monitor.py`) to `ALL`.
 4. In `README.md`, add the `@reboot` cron line and the monitor's config variables under Usage.
 5. Add the audio to `audio/`.
+6. Run `python3 -m pytest tests -k <team>`. Monitors on the NHL, MLB and ESPN football APIs are picked up by the tests automatically; a new API or sport needs its own tests (see `tests/README.md`).
 
 ### Team names shared across sports
 
@@ -35,7 +36,8 @@ Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use
 
 ## Git and GitHub workflow
 
-- Every change starts from a GitHub issue. Branch from `master` as `feature/issue-N` (new things) or `fix/issue-N` (bugs).
+- Every change starts from a GitHub issue. Branch from `master` as `feature/issue-N` (new things) or `fix/issue-N` (bugs), where `N` is the issue number.
+- **Branch names are a hard requirement.** Never commit or push to a branch with any other name, including names generated or assigned by a tool, harness, or session (e.g. `claude/<random-words>`). If you start on such a branch, create the correct `feature/issue-N` or `fix/issue-N` branch from `master` before your first commit. If you don't know the issue number, ask before committing.
 - Commit messages are short, often prefixed `feature:`, `feat:`, `fix:`, or `docs:`.
 - PR titles match the issue title, and the body starts with `Closes #N`.
 - PRs are **squash merged** (not merge commits or rebase), so each PR lands on `master` as one commit. After a squash merge, start any follow-up work on a new branch from `master`.
@@ -43,9 +45,12 @@ Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use
 
 ## Testing
 
-- There's no test suite. `RPi.GPIO` only exists on the Pi, so off the Pi, test by stubbing it (`sys.modules['RPi.GPIO'] = MagicMock()`) and replacing `play_audio` and `time.sleep`.
-- Monitor logic can be tested by replacing the API helper with a scripted sequence of scores.
-- Live API behavior is checked on the Pi in `<team>_monitor.log`.
+- Everything for testing lives in `tests/`; see `tests/README.md`. Keep test code, tools and recorded games there, not in the repo root, and don't add test hooks to the production scripts. The harness patches them from outside.
+- Run `pip install -r tests/requirements.txt` once, then `python3 -m pytest tests` before every commit. GitHub Actions runs the same on every PR.
+- Monitor tests run each monitor's real `main()` against scripted API responses (`tests/builders.py`) on a fake clock. Add a test for any behavior you change or bug you fix.
+- Known bugs have `xfail(strict=True)` tests naming the issue. When a fix makes one pass (`XPASS(strict)`), remove its marker in the same PR. Don't mark a new failure `xfail` to get CI green unless it's a known bug with an issue.
+- Recorded games live in `tests/fixtures/` (`record_game.py`, or `rebuild_mlb_game.py` for past MLB games) and are checked by `test_fixtures.py` once `expected_events` is filled in.
+- On the Pi, `python3 tests/fire_event.py <event>` sets off the light and audio for any event. Live API behavior is checked in `<team>_monitor.log`.
 
 ## Deployment
 

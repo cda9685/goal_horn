@@ -3,11 +3,11 @@
 #
 # Usage: ./restart.sh [-m] [name ...]
 #   (no names)   act on the controller and every monitor
-#   name ...     act only on these, e.g. ./restart.sh rangers vols
+#   name ...     act only on these, e.g. ./restart.sh rangers ny_giants
 #   -m           only start scripts that aren't running; leave running ones alone
 
 DIR=/home/coledallen/projects/goal_horn
-ALL="controller rangers yankees giants panthers vols"
+ALL="controller rangers yankees giants panthers vols dolphins ny_giants"
 
 usage() {
     echo "Usage: $0 [-m] [name ...]"

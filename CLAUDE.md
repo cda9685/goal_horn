@@ -38,7 +38,7 @@ Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use
 - Every change starts from a GitHub issue. Branch from `master` as `feature/issue-N` (new things) or `fix/issue-N` (bugs).
 - Commit messages are short, often prefixed `feature:`, `feat:`, `fix:`, or `docs:`.
 - PR titles match the issue title, and the body starts with `Closes #N`.
-- PRs are merged with **merge commits** (not squash or rebase).
+- PRs are **squash merged** (not merge commits or rebase), so each PR lands on `master` as one commit. After a squash merge, start any follow-up work on a new branch from `master`.
 - To update a branch with `master`, merge `master` in. Don't rebase or force-push shared branches.
 
 ## Testing

@@ -9,6 +9,7 @@ Uses the ESPN API (site.api.espn.com) — no API key required.
 import time
 import json
 import os
+import sys
 import requests
 from datetime import datetime, timezone
 
@@ -20,7 +21,7 @@ IDLE_INTERVAL           = 60        # Seconds between checks when no game is liv
 STREAM_DELAY_SECONDS    = 30        # Delay to sync with Fubo streaming delay
 PRIORITY                = 3         # 1 = highest priority, 3 = lower priority
 CONVERSION_WINDOW       = 180       # Seconds after a touchdown to treat a 1/2 point score as the PAT
-DEBUG                   = False     # Print [DEBUG] lines to the log
+DEBUG                   = False     # Print [DEBUG] lines to the log (or run with --debug)
 BASE_DIR                = os.path.dirname(os.path.abspath(__file__))
 EVENT_FILE              = os.path.join(BASE_DIR, "goal_horn_events.json")
 
@@ -31,6 +32,13 @@ ESPN_SCOREBOARD_URL     = ("https://site.api.espn.com/apis/site/v2/sports/footba
 
 # ESPN status names that mean the game will not be played today
 NOT_PLAYING_STATUSES    = ("STATUS_POSTPONED", "STATUS_CANCELED", "STATUS_FORFEIT")
+
+# ─── Debug Logging ────────────────────────────────────────────────────────────
+
+def debug(message: str):
+    """Print a [DEBUG] line when DEBUG is on (set below or run with --debug)."""
+    if DEBUG:
+        print(f"[DEBUG] {message}")
 
 # ─── Event Queue ──────────────────────────────────────────────────────────────
 
@@ -52,6 +60,7 @@ def queue_event(event_type: str):
             with open(EVENT_FILE, "r") as f:
                 events = json.load(f)
 
+        debug(f"Queue has {len(events)} event(s) before adding {event_type}")
         events.append(event)
 
         with open(EVENT_FILE, "w") as f:
@@ -68,6 +77,8 @@ def get_vols_game() -> dict | None:
     try:
         response = requests.get(ESPN_SCOREBOARD_URL, timeout=10)
         response.raise_for_status()
+        debug(f"GET {response.url} -> {response.status_code} "
+              f"in {response.elapsed.total_seconds():.2f}s")
         data = response.json()
     except Exception as e:
         print(f"[API ERROR] Scoreboard fetch failed: {e}")
@@ -81,12 +92,13 @@ def get_vols_game() -> dict | None:
 
         vols = None
         home = away = ""
+        home_score = away_score = None
         for team in competitors:
             abbrev = team.get("team", {}).get("abbreviation", "")
             if team.get("homeAway") == "home":
-                home = abbrev
+                home, home_score = abbrev, team.get("score")
             else:
-                away = abbrev
+                away, away_score = abbrev, team.get("score")
             if str(team.get("team", {}).get("id", team.get("id"))) == VOLS_TEAM_ID:
                 vols = team
 
@@ -94,6 +106,10 @@ def get_vols_game() -> dict | None:
             continue
 
         status = event.get("status", {}).get("type", {})
+        debug(f"Scoreboard: game {event['id']} {away} {away_score} @ {home} {home_score} | "
+              f"status={status.get('name')} state={status.get('state')} | "
+              f"Q{event.get('status', {}).get('period')} "
+              f"{event.get('status', {}).get('displayClock')}")
         try:
             score = int(vols.get("score", 0))
         except (TypeError, ValueError):
@@ -108,6 +124,7 @@ def get_vols_game() -> dict | None:
             "home":    home,
             "away":    away,
         }
+    debug(f"Vols not on scoreboard ({len(data.get('events', []))} event(s))")
     return None
 
 # ─── Main Loop ────────────────────────────────────────────────────────────────
@@ -163,6 +180,9 @@ def main():
                 points = current_score - last_score
                 in_conversion_window = (last_td_time is not None and
                                         time.time() - last_td_time <= CONVERSION_WINDOW)
+                if last_td_time is not None:
+                    debug(f"+{points} came {time.time() - last_td_time:.0f}s after the last "
+                          f"touchdown (conversion window {CONVERSION_WINDOW}s)")
 
                 if points >= 6:
                     # Touchdown (possibly with the PAT already included)
@@ -207,4 +227,6 @@ def main():
 
 
 if __name__ == "__main__":
+    if "--debug" in sys.argv:
+        DEBUG = True
     main()

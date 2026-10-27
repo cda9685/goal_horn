@@ -9,6 +9,7 @@ Uses the NHL API (api-web.nhle.com) — no API key required.
 import time
 import json
 import os
+import sys
 import requests
 from datetime import datetime, timezone
 
@@ -19,12 +20,19 @@ POLL_INTERVAL           = 5         # Seconds between API calls during a live ga
 IDLE_INTERVAL           = 60        # Seconds between checks when no game is live
 STREAM_DELAY_SECONDS    = 30        # Delay to sync with Fubo streaming delay
 PRIORITY                = 2         # 1 = highest priority, 2 = lower priority
-DEBUG                   = False     # Print [DEBUG] lines to the log
+DEBUG                   = False     # Print [DEBUG] lines to the log (or run with --debug)
 BASE_DIR                = os.path.dirname(os.path.abspath(__file__))
 EVENT_FILE              = os.path.join(BASE_DIR, "goal_horn_events.json")
 
 NHL_SCHEDULE_URL        = "https://api-web.nhle.com/v1/schedule/now"
 NHL_GAME_URL            = "https://api-web.nhle.com/v1/gamecenter/{game_id}/landing"
+
+# ─── Debug Logging ────────────────────────────────────────────────────────────
+
+def debug(message: str):
+    """Print a [DEBUG] line when DEBUG is on (set below or run with --debug)."""
+    if DEBUG:
+        print(f"[DEBUG] {message}")
 
 # ─── Event Queue ──────────────────────────────────────────────────────────────
 
@@ -46,6 +54,7 @@ def queue_event(event_type: str):
             with open(EVENT_FILE, "r") as f:
                 events = json.load(f)
 
+        debug(f"Queue has {len(events)} event(s) before adding {event_type}")
         events.append(event)
 
         with open(EVENT_FILE, "w") as f:
@@ -61,6 +70,8 @@ def get_todays_rangers_game() -> dict | None:
     try:
         response = requests.get(NHL_SCHEDULE_URL, timeout=10)
         response.raise_for_status()
+        debug(f"GET {response.url} -> {response.status_code} "
+              f"in {response.elapsed.total_seconds():.2f}s")
         data = response.json()
     except Exception as e:
         print(f"[API ERROR] Schedule fetch failed: {e}")
@@ -71,12 +82,16 @@ def get_todays_rangers_game() -> dict | None:
             home = game.get("homeTeam", {}).get("abbrev", "")
             away = game.get("awayTeam", {}).get("abbrev", "")
             if RANGERS_TEAM_ID in (home, away):
+                debug(f"Schedule: game {game['id']} {away} @ {home} | "
+                      f"gameState={game.get('gameState')} "
+                      f"scheduleState={game.get('gameScheduleState')}")
                 return {
                     "game_id": game["id"],
                     "state":   game.get("gameState", ""),
                     "home":    home,
                     "away":    away,
                 }
+    debug(f"No {RANGERS_TEAM_ID} game in {len(data.get('gameWeek', []))} day(s) of schedule")
     return None
 
 
@@ -85,6 +100,8 @@ def get_game_data(game_id: int) -> dict | None:
         url = NHL_GAME_URL.format(game_id=game_id)
         response = requests.get(url, timeout=10)
         response.raise_for_status()
+        debug(f"GET {response.url} -> {response.status_code} "
+              f"in {response.elapsed.total_seconds():.2f}s")
         data = response.json()
     except Exception as e:
         print(f"[API ERROR] Game fetch failed: {e}")
@@ -113,6 +130,13 @@ def get_game_data(game_id: int) -> dict | None:
             if (attempt.get("teamAbbrev") == RANGERS_TEAM_ID and
                     attempt.get("result") == "goal"):
                 so_goals += 1
+
+    clock = data.get("clock", {})
+    debug(f"{away_team.get('abbrev')} {away_team.get('score')} @ "
+          f"{home_team.get('abbrev')} {home_team.get('score')} | "
+          f"Period {period_desc.get('number')} {period_type} | "
+          f"Clock {clock.get('timeRemaining')} "
+          f"(intermission={clock.get('inIntermission')}) | SO goals {so_goals}")
 
     return {
         "score":       score,
@@ -206,6 +230,9 @@ def main():
                         last_goal_count = current_goals
 
                     else:
+                        if current_goals < last_goal_count:
+                            debug(f"Rangers goals went down {last_goal_count} -> "
+                                  f"{current_goals}; baseline kept at {last_goal_count}")
                         print(f"[{now}] {matchup} | {period_type} | State={state} | "
                               f"Rangers goals: {current_goals}")
 
@@ -225,4 +252,6 @@ def main():
 
 
 if __name__ == "__main__":
+    if "--debug" in sys.argv:
+        DEBUG = True
     main()

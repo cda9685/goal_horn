@@ -49,4 +49,4 @@ Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use
 
 ## Deployment
 
-- The Pi runs from `/home/coledallen/projects/goal_horn` on `master`. Scripts start on boot via `@reboot` cron jobs, and `restart.sh` restarts everything (`./restart.sh rangers vols` restarts only those; `-m` only starts scripts that aren't running).
+- The Pi runs from `/home/coledallen/projects/goal_horn` on `master`. Scripts start on boot via `@reboot` cron jobs, and `restart.sh` restarts everything (`./restart.sh rangers vols` restarts only those; `-m` only starts scripts that aren't running; `-d` starts monitors with `--debug`).

@@ -9,6 +9,7 @@ Uses the MLB Stats API — no API key required.
 import time
 import json
 import os
+import sys
 import requests
 from datetime import datetime, timezone
 
@@ -19,13 +20,20 @@ POLL_INTERVAL           = 2         # Seconds between API calls during a live ga
 IDLE_INTERVAL           = 60        # Seconds between checks when no game is live
 STREAM_DELAY_SECONDS    = 30        # Delay to sync with Fubo streaming delay
 PRIORITY                = 3         # 1 = highest priority, 3 = lower priority
-DEBUG                   = False     # Print [DEBUG] lines to the log
+DEBUG                   = False     # Print [DEBUG] lines to the log (or run with --debug)
 BASE_DIR                = os.path.dirname(os.path.abspath(__file__))
 EVENT_FILE              = os.path.join(BASE_DIR, "goal_horn_events.json")
 COMPLETED_GAMES_FILE    = os.path.join(BASE_DIR, "giants_completed_games.json")
 
 MLB_SCHEDULE_URL        = "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId={team_id}"
 MLB_GAME_URL            = "https://statsapi.mlb.com/api/v1.1/game/{game_pk}/feed/live"
+
+# ─── Debug Logging ────────────────────────────────────────────────────────────
+
+def debug(message: str):
+    """Print a [DEBUG] line when DEBUG is on (set below or run with --debug)."""
+    if DEBUG:
+        print(f"[DEBUG] {message}")
 
 # ─── Completed Games Persistence ─────────────────────────────────────────────
 
@@ -76,6 +84,7 @@ def queue_event(event_type: str):
             with open(EVENT_FILE, "r") as f:
                 events = json.load(f)
 
+        debug(f"Queue has {len(events)} event(s) before adding {event_type}")
         events.append(event)
 
         with open(EVENT_FILE, "w") as f:
@@ -92,6 +101,8 @@ def get_todays_giants_game(skip_pks: set = None) -> dict | None:
         url = MLB_SCHEDULE_URL.format(team_id=GIANTS_TEAM_ID)
         response = requests.get(url, timeout=5)
         response.raise_for_status()
+        debug(f"GET {response.url} -> {response.status_code} "
+              f"in {response.elapsed.total_seconds():.2f}s")
         data = response.json()
     except Exception as e:
         print(f"[API ERROR] Schedule fetch failed: {e}")
@@ -105,8 +116,11 @@ def get_todays_giants_game(skip_pks: set = None) -> dict | None:
                 continue
             game_pk = game["gamePk"]
             if skip_pks and game_pk in skip_pks:
+                debug(f"Schedule: skipping completed game {game_pk}")
                 continue
             status = game.get("status", {}).get("abstractGameState", "")
+            debug(f"Schedule: game {game_pk} | abstractGameState={status} "
+                  f"detailedState={game.get('status', {}).get('detailedState')}")
             return {
                 "game_pk": game_pk,
                 "state":   status,
@@ -121,6 +135,8 @@ def get_game_data(game_pk: int) -> dict | None:
         url = MLB_GAME_URL.format(game_pk=game_pk)
         response = requests.get(url, timeout=5)
         response.raise_for_status()
+        debug(f"GET {response.url} -> {response.status_code} "
+              f"in {response.elapsed.total_seconds():.2f}s")
         data = response.json()
     except Exception as e:
         print(f"[API ERROR] Game fetch failed: {e}")
@@ -159,6 +175,9 @@ def get_game_data(game_pk: int) -> dict | None:
         game_state != "Final"
     )
 
+    debug(f"{game_state} | {inning_half} {current_inning}, {outs} out | "
+          f"Giants {giants_runs} - Opponent {opponent_runs} | giants_won={giants_won}")
+
     all_plays       = data.get("liveData", {}).get("plays", {}).get("allPlays", [])
     last_play_index = len(all_plays) - 1
     last_play_is_hr = False
@@ -172,12 +191,12 @@ def get_game_data(game_pk: int) -> dict | None:
         else:
             two_plays_ago_event_type  = ""
             two_plays_ago_description = ""
-        if DEBUG:
-            print(f"[DEBUG] Last play event type: {event_type}")
-            print(f"[DEBUG] Last play description: {all_plays[-1].get('result', {}).get('description', '')}")
-            print(f"[DEBUG] Two plays ago event type: {two_plays_ago_event_type}")
-            print(f"[DEBUG] Two plays ago description: {two_plays_ago_description}")
-            print(f"[DEBUG] Last play raw: {json.dumps(last_play, indent=2)[:500]}")
+        debug(f"Last play event type: {event_type}")
+        debug(f"Last play description: {all_plays[-1].get('result', {}).get('description', '')}")
+        debug(f"Two plays ago event type: {two_plays_ago_event_type}")
+        debug(f"Two plays ago description: {two_plays_ago_description}")
+        if DEBUG:  # Skip building the JSON when debug is off
+            debug(f"Last play raw: {json.dumps(last_play, indent=2)[:500]}")
         last_play_is_hr = event_type == "home_run" or two_plays_ago_event_type == "home_run"
 
     return {
@@ -272,6 +291,9 @@ def main():
                         queue_event("giants_run")
 
                 else:
+                    if current_runs < last_run_count:
+                        debug(f"Giants runs went down {last_run_count} -> "
+                              f"{current_runs}; baseline kept at {last_run_count}")
                     print(f"[{now}] {matchup} | State={game_state} | "
                           f"Giants runs: {current_runs}")
 
@@ -298,4 +320,6 @@ def main():
 
 
 if __name__ == "__main__":
+    if "--debug" in sys.argv:
+        DEBUG = True
     main()

@@ -19,7 +19,7 @@ POLL_INTERVAL           = 2         # Seconds between API calls during a live ga
 IDLE_INTERVAL           = 60        # Seconds between checks when no game is live
 STREAM_DELAY_SECONDS    = 30        # Delay to sync with Fubo streaming delay
 PRIORITY                = 3         # 1 = highest priority, 3 = lower priority
-DEBUG                   = False     # Print [DEBUG] play details on every poll
+DEBUG                   = False     # Print [DEBUG] lines to the log
 BASE_DIR                = os.path.dirname(os.path.abspath(__file__))
 EVENT_FILE              = os.path.join(BASE_DIR, "goal_horn_events.json")
 COMPLETED_GAMES_FILE    = os.path.join(BASE_DIR, "giants_completed_games.json")

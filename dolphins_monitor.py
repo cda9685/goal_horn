@@ -20,6 +20,7 @@ IDLE_INTERVAL           = 60        # Seconds between checks when no game is liv
 STREAM_DELAY_SECONDS    = 25        # Delay to sync with Fubo streaming delay
 PRIORITY                = 4         # 1 = highest priority
 CONVERSION_WINDOW       = 180       # Seconds after a touchdown to treat a 1/2 point score as the PAT
+DEBUG                   = False     # Print [DEBUG] lines to the log
 BASE_DIR                = os.path.dirname(os.path.abspath(__file__))
 EVENT_FILE              = os.path.join(BASE_DIR, "goal_horn_events.json")
 

@@ -19,6 +19,7 @@ POLL_INTERVAL           = 5         # Seconds between API calls during a live ga
 IDLE_INTERVAL           = 60        # Seconds between checks when no game is live
 STREAM_DELAY_SECONDS    = 30        # Delay to sync with Fubo streaming delay
 PRIORITY                = 2         # 1 = highest priority, 2 = lower priority
+DEBUG                   = False     # Print [DEBUG] lines to the log
 BASE_DIR                = os.path.dirname(os.path.abspath(__file__))
 EVENT_FILE              = os.path.join(BASE_DIR, "goal_horn_events.json")
 

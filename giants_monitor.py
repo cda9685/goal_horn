@@ -19,6 +19,7 @@ POLL_INTERVAL           = 2         # Seconds between API calls during a live ga
 IDLE_INTERVAL           = 60        # Seconds between checks when no game is live
 STREAM_DELAY_SECONDS    = 30        # Delay to sync with Fubo streaming delay
 PRIORITY                = 3         # 1 = highest priority, 3 = lower priority
+DEBUG                   = False     # Print [DEBUG] play details on every poll
 BASE_DIR                = os.path.dirname(os.path.abspath(__file__))
 EVENT_FILE              = os.path.join(BASE_DIR, "goal_horn_events.json")
 COMPLETED_GAMES_FILE    = os.path.join(BASE_DIR, "giants_completed_games.json")
@@ -171,11 +172,12 @@ def get_game_data(game_pk: int) -> dict | None:
         else:
             two_plays_ago_event_type  = ""
             two_plays_ago_description = ""
-        print(f"[DEBUG] Last play event type: {event_type}")
-        print(f"[DEBUG] Last play description: {all_plays[-1].get('result', {}).get('description', '')}")
-        print(f"[DEBUG] Two plays ago event type: {two_plays_ago_event_type}")
-        print(f"[DEBUG] Two plays ago description: {two_plays_ago_description}")
-        print(f"[DEBUG] Last play raw: {json.dumps(last_play, indent=2)[:500]}")
+        if DEBUG:
+            print(f"[DEBUG] Last play event type: {event_type}")
+            print(f"[DEBUG] Last play description: {all_plays[-1].get('result', {}).get('description', '')}")
+            print(f"[DEBUG] Two plays ago event type: {two_plays_ago_event_type}")
+            print(f"[DEBUG] Two plays ago description: {two_plays_ago_description}")
+            print(f"[DEBUG] Last play raw: {json.dumps(last_play, indent=2)[:500]}")
         last_play_is_hr = event_type == "home_run" or two_plays_ago_event_type == "home_run"
 
     return {

@@ -168,12 +168,14 @@ These scripts are designed to run at boot and remain running in the background. 
   - IDLE_INTERVAL: How often the script checks the API with no active game
   - STREAM_DELAY_SECONDS: The delay between the API and streaming service
   - PRIORITY: The priority given to the controller; if two scripts activate the light at the same time, the script with a higher priority (lower integer) will activate first
+  - DEBUG: When True, prints `[DEBUG]` details about the last plays on every poll (off by default to keep logs small)
 - giants_monitor.py
   - GIANTS_TEAM_ID: The ID of the MLB team that the script will track
   - POLL_INTERVAL: How often the script checks the API during gametime
   - IDLE_INTERVAL: How often the script checks the API with no active game
   - STREAM_DELAY_SECONDS: The delay between the API and streaming service
   - PRIORITY: The priority given to the controller; if two scripts activate the light at the same time, the script with a higher priority (lower integer) will activate first
+  - DEBUG: When True, prints `[DEBUG]` details about the last plays on every poll (off by default to keep logs small)
 - panthers_monitor.py
   - PANTHERS_TEAM_ID: The acronym for the NHL team that the script will track
   - POLL_INTERVAL: How often the script checks the API during gametime

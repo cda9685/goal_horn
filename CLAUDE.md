@@ -38,6 +38,7 @@ Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use
 
 - Every change starts from a GitHub issue. Branch from `master` as `feature/issue-N` (new things) or `fix/issue-N` (bugs), where `N` is the issue number.
 - **Branch names are a hard requirement.** Never commit or push to a branch with any other name, including names generated or assigned by a tool, harness, or session (e.g. `claude/<random-words>`). If you start on such a branch, create the correct `feature/issue-N` or `fix/issue-N` branch from `master` before your first commit. If you don't know the issue number, ask before committing.
+- When mentioning a GitHub number, always say whether it's an issue or a PR (e.g. "Issue #28", "PR #35"). Issues and PRs share one numbering, so a bare `#N` is ambiguous.
 - Commit messages are short, often prefixed `feature:`, `feat:`, `fix:`, or `docs:`.
 - PR titles match the issue title, and the body starts with `Closes #N`.
 - PRs are **squash merged** (not merge commits or rebase), so each PR lands on `master` as one commit. After a squash merge, start any follow-up work on a new branch from `master`.

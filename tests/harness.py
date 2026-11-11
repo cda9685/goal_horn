@@ -11,6 +11,7 @@ import json
 import os
 import sys
 import types
+from datetime import timedelta
 from pathlib import Path
 from unittest.mock import MagicMock
 
@@ -120,9 +121,13 @@ class ReplayFinished(KeyboardInterrupt):
 
 
 class FakeResponse:
-    def __init__(self, data, status_code: int = 200):
+    """Stands in for requests.Response. Add any attribute the monitors start reading."""
+
+    def __init__(self, data, status_code: int = 200, url: str = ""):
         self._data       = data
         self.status_code = status_code
+        self.url         = url
+        self.elapsed     = timedelta(0)     # Replayed responses arrive instantly
 
     def json(self):
         return self._data
@@ -192,7 +197,7 @@ class Replay:
         if step.get("error"):
             import requests
             raise requests.ConnectionError(f"{step['error']} (replayed)")
-        return FakeResponse(step.get("json"), step.get("status", 200))
+        return FakeResponse(step.get("json"), step.get("status", 200), url)
 
 
 def load_fixture(path) -> dict:

@@ -22,7 +22,7 @@ def record(monkeypatch, tmp_path, team, steps, raw=False):
         assert step["url"] in url
         if step.get("error"):
             raise requests.ConnectionError(step["error"])
-        return FakeResponse(step["json"])
+        return FakeResponse(step["json"], url=url)
 
     output = tmp_path / "fixtures" / f"{team}.json"
     monkeypatch.setattr(requests, "get", fake_get)

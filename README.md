@@ -36,6 +36,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#testing">Testing</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -224,6 +225,27 @@ Every monitor can print extra `[DEBUG]` lines to its log: the raw scores, period
 ```
 
 Then watch the log with `tail -f yankees_monitor.log`. Debug mode lasts until the monitor is restarted without `-d` or the Pi reboots. `-m -d` only starts monitors that aren't running, so it won't turn on debug for one that already is. To keep debug on across reboots, set `DEBUG = True` in the monitor instead.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- TESTING -->
+## Testing
+
+Everything for testing is in the `tests/` directory; see [tests/README.md](tests/README.md) for details.
+
+- Set off the light and audio for any event on the Pi, without waiting for a game:
+  ```sh
+  python3 tests/fire_event.py --list
+  python3 tests/fire_event.py vols_touchdown
+  ```
+- Run the automated tests on any computer (no Pi needed):
+  ```sh
+  pip install -r tests/requirements.txt
+  python3 -m pytest tests
+  ```
+- Record a live game, or rebuild a past MLB game, and replay it through its monitor in seconds with `tests/record_game.py`, `tests/rebuild_mlb_game.py` and `tests/replay_game.py`.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

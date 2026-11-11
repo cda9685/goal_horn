@@ -51,9 +51,21 @@ python3 -m pytest tests -k vols  # one team
 - `test_nhl_monitors.py`, `test_mlb_monitors.py`, `test_espn_monitors.py` run each monitor's real main loop against scripted games: goals, shootouts, touchdowns with PATs, walk-offs, doubleheaders, API errors, restarts mid-game. Each test runs for every team on that API.
 - `test_controller.py` checks the light and audio for an event, priority order, and that every event a monitor queues is in `AUDIO` and `LIGHT_DURATION` with an audio file that exists.
 - `test_fixtures.py` replays every recorded game in `fixtures/` and checks it fires the expected events.
-- `test_record_game.py` checks recordings replay the same as the live run.
+- `test_debug.py` checks debug mode (`DEBUG = True` or `--debug`) for every monitor, as described below.
+- `test_record_game.py` checks recordings replay the same as the live run, including what the debug lines log.
 
 GitHub Actions runs these on every pull request (`.github/workflows/tests.yml`).
+
+### Debug mode
+
+Debug lines only print what the monitor read from the API, so a replay shows them exactly as a live game would. `test_debug.py` runs one scripted game per API through every monitor and checks that:
+
+- With debug off, nothing starts with `[DEBUG]` (keeping the logs small is the point of the flag).
+- With debug on, the same events fire, and no request turns into an `[API ERROR]`. The API helpers catch every exception, so a mistake in a debug line would look like a failed request and silently drop scores.
+- The lines for the situations debug mode is for show up: API calls and response times, the queue size, overturned scores, doubleheader skips, the PAT conversion window, and "no game" checks. Tests look for key phrases, not exact wording, so rewording a message doesn't break them.
+- No debug line prints `None`. That means a line reads a field the response doesn't have. When a monitor starts logging a new field, add it to the responses in `builders.py` and to the trimmers in `record_game.py`. `test_record_game.py` fails if the trimmers drop a field a debug line logs.
+
+Every recorded game in `fixtures/` is also replayed with debug on. The `--debug` command-line flag and `./restart.sh -d` aren't tested, since they only run when the script is started directly; check those on the Pi.
 
 ### Known bugs
 
@@ -100,6 +112,7 @@ Find a game's ID (`gamePk`) in the schedule, e.g. `https://statsapi.mlb.com/api/
 ```sh
 python3 tests/replay_game.py tests/fixtures/yankees_2026-09-10_win.json      # events and when they fired
 python3 tests/replay_game.py tests/fixtures/yankees_2026-09-10_win.json -v   # with the monitor's log
+python3 tests/replay_game.py tests/fixtures/yankees_2026-09-10_win.json -v -d   # in debug mode, with [DEBUG] lines
 ```
 
 ### Add a game to the tests

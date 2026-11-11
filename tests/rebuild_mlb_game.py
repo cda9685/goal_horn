@@ -68,7 +68,8 @@ def main():
         # Each poll the monitor fetches the schedule, then the feed once the game is under way
         add(schedule_url, {"dates": [{"games": [{
             "gamePk": args.game_pk,
-            "status": {"abstractGameState": state},
+            "status": {"abstractGameState": state,
+                       "detailedState": game["status"].get("detailedState")},
             "teams":  {side: {"team": {"id": game["teams"][side]["id"], "name": names[side]}}
                        for side in ("home", "away")},
         }]}]})

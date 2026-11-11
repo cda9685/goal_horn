@@ -12,14 +12,17 @@ stub_gpio()
 
 @pytest.fixture
 def replay(tmp_path):
-    """replay(team, steps) runs a monitor against the steps and returns a ReplayResult."""
+    """
+    replay(team, steps) runs a monitor against the steps and returns a ReplayResult.
+    replay(team, steps, debug=True) runs it with DEBUG on.
+    """
     runs = iter(range(1_000_000))
 
-    def run(team, steps, module=None):
+    def run(team, steps, module=None, debug=False):
         # Each run gets its own event queue and completed-games file
         state_dir = tmp_path / f"replay{next(runs)}"
         state_dir.mkdir()
-        return run_replay(team, steps, state_dir, module=module)
+        return run_replay(team, steps, state_dir, module=module, debug=debug)
     return run
 
 

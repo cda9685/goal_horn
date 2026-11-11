@@ -29,6 +29,7 @@ class NHL:
         """schedule/now with one game. state: FUT, PRE, LIVE, CRIT, FINAL, OFF, PPD."""
         home, away = self._sides()
         game = {"id": game_id, "gameState": state,
+                "gameScheduleState": "PPD" if state == "PPD" else "OK",
                 "homeTeam": {"abbrev": home}, "awayTeam": {"abbrev": away}}
         return [{"url": "schedule/now", "json": {"gameWeek": [{"games": [game]}]}}]
 
@@ -36,7 +37,8 @@ class NHL:
         return [{"url": "schedule/now", "json": {"gameWeek": [{"games": []}]}}]
 
     def landing(self, game_id: int, us: int, them: int,
-                period_type: str = "REG", shootout: list | None = None) -> list:
+                period_type: str = "REG", shootout: list | None = None,
+                period: int | None = None, clock: str = "10:00") -> list:
         """
         gamecenter/<id>/landing. shootout is a list of (team_abbrev, "goal"/"save")
         attempts, in order.
@@ -46,7 +48,9 @@ class NHL:
         data = {
             "homeTeam":         {"abbrev": home, "score": home_score},
             "awayTeam":         {"abbrev": away, "score": away_score},
-            "periodDescriptor": {"periodType": period_type},
+            "periodDescriptor": {"periodType": period_type,
+                                 "number": period or {"REG": 1, "OT": 4, "SO": 5}[period_type]},
+            "clock":            {"timeRemaining": clock, "inIntermission": False},
             "summary":          {"shootout": [{"teamAbbrev": t, "result": r}
                                               for t, r in (shootout or [])]},
         }
@@ -61,6 +65,10 @@ class NHL:
         return steps
 
 # ─── MLB (statsapi.mlb.com) ───────────────────────────────────────────────────
+
+# status.detailedState for each abstractGameState
+MLB_DETAILED_STATE = {"Preview": "Scheduled", "Live": "In Progress", "Final": "Final"}
+
 
 class MLB:
     """Builder for one MLB team. team is the numeric team ID, e.g. 147."""
@@ -78,7 +86,8 @@ class MLB:
         home, away = self._sides()
         return [{"url": "schedule?sportId=1", "json": {"dates": [{"games": [
             {"gamePk": pk,
-             "status": {"abstractGameState": state},
+             "status": {"abstractGameState": state,
+                        "detailedState": MLB_DETAILED_STATE.get(state, state)},
              "teams": {"home": {"team": {"id": home, "name": f"Team {home}"}},
                        "away": {"team": {"id": away, "name": f"Team {away}"}}}}
             for pk, state in games]}]}}]
@@ -96,7 +105,8 @@ class MLB:
         home_runs, away_runs = (us, them) if self.home else (them, us)
         data = {
             "gameData": {
-                "status": {"abstractGameState": state},
+                "status": {"abstractGameState": state,
+                           "detailedState": MLB_DETAILED_STATE.get(state, state)},
                 "teams":  {"home": {"id": home}, "away": {"id": away}},
             },
             "liveData": {
@@ -145,7 +155,7 @@ class ESPN:
         self.home     = home
 
     def scoreboard(self, game_id: str, status: str, us: int = 0, them: int = 0,
-                   period: int = 1) -> list:
+                   period: int = 1, clock: str = "15:00") -> list:
         """scoreboard with one game. status is a key of ESPN_STATUS."""
         state, name = ESPN_STATUS[status]
 
@@ -158,7 +168,8 @@ class ESPN:
             competitor(self.opponent, "away" if self.home else "home", them),
         ]
         event = {"id": str(game_id),
-                 "status": {"period": period, "type": {"state": state, "name": name}},
+                 "status": {"period": period, "displayClock": clock,
+                            "type": {"state": state, "name": name}},
                  "competitions": [{"competitors": competitors}]}
         return [{"url": "scoreboard", "json": {"events": [event]}}]
 

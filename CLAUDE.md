@@ -49,6 +49,7 @@ Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use
 - Everything for testing lives in `tests/`; see `tests/README.md`. Keep test code, tools and recorded games there, not in the repo root, and don't add test hooks to the production scripts. The harness patches them from outside.
 - Run `pip install -r tests/requirements.txt` once, then `python3 -m pytest tests` before every commit. GitHub Actions runs the same on every PR.
 - Monitor tests run each monitor's real `main()` against scripted API responses (`tests/builders.py`) on a fake clock. Add a test for any behavior you change or bug you fix.
+- Debug lines must not change behavior. When adding or changing one, run `python3 -m pytest tests -k debug`, and if it logs a new API field, add the field to `tests/builders.py` and to the trimmers in `tests/record_game.py`.
 - Known bugs have `xfail(strict=True)` tests naming the issue. When a fix makes one pass (`XPASS(strict)`), remove its marker in the same PR. Don't mark a new failure `xfail` to get CI green unless it's a known bug with an issue.
 - Recorded games live in `tests/fixtures/` (`record_game.py`, or `rebuild_mlb_game.py` for past MLB games) and are checked by `test_fixtures.py` once `expected_events` is filled in.
 - On the Pi, `python3 tests/fire_event.py <event>` sets off the light and audio for any event. Live API behavior is checked in `<team>_monitor.log`.

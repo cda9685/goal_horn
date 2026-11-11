@@ -6,7 +6,9 @@ recorded API responses, with a fake clock so a full game replays in a fraction
 of a second. Nothing here changes how the real scripts run on the Pi.
 """
 
+import contextlib
 import importlib.util
+import io
 import json
 import os
 import sys
@@ -216,15 +218,21 @@ def load_fixture(path) -> dict:
 # ─── Running a Monitor ────────────────────────────────────────────────────────
 
 class ReplayResult:
-    def __init__(self, module, clock: FakeClock, replay: Replay):
+    def __init__(self, module, clock: FakeClock, replay: Replay, log: str = ""):
         self.module = module
         self.clock  = clock
         self.replay = replay
+        self.log    = log.splitlines()     # Everything the monitor printed
         events = []
         if os.path.exists(module.EVENT_FILE):
             with open(module.EVENT_FILE) as f:
                 events = json.load(f)
         self.queued = events        # Full event dicts as written to the queue
+
+    @property
+    def debug_lines(self) -> list[str]:
+        """The [DEBUG] lines the monitor printed."""
+        return [line for line in self.log if line.startswith("[DEBUG]")]
 
     @property
     def events(self) -> list[str]:
@@ -236,25 +244,46 @@ class ReplayResult:
         return [(e["event"], e["timestamp"] - self.clock.start) for e in self.queued]
 
 
-def run_replay(team: str, steps: list, state_dir, module=None) -> ReplayResult:
+def run_replay(team: str, steps: list, state_dir, module=None,
+               debug: bool = False) -> ReplayResult:
     """
     Run a monitor's main loop against a replay until the replay runs out.
     Pass a module from load_script() to change its config first; otherwise one
-    is loaded with its state files in state_dir.
+    is loaded with its state files in state_dir. debug=True turns on the
+    monitor's DEBUG setting, as --debug does on the Pi.
     """
     if module is None:
         module = load_script(team, state_dir)
     clock  = FakeClock()
     replay = Replay(steps)
 
+    if debug:
+        module.DEBUG = True
     module.time     = clock
     module.requests = _requests_with(replay.get)
-    module.main()
+    log = io.StringIO()
+    with contextlib.redirect_stdout(_Tee(sys.stdout, log)):
+        module.main()
 
     if replay.index < len(replay.steps):
         raise AssertionError(
             f"Monitor stopped after {replay.index} of {len(replay.steps)} replay steps")
-    return ReplayResult(module, clock, replay)
+    return ReplayResult(module, clock, replay, log.getvalue())
+
+
+class _Tee:
+    """Writes to several streams, so the log is captured and still shown."""
+
+    def __init__(self, *streams):
+        self.streams = streams
+
+    def write(self, text):
+        for stream in self.streams:
+            stream.write(text)
+
+    def flush(self):
+        for stream in self.streams:
+            stream.flush()
 
 
 def _requests_with(get):

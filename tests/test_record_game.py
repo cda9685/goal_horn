@@ -4,10 +4,12 @@ import json
 import sys
 import time
 
+import pytest
 import requests
 
 import record_game
 from builders import ESPN, MLB, NHL
+from test_debug import GAMES
 from harness import FakeResponse, ReplayFinished, load_fixture, load_script, team_id
 
 
@@ -89,3 +91,14 @@ def test_raw_keeps_full_responses(monkeypatch, tmp_path):
     steps[0]["json"]["leagues"] = ["extra"]
     fixture = load_fixture(record(monkeypatch, tmp_path, "vols", steps, raw=True))
     assert fixture["steps"][0]["json"] == steps[0]["json"]
+
+
+@pytest.mark.parametrize("team, game", GAMES, ids=[t for t, _ in GAMES])
+def test_recording_keeps_what_debug_lines_read(team, game, monkeypatch, tmp_path, replay):
+    # If a trimmer drops a field a debug line logs, the replayed log differs
+    steps   = game(team)
+    fixture = load_fixture(record(monkeypatch, tmp_path, team, steps))
+    live    = replay(team, steps, debug=True)
+    played  = replay(team, fixture["steps"], debug=True)
+    assert played.debug_lines == live.debug_lines
+    assert played.events == live.events

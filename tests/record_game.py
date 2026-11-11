@@ -53,19 +53,21 @@ def pick(data, *paths):
 
 def trim_nhl_schedule(data, tid):
     return {"gameWeek": [
-        {"games": [pick(g, "id", "gameState", "homeTeam.abbrev", "awayTeam.abbrev")
+        {"games": [pick(g, "id", "gameState", "gameScheduleState",
+                        "homeTeam.abbrev", "awayTeam.abbrev")
                    for g in day.get("games", [])]}
         for day in data.get("gameWeek", [])]}
 
 
 def trim_nhl_landing(data, tid):
     return pick(data, "homeTeam.abbrev", "homeTeam.score", "awayTeam.abbrev",
-                "awayTeam.score", "periodDescriptor", "summary.shootout")
+                "awayTeam.score", "periodDescriptor", "summary.shootout",
+                "clock.timeRemaining", "clock.inIntermission")
 
 
 def trim_mlb_schedule(data, tid):
     return {"dates": [
-        {"games": [pick(g, "gamePk", "status.abstractGameState",
+        {"games": [pick(g, "gamePk", "status.abstractGameState", "status.detailedState",
                         "teams.home.team.id", "teams.home.team.name",
                         "teams.away.team.id", "teams.away.team.name")
                    for g in date.get("games", [])]}
@@ -73,7 +75,7 @@ def trim_mlb_schedule(data, tid):
 
 
 def trim_mlb_feed(data, tid):
-    out = pick(data, "gameData.status.abstractGameState",
+    out = pick(data, "gameData.status.abstractGameState", "gameData.status.detailedState",
                "gameData.teams.home.id", "gameData.teams.away.id",
                "liveData.linescore.currentInning", "liveData.linescore.inningHalf",
                "liveData.linescore.outs", "liveData.linescore.teams.home.runs",
@@ -92,7 +94,8 @@ def trim_espn_scoreboard(data, tid):
         ids = {str(c.get("team", {}).get("id", c.get("id"))) for c in competitors}
         if str(tid) not in ids:
             continue    # Other teams' games; the monitor skips them anyway
-        trimmed = pick(event, "id", "status.period", "status.type.state", "status.type.name")
+        trimmed = pick(event, "id", "status.period", "status.displayClock",
+                       "status.type.state", "status.type.name")
         trimmed["competitions"] = [{"competitors": [
             pick(c, "id", "homeAway", "score", "team.id", "team.abbreviation")
             for c in competitors]}]

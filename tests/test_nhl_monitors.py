@@ -122,7 +122,7 @@ def test_goal_after_overturned_goal(team, nhl, replay):
     assert replay(team, steps).events == [f"{team}_goal"] * 2
 
 
-@pytest.mark.xfail(strict=True, reason="a failed API call is treated as no game, resetting the baseline")
+@pytest.mark.xfail(strict=True, reason="#33: a failed API request resets the baseline")
 def test_goal_during_schedule_api_error(team, nhl, replay):
     steps = (nhl.poll(GAME, "LIVE", 0, 0)
              + api_error("schedule/now")

@@ -132,7 +132,7 @@ def test_nfl_restart_after_final_is_quiet(team, espn, replay):
 # strict=True: when the bug is fixed these start passing and fail the run, so
 # remember to remove the marker in the PR that fixes it.
 
-@pytest.mark.xfail(strict=True, reason="a failed API call is treated as no game, resetting the baseline")
+@pytest.mark.xfail(strict=True, reason="#33: a failed API request resets the baseline")
 def test_score_during_api_error(team, espn, replay):
     steps = (espn.poll(GAME, "in", 0, 0)
              + api_error("scoreboard")

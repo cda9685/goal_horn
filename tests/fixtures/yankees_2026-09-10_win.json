@@ -1,6 +1,6 @@
 {
  "team": "yankees",
- "description": "Rockies 3 @ Yankees 10, 2026-09-10, rebuilt from MLB API timestamps. Home run, single, sac fly, single, grand slam. The feed goes from Live with 2 outs straight to Final, so yankees_win doesn't fire; add it here if the win check is changed to catch that.",
+ "description": "Rockies 3 @ Yankees 10, 2026-09-10, rebuilt from MLB API timestamps. Home run, single, sac fly, single, grand slam. The feed goes from Live with 2 outs straight to Final, so yankees_win doesn't fire (#34); add it here if the win check is changed to catch that.",
  "recorded": "20260910_200353 to 20260911_021220",
  "expected_events": [
   "yankees_home_run",

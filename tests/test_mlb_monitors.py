@@ -155,7 +155,7 @@ def test_run_after_overturned_run(team, mlb, replay):
     assert replay(team, steps).events == [f"{team}_run"] * 2
 
 
-@pytest.mark.xfail(strict=True, reason="a failed API call is treated as no game, resetting the baseline")
+@pytest.mark.xfail(strict=True, reason="#33: a failed API request resets the baseline")
 def test_run_during_schedule_api_error(team, mlb, replay):
     steps = (mlb.poll(GAME, "Live", 0, 0, plays=["walk"])
              + api_error("schedule?sportId=1")

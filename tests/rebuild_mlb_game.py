@@ -18,6 +18,7 @@ import argparse
 import json
 import os
 import sys
+import time
 
 import requests
 
@@ -27,6 +28,23 @@ from harness import compress_steps, load_script, script_path, team_id  # noqa: E
 from record_game import FIXTURE_DIR, trim  # noqa: E402
 
 TIMESTAMPS_URL = "https://statsapi.mlb.com/api/v1.1/game/{game_pk}/feed/live/timestamps"
+RETRIES        = 4          # A dropped connection shouldn't throw away a long rebuild
+
+
+def get_json(url: str):
+    """GET url and return its JSON, retrying dropped connections with backoff."""
+    for attempt in range(RETRIES + 1):
+        try:
+            response = requests.get(url, timeout=30)
+            response.raise_for_status()
+            return response.json()
+        except (requests.ConnectionError, requests.Timeout,
+                requests.exceptions.ChunkedEncodingError) as e:
+            if attempt == RETRIES:
+                raise
+            wait = 2 ** (attempt + 1)
+            print(f"[REBUILD] {type(e).__name__}; retrying in {wait}s")
+            time.sleep(wait)
 
 
 def main():
@@ -41,7 +59,7 @@ def main():
     tid    = team_id(module)
     output = args.output or os.path.join(FIXTURE_DIR, f"{team}_{args.game_pk}.json")
 
-    timestamps = requests.get(TIMESTAMPS_URL.format(game_pk=args.game_pk), timeout=30).json()
+    timestamps = get_json(TIMESTAMPS_URL.format(game_pk=args.game_pk))
     print(f"[REBUILD] {len(timestamps)} updates for game {args.game_pk}")
 
     schedule_url = module.MLB_SCHEDULE_URL.format(team_id=tid)
@@ -56,12 +74,12 @@ def main():
         steps.append({"url": url, "response": known[key]})
 
     # Team names aren't in the trimmed feed; the schedule response needs them
-    full  = requests.get(feed_url, timeout=30).json()["gameData"]["teams"]
+    full  = get_json(feed_url)["gameData"]["teams"]
     names = {side: full[side]["name"] for side in ("home", "away")}
 
     for i, timecode in enumerate(timestamps, 1):
         url   = f"{feed_url}?timecode={timecode}"
-        feed  = trim(url, requests.get(url, timeout=30).json(), tid)
+        feed  = trim(url, get_json(url), tid)
         game  = feed["gameData"]
         state = game["status"]["abstractGameState"]
 

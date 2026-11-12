@@ -2397,17 +2397,16 @@
    ]
   },
   {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 209
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 210
-    }
-   ]
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 209
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 210
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 209
   }
  ],
  "responses": [

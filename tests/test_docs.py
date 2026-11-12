@@ -1,6 +1,6 @@
 """The test case table in tests/README.md matches the tests."""
 
-import ast
+import importlib
 from pathlib import Path
 
 TESTS_DIR = Path(__file__).parent
@@ -22,25 +22,42 @@ def table_rows() -> dict:
 
 
 def collect_tests() -> dict:
-    """{(file, test): known-bug issue number or None} for every test function in tests/."""
+    """
+    {(file, test): (issues, partly)} for every test function in tests/: the
+    known-bug issues it's marked with, and whether only some of its cases are.
+    """
     found = {}
     for path in sorted(TESTS_DIR.glob("test_*.py")):
-        tree = ast.parse(path.read_text())
-        # Module-level markers, for decorators like @CRASH = known_bug(37, "...")
-        named = {t.id: n.value for n in tree.body if isinstance(n, ast.Assign)
-                 for t in n.targets if isinstance(t, ast.Name)}
-        for node in tree.body:
-            if not (isinstance(node, ast.FunctionDef) and node.name.startswith("test_")):
+        module = importlib.import_module(path.stem)
+        for name, test in vars(module).items():
+            if not (name.startswith("test_") and callable(test)
+                    and getattr(test, "__module__", None) == module.__name__):
                 continue
-            issue = None
-            for dec in node.decorator_list:
-                dec = named.get(dec.id, dec) if isinstance(dec, ast.Name) else dec
-                assert "xfail" not in ast.unparse(dec), (
-                    f"{path.name}::{node.name}: use @known_bug(issue, reason), not xfail")
-                if (isinstance(dec, ast.Call) and ast.unparse(dec.func) == "known_bug"):
-                    issue = dec.args[0].value
-            found[(path.name, node.name)] = issue
+            marks = getattr(test, "pytestmark", [])
+            check_known_bug_marks(f"{path.name}::{name}", marks)
+            issues = {m.kwargs["issue"] for m in marks if m.name == "known_bug"}
+            partly = set()
+            for m in marks:
+                if m.name == "parametrize":
+                    for case in m.args[1]:
+                        case_marks = getattr(case, "marks", ())
+                        check_known_bug_marks(f"{path.name}::{name}", case_marks)
+                        partly |= {c.kwargs["issue"] for c in case_marks if c.name == "known_bug"}
+            found[(path.name, name)] = (issues or partly, bool(partly) and not issues)
     return found
+
+
+def check_known_bug_marks(where, marks):
+    names = [m.name for m in marks]
+    assert names.count("xfail") == names.count("known_bug"), (
+        f"{where}: use @known_bug(issue, reason) or known_bug_marks(), not xfail")
+
+
+def expected_status(issues, partly) -> str:
+    if not issues:
+        return "✅"
+    listed = ", ".join(f"Issue #{n}" for n in sorted(issues))
+    return f"❌ {listed} (some cases)" if partly else f"❌ {listed}"
 
 
 def test_test_case_table_lists_every_test():
@@ -52,9 +69,6 @@ def test_test_case_table_lists_every_test():
 def test_test_case_table_status_matches_known_bug():
     rows, tests = table_rows(), collect_tests()
     for key, status in rows.items():
-        issue = tests.get(key)
-        if issue is None:
-            assert status == "✅", f"{key} has no @known_bug, so its status should be ✅"
-        else:
-            assert status == f"❌ Issue #{issue}", (
-                f"{key} is @known_bug({issue}, ...): its status should be ❌ Issue #{issue}")
+        if key in tests:
+            want = expected_status(*tests[key])
+            assert status == want, f"{key}: status should be {want!r}, the table says {status!r}"

@@ -77,6 +77,7 @@ def main():
     full  = get_json(feed_url)["gameData"]["teams"]
     names = {side: full[side]["name"] for side in ("home", "away")}
 
+    seen_final = False
     for i, timecode in enumerate(timestamps, 1):
         url   = f"{feed_url}?timecode={timecode}"
         feed  = trim(url, get_json(url), tid)
@@ -91,8 +92,10 @@ def main():
             "teams":  {side: {"team": {"id": game["teams"][side]["id"], "name": names[side]}}
                        for side in ("home", "away")},
         }]}]})
-        if state in ("Live", "Final"):
+        # Once it sees Final, the monitor marks the game finished and stops fetching it
+        if state == "Live" or (state == "Final" and not seen_final):
             add(feed_url, feed)
+        seen_final = seen_final or state == "Final"
         if i % 25 == 0:
             print(f"[REBUILD] {i}/{len(timestamps)} ({timecode})")
 

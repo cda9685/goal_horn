@@ -369,3 +369,19 @@ def test_tick_skips_while_another_holds_the_lock(cli, monkeypatch):
     assert started == []
     cli("--tick")
     assert len(started) == 1            # The next tick does it, once
+
+
+def test_recorder_running_as_another_user_counts_as_running(monkeypatch):
+    # Checking another user's process (e.g. one started from root's crontab)
+    # is refused, but the process is there: don't start a second recorder
+    def refused(pid, signal):
+        raise PermissionError
+    monkeypatch.setattr(dvr.os, "kill", refused)
+    assert dvr.running(4321) is True
+
+
+def test_finished_recorder_is_not_running(monkeypatch):
+    def gone(pid, signal):
+        raise ProcessLookupError
+    monkeypatch.setattr(dvr.os, "kill", gone)
+    assert dvr.running(4321) is False

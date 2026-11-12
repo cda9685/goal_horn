@@ -123,8 +123,10 @@ def running(pid) -> bool:
         return False
     try:
         os.kill(pid, 0)
-    except (ProcessLookupError, PermissionError):
+    except ProcessLookupError:
         return False
+    except PermissionError:
+        return True     # Running, as another user (e.g. started from root's crontab)
     # A finished child that hasn't been reaped is a zombie: not running
     try:
         done, _ = os.waitpid(pid, os.WNOHANG)

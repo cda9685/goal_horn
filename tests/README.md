@@ -313,6 +313,8 @@ python3 -m pytest "tests/test_nhl_monitors.py::test_shootout_goals[rangers]"   #
 | `test_dvr.py` | `test_picking_a_number_not_listed_is_refused` | Negative | `dvr.py` | A number that isn't in the list is refused | ✅ |
 | `test_dvr.py` | `test_tick_starts_due_recordings_and_exits` | Positive | `dvr.py` | `--tick` (what cron runs) starts a due recording; a tick with nothing new logs nothing | ✅ |
 | `test_dvr.py` | `test_tick_skips_while_another_holds_the_lock` | Boundary | `dvr.py` | A tick while another holds the lock does nothing; the next tick starts the recording once | ✅ |
+| `test_dvr.py` | `test_recorder_running_as_another_user_counts_as_running` | Boundary | `dvr.py` | A recorder running as another user (e.g. root) counts as running, so no second one starts | ✅ |
+| `test_dvr.py` | `test_finished_recorder_is_not_running` | Negative | `dvr.py` | A recorder that's gone counts as not running | ✅ |
 | `test_docs.py` | `test_test_case_table_lists_every_test` | Tooling | Tests | This table lists every test, and nothing else | ✅ |
 | `test_docs.py` | `test_test_case_table_status_matches_known_bug` | Tooling | Tests | Each row's ❌ / ✅ and issue number match the test's `@known_bug` | ✅ |
 <!-- test-cases:end -->
@@ -349,6 +351,7 @@ Every bug filed as an issue, plus bugs fixed in commits without one, has a test 
 | Test tools: rebuilt football games counted the stream delay twice after each score, so timing drifted 30s per score | Fixed | `test_espn_replay_timing_matches_live` |
 | Test tools: `dvr.py` read and wrote the real `tests/recordings.json` even when told to use another file | Fixed | the `dvr.py` tests, and `conftest.py` fails any run that leaves a new file in the project |
 | Test tools: `dvr.py` looked up how to start and check recorders once at startup, so tests couldn't replace them and started real recorders | Fixed | `test_tick_starts_due_recordings_and_exits`, and `conftest.py` fails any test where `dvr.py` tries to start a real process |
+| Test tools: `dvr.py` took a recorder running as another user (e.g. root) for a finished one, and would start a second | Fixed | `test_recorder_running_as_another_user_counts_as_running` |
 
 When you fix or file a bug, add a test for it and a row here.
 
@@ -403,11 +406,13 @@ python3 tests/dvr.py --cancel 2            # cancel one (stops it, keeping what'
 
 Games come from the same API the team's monitor uses, and times are shown in the Pi's timezone. The schedule is kept in `tests/recordings.json` (not committed). Picked games are recorded once the cron line below is set up.
 
-**Setup, once: one cron line.** Recordings are started by `dvr.py --tick`, which checks the schedule, starts any recording that's due, and exits. Cron runs it once a minute. Add this line with `crontab -e` (as the same user the monitors run as):
+**Setup, once: one cron line.** Recordings are started by `dvr.py --tick`, which checks the schedule, starts any recording that's due, and exits. Cron runs it once a minute. Add this line to **your own** crontab with `crontab -e`, not `sudo crontab -e`:
 
 ```
 * * * * * /usr/bin/python3 /home/coledallen/projects/goal_horn/tests/dvr.py --tick >> /home/coledallen/projects/goal_horn/dvr.log 2>&1
 ```
+
+Why your own crontab: jobs in `sudo crontab -e` run as root. The schedule, the recordings and `dvr.log` would then be owned by root, so `dvr.py rangers`, run as you to pick games, couldn't change the schedule without `sudo`. Recording doesn't need root either: it only makes web requests and writes files. The two crontabs are separate lists, and both run, so the monitors' lines can stay in root's.
 
 Nothing else needs starting. Cron is always running, including after a reboot, so no service has to be kept alive. A tick takes under a second, mostly Python starting up, and only writes to `dvr.log` when something changes.
 

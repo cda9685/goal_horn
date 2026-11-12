@@ -4,4 +4,5 @@ goal_horn_events.json
 __pycache__/
 .venv/
 tests/recordings.json
+tests/recordings.json.lock
 *.partial.jsonl

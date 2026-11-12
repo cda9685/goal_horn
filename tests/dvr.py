@@ -12,14 +12,19 @@ See and change what's scheduled:
     python3 tests/dvr.py --scheduled
     python3 tests/dvr.py --cancel 2
 
-The recordings are made by the DVR service, which has to be running:
-    python3 -u tests/dvr.py --run >> dvr.log 2>&1 &
-or at boot, from cron (see tests/README.md). It sleeps until LEAD_MINUTES
-before each scheduled game, records it with record_game.py, and stops once
-the game is over. Recordings are saved to tests/fixtures/.
+Recordings are started by `dvr.py --tick`, which cron runs once a minute (set
+up once with crontab -e; see tests/README.md):
+    * * * * * /usr/bin/python3 /home/coledallen/projects/goal_horn/tests/dvr.py --tick >> /home/coledallen/projects/goal_horn/dvr.log 2>&1
+Each tick starts the recordings that are due (LEAD_MINUTES before the game),
+carries on any that a reboot cut off, and exits. The recordings themselves run
+on their own with record_game.py and stop once the game is over. They're
+saved to tests/fixtures/. (`dvr.py --run` does the same checks in one
+long-running process instead, for anyone who prefers that to cron.)
 """
 
 import argparse
+import contextlib
+import fcntl
 import json
 import os
 import subprocess
@@ -60,6 +65,25 @@ def save(recordings, path=None):
     os.replace(tmp, path)       # Never leave a half-written schedule
 
 
+@contextlib.contextmanager
+def locked(wait=True):
+    """
+    Hold the schedule's lock while reading and changing it, so two ticks (or a
+    tick and a --pick) never start the same recording or lose a change.
+    With wait=False, yields False at once if someone else holds it.
+    """
+    with open(SCHEDULE_FILE + ".lock", "a") as lock:
+        try:
+            fcntl.flock(lock, fcntl.LOCK_EX | (0 if wait else fcntl.LOCK_NB))
+        except BlockingIOError:
+            yield False
+            return
+        try:
+            yield True
+        finally:
+            fcntl.flock(lock, fcntl.LOCK_UN)
+
+
 def local(when: str) -> str:
     """A UTC timestamp as the Pi's local time, e.g. "Fri Nov 13  9:00 PM"."""
     return parse_time(when).astimezone().strftime("%a %b %d %l:%M %p")
@@ -89,7 +113,8 @@ def launch(entry) -> int:
     proc = subprocess.Popen(
         [sys.executable, "-u", RECORDER, entry["team"], "--game", entry["game_id"],
          "--stop-after-final", "--max-hours", str(LONGEST_GAME), "-o", entry["output"]],
-        stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+        stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
+        start_new_session=True)     # Keeps recording after the tick that started it exits
     return proc.pid
 
 
@@ -108,9 +133,11 @@ def running(pid) -> bool:
         return True     # Not our child (started by an earlier service), but alive
 
 
-def tick(recordings, now=None, start=launch, alive=running) -> bool:
+def tick(recordings, now=None, start=None, alive=None) -> bool:
     """One check of the schedule: start, finish or give up on recordings. Returns True if anything changed."""
     now     = now or datetime.now(timezone.utc)
+    start   = start or launch
+    alive   = alive or running
     changed = False
     for r in recordings:
         begin = parse_time(r["start"])
@@ -137,16 +164,26 @@ def tick(recordings, now=None, start=launch, alive=running) -> bool:
     return changed
 
 
-def run(path=None):
-    print(f"[DVR] Running. Recordings start {LEAD_MINUTES} minutes before each game.")
-    while True:
-        recordings = load(path)
+def check(**kwargs):
+    """One tick on the schedule file, logging what changed. Skips if another tick is running."""
+    with locked(wait=False) as got_it:
+        if not got_it:
+            return
+        recordings = load()
         before = [dict(r) for r in recordings]
-        if tick(recordings):
-            save(recordings, path)
+        if tick(recordings, **kwargs):
+            save(recordings)
+            stamp = datetime.now().strftime("%Y-%m-%d %H:%M")
             for old, new in zip(before, recordings):
                 if old["status"] != new["status"] or old["pid"] != new["pid"]:
-                    print(f"[DVR] {local(new['start'])}  {new['team']}  {new['matchup']}: {new['status']}")
+                    print(f"[DVR {stamp}] {local(new['start'])}  {new['team']}  "
+                          f"{new['matchup']}: {new['status']}")
+
+
+def run():
+    print(f"[DVR] Running. Recordings start {LEAD_MINUTES} minutes before each game.")
+    while True:
+        check()
         time.sleep(CHECK_EVERY)
 
 # ─── Command Line ─────────────────────────────────────────────────────────────
@@ -182,25 +219,31 @@ def main():
     parser.add_argument("--pick", help='games to record by number ("1,3") or "all", instead of being asked')
     parser.add_argument("--scheduled", action="store_true", help="list scheduled and past recordings")
     parser.add_argument("--cancel", type=int, metavar="N", help="cancel recording N from --scheduled")
-    parser.add_argument("--run", action="store_true", help="run the DVR service")
+    parser.add_argument("--tick", action="store_true",
+                        help="start any recordings that are due, then exit (cron runs this once a minute)")
+    parser.add_argument("--run", action="store_true",
+                        help="keep running and check once a minute (instead of cron and --tick)")
     args = parser.parse_args()
 
+    if args.tick:
+        return check()
     if args.run:
         return run()
-    recordings = load()
     if args.scheduled:
-        return show(recordings)
+        return show(load())
     if args.cancel:
-        if not 1 <= args.cancel <= len(recordings):
-            sys.exit(f"No recording numbered {args.cancel}. See --scheduled.")
-        r = recordings[args.cancel - 1]
-        if r["status"] == "recording" and running(r["pid"]):
-            os.kill(r["pid"], 2)        # Like Ctrl+C: the recorder saves what it has
-        r["status"] = "canceled"
-        save(recordings)
+        with locked():
+            recordings = load()
+            if not 1 <= args.cancel <= len(recordings):
+                sys.exit(f"No recording numbered {args.cancel}. See --scheduled.")
+            r = recordings[args.cancel - 1]
+            if r["status"] == "recording" and running(r["pid"]):
+                os.kill(r["pid"], 2)        # Like Ctrl+C: the recorder saves what it has
+            r["status"] = "canceled"
+            save(recordings)
         return print(f"Canceled: {local(r['start'])} {r['matchup']}")
     if not args.team:
-        parser.error("a team is required (or --scheduled, --cancel, --run)")
+        parser.error("a team is required (or --scheduled, --cancel, --tick)")
 
     team  = os.path.basename(script_path(args.team)).removesuffix("_monitor.py")
     games = upcoming_games(team, args.days)
@@ -213,14 +256,17 @@ def main():
     picked = choose(games, args.pick)
     if not picked:
         return print("Nothing scheduled.")
-    for game in picked:
-        entry = add(recordings, team, game)
-        if entry is None:
-            print(f"Already scheduled: {local(game.start.isoformat())} {game.matchup}")
-        else:
-            print(f"Scheduled: {local(entry['start'])} {entry['matchup']} -> {os.path.relpath(entry['output'])}")
-    save(recordings)
-    print("The DVR service records them; make sure it's running (see tests/README.md).")
+    with locked():
+        recordings = load()
+        for game in picked:
+            entry = add(recordings, team, game)
+            if entry is None:
+                print(f"Already scheduled: {local(game.start.isoformat())} {game.matchup}")
+            else:
+                print(f"Scheduled: {local(entry['start'])} {entry['matchup']} -> "
+                      f"{os.path.relpath(entry['output'])}")
+        save(recordings)
+    print("Recordings start on their own if the DVR's cron line is set up (see tests/README.md).")
 
 
 if __name__ == "__main__":

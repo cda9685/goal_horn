@@ -311,6 +311,8 @@ python3 -m pytest "tests/test_nhl_monitors.py::test_shootout_goals[rangers]"   #
 | `test_dvr.py` | `test_pick_all_and_cancel` | Positive | `dvr.py` | `--pick all` schedules every game; `--cancel` cancels one | ✅ |
 | `test_dvr.py` | `test_picking_nothing_schedules_nothing` | Negative | `dvr.py` | Picking nothing schedules nothing and writes no schedule file | ✅ |
 | `test_dvr.py` | `test_picking_a_number_not_listed_is_refused` | Negative | `dvr.py` | A number that isn't in the list is refused | ✅ |
+| `test_dvr.py` | `test_tick_starts_due_recordings_and_exits` | Positive | `dvr.py` | `--tick` (what cron runs) starts a due recording; a tick with nothing new logs nothing | ✅ |
+| `test_dvr.py` | `test_tick_skips_while_another_holds_the_lock` | Boundary | `dvr.py` | A tick while another holds the lock does nothing; the next tick starts the recording once | ✅ |
 | `test_docs.py` | `test_test_case_table_lists_every_test` | Tooling | Tests | This table lists every test, and nothing else | ✅ |
 | `test_docs.py` | `test_test_case_table_status_matches_known_bug` | Tooling | Tests | Each row's ❌ / ✅ and issue number match the test's `@known_bug` | ✅ |
 <!-- test-cases:end -->
@@ -346,6 +348,7 @@ Every bug filed as an issue, plus bugs fixed in commits without one, has a test 
 | Test tools: `rebuild_nhl_game.py` crashed, or missed the first goal, when a game had no period-start play | Fixed | `test_nhl_goal_before_period_start` |
 | Test tools: rebuilt football games counted the stream delay twice after each score, so timing drifted 30s per score | Fixed | `test_espn_replay_timing_matches_live` |
 | Test tools: `dvr.py` read and wrote the real `tests/recordings.json` even when told to use another file | Fixed | the `dvr.py` tests, and `conftest.py` fails any run that leaves a new file in the project |
+| Test tools: `dvr.py` looked up how to start and check recorders once at startup, so tests couldn't replace them and started real recorders | Fixed | `test_tick_starts_due_recordings_and_exits`, and `conftest.py` fails any test where `dvr.py` tries to start a real process |
 
 When you fix or file a bug, add a test for it and a row here.
 
@@ -398,23 +401,25 @@ python3 tests/dvr.py --scheduled           # what's scheduled, recording, done, 
 python3 tests/dvr.py --cancel 2            # cancel one (stops it, keeping what's recorded, if it's under way)
 ```
 
-Games come from the same API the team's monitor uses, and times are shown in the Pi's timezone. The schedule is kept in `tests/recordings.json` (not committed).
+Games come from the same API the team's monitor uses, and times are shown in the Pi's timezone. The schedule is kept in `tests/recordings.json` (not committed). Picked games are recorded once the cron line below is set up.
 
-**The DVR service makes the recordings.** It has to be running. It's light: it checks the schedule once a minute and otherwise sleeps. Each recording costs about as much as one more monitor. Start it now, and at every boot with a line in `crontab -e` next to the monitors' `@reboot` lines:
-
-```sh
-python3 -u tests/dvr.py --run >> dvr.log 2>&1 &
-```
+**Setup, once: one cron line.** Recordings are started by `dvr.py --tick`, which checks the schedule, starts any recording that's due, and exits. Cron runs it once a minute. Add this line with `crontab -e` (as the same user the monitors run as):
 
 ```
-@reboot python3 -u /home/coledallen/projects/goal_horn/tests/dvr.py --run >> /home/coledallen/projects/goal_horn/dvr.log 2>&1
+* * * * * /usr/bin/python3 /home/coledallen/projects/goal_horn/tests/dvr.py --tick >> /home/coledallen/projects/goal_horn/dvr.log 2>&1
 ```
 
-For each scheduled game, the service:
+Nothing else needs starting. Cron is always running, including after a reboot, so no service has to be kept alive. A tick takes under a second, mostly Python starting up, and only writes to `dvr.log` when something changes.
 
-- **Starts** `record_game.py --game <ID> --stop-after-final` 30 minutes before the game, and the recorder stops itself after the final. Each recording's output goes to a `.log` next to its replay file.
-- **Carries on after a reboot mid-game:** the recording continues where it left off. If the game is over by then, what was recorded is saved and marked `interrupted`.
-- **Marks a game `missed`** when the service wasn't running at any point in the 8 hours after its start.
+Each minute's tick:
+
+- **Starts** `record_game.py --game <ID> --stop-after-final` 30 minutes before a scheduled game. The recorder runs on its own from then on and stops itself after the final. Each recording's output goes to a `.log` next to its replay file.
+- **Carries on after a reboot mid-game:** within a minute of the Pi coming back, the recording continues where it left off. If the game is over by then, what was recorded is saved and marked `interrupted`.
+- **Marks a game `missed`** if no tick ran in the 8 hours after its start, e.g. the cron line wasn't set up.
+
+Ticks take a lock on the schedule, so a slow tick and the next one never start the same recording. Picking and canceling take the same lock.
+
+`dvr.py --run` does the same checks in one long-running process instead, for anyone who'd rather not use cron (it then has to be started at every boot).
 
 When a recording is `done`, replay it, check its events against the real game's scoring, and fill in `expected_events` (see [Add a game to the tests](#add-a-game-to-the-tests)).
 

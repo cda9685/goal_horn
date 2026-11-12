@@ -77,6 +77,21 @@ def pytest_terminal_summary(terminalreporter):
                       "its row in tests/README.md to ✅.")
 
 
+@pytest.fixture(autouse=True)
+def no_real_recorders(monkeypatch):
+    """dvr.py can't start real processes in tests; a test that checks launching gives its own Popen."""
+    import subprocess
+    import types
+
+    import dvr
+
+    def refuse(*args, **kwargs):
+        raise AssertionError("a test tried to start a real recorder process")
+
+    fake = types.SimpleNamespace(DEVNULL=subprocess.DEVNULL, STDOUT=subprocess.STDOUT, Popen=refuse)
+    monkeypatch.setattr(dvr, "subprocess", fake)
+
+
 @pytest.fixture
 def replay(tmp_path):
     """

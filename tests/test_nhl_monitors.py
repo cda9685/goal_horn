@@ -38,7 +38,7 @@ def test_goal_fires_after_stream_delay(team, nhl, replay):
     assert at >= result.module.STREAM_DELAY_SECONDS
 
 
-def test_away_team_goal(team, monitor, replay):
+def test_goal_when_team_plays_away(team, monitor, replay):
     nhl = NHL(team_id(monitor(team)), home=False)
     result = replay(team, nhl.poll(GAME, "LIVE", 0, 0) + nhl.poll(GAME, "LIVE", 1, 0))
     assert result.events == [f"{team}_goal"]
@@ -80,6 +80,15 @@ def test_score_glitch_does_not_double_fire(team, nhl, replay):
     assert replay(team, steps).events == []
 
 
+def test_goal_fires_once_across_state_changes(team, nhl, replay):
+    # Issue #16: one goal must not fire again as the game moves LIVE -> CRIT -> OFF
+    steps = (nhl.poll(GAME, "LIVE", 0, 0)
+             + nhl.poll(GAME, "LIVE", 1, 0) * 3
+             + nhl.poll(GAME, "CRIT", 1, 0) * 3
+             + nhl.poll(GAME, "OFF", 1, 0))
+    assert replay(team, steps).events == [f"{team}_goal"]
+
+
 def test_shootout_goals(team, nhl, replay):
     us, them = nhl.team, nhl.opponent
     steps = (nhl.poll(GAME, "LIVE", 2, 2, "OT")
@@ -101,7 +110,7 @@ def test_new_game_resets_baseline(team, nhl, replay):
     assert replay(team, steps).events == [f"{team}_goal"]
 
 
-def test_api_error_recovers(team, nhl, replay):
+def test_game_data_error_is_retried(team, nhl, replay):
     steps = (nhl.poll(GAME, "LIVE", 0, 0)
              + nhl.schedule(GAME, "LIVE") + api_error(f"gamecenter/{GAME}")
              + nhl.poll(GAME, "LIVE", 1, 0))
@@ -137,7 +146,7 @@ def test_postponed_game_idles(team, nhl, replay):
 
 
 @pytest.mark.xfail(strict=True, reason="#27: NHL monitors don't queue a win event")
-def test_win_event(team, nhl, replay):
+def test_nhl_win(team, nhl, replay):
     steps = (nhl.poll(GAME, "LIVE", 1, 0) + nhl.poll(GAME, "LIVE", 2, 0)
              + nhl.poll(GAME, "OFF", 2, 0))
     assert replay(team, steps).events == [f"{team}_goal", f"{team}_win"]

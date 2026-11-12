@@ -107,12 +107,24 @@ def build_steps(summary: dict, module) -> list:
         score, period = new, new_period
 
     final = {side: int(competitors[side]["score"]) for side in ("home", "away")}
+    ours  = next(side for side, i in ids.items() if i == tid)
     steps = [scoreboard(("pre", "STATUS_SCHEDULED"), 0, "15:00", {"home": 0, "away": 0})] * 2
     start = (plays[0]["_t"] if plays else 0)
     timeline = [(start, 1, "15:00", {"home": 0, "away": 0})] + changes
+    last_td  = None
     for i, (t, q, clock, s) in enumerate(timeline):
         next_t = timeline[i + 1][0] if i + 1 < len(timeline) else t + module.POLL_INTERVAL
-        polls  = polls_for_gap(next_t - t, module.POLL_INTERVAL)
+        gap    = next_t - t
+        # Live, the monitor spends the stream delay queuing an event before it
+        # checks again, so that time is already gone from the gap
+        jump = s[ours] - timeline[i - 1][3][ours] if i else 0
+        try_after_td = (jump in (1, 2) and last_td is not None
+                        and t - last_td <= module.CONVERSION_WINDOW)
+        if jump >= 3 or (jump > 0 and not try_after_td):
+            gap -= module.STREAM_DELAY_SECONDS
+        if jump >= 6:
+            last_td = t
+        polls  = polls_for_gap(gap, module.POLL_INTERVAL)
         steps += [scoreboard(("in", "STATUS_IN_PROGRESS"), q, clock, s)] * polls
     last_q = timeline[-1][1]
     steps += [scoreboard(("post", "STATUS_FINAL"), last_q, "0:00", final)] * 2

@@ -15,7 +15,7 @@
    "repeat": 2
   },
   {
-   "repeat": 120,
+   "repeat": 121,
    "steps": [
     {
      "url": "https://api-web.nhle.com/v1/schedule/now",
@@ -106,7 +106,7 @@
    ]
   },
   {
-   "repeat": 46,
+   "repeat": 40,
    "steps": [
     {
      "url": "https://api-web.nhle.com/v1/schedule/now",
@@ -119,7 +119,7 @@
    ]
   },
   {
-   "repeat": 99,
+   "repeat": 92,
    "steps": [
     {
      "url": "https://api-web.nhle.com/v1/schedule/now",
@@ -249,7 +249,7 @@
    ]
   },
   {
-   "repeat": 9,
+   "repeat": 3,
    "steps": [
     {
      "url": "https://api-web.nhle.com/v1/schedule/now",

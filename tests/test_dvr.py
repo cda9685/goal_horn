@@ -288,15 +288,18 @@ def test_service_starts_the_recorder_for_the_game(monkeypatch, tmp_path):
 
     class Popen:
         def __init__(self, cmd, **kwargs):
-            calls.append(cmd)
+            calls.append((cmd, kwargs))
             self.pid = 4321
     monkeypatch.setattr(dvr.subprocess, "Popen", Popen)
     recordings = []
     entry = dvr.add(recordings, "rangers", game(start=NOW), str(tmp_path))
     assert dvr.launch(entry) == 4321
-    (cmd,) = calls
+    (cmd, kwargs), = calls
     assert cmd[2:] == [dvr.RECORDER, "rangers", "--game", "2", "--stop-after-final",
                        "--max-hours", str(dvr.LONGEST_GAME), "-o", entry["output"]]
+    # Detached, so it keeps recording after the tick that started it exits
+    assert kwargs["start_new_session"] is True
+    assert kwargs["stdin"] == dvr.subprocess.DEVNULL
 
 
 @pytest.fixture
@@ -337,3 +340,32 @@ def test_picking_nothing_schedules_nothing(cli, tmp_path):
 def test_picking_a_number_not_listed_is_refused(cli):
     with pytest.raises(SystemExit, match="No game numbered 7"):
         cli("rangers", "--pick", "7")
+
+
+
+def test_tick_starts_due_recordings_and_exits(cli, monkeypatch):
+    # What cron runs once a minute
+    cli("rangers", "--pick", "1")
+    monkeypatch.setattr(dvr, "launch", lambda entry: 4321)
+    soon = NOW + timedelta(days=1) - timedelta(minutes=dvr.LEAD_MINUTES)
+    real_tick = dvr.tick
+    monkeypatch.setattr(dvr, "tick", lambda recordings: real_tick(recordings, now=soon))
+    out = cli("--tick")
+    assert "NYR @ VAN: recording" in out
+    assert "recording" in cli("--scheduled")
+    monkeypatch.setattr(dvr, "running", lambda pid: True)    # The recorder is still going
+    assert cli("--tick") == ""          # Nothing new: a quiet tick logs nothing
+
+
+def test_tick_skips_while_another_holds_the_lock(cli, monkeypatch):
+    cli("rangers", "--pick", "1")
+    started = []
+    monkeypatch.setattr(dvr, "launch", lambda entry: started.append(entry) or 4321)
+    soon = NOW + timedelta(days=1)
+    real_tick = dvr.tick
+    monkeypatch.setattr(dvr, "tick", lambda recordings: real_tick(recordings, now=soon))
+    with dvr.locked():                  # A slow earlier tick is still running
+        cli("--tick")
+    assert started == []
+    cli("--tick")
+    assert len(started) == 1            # The next tick does it, once

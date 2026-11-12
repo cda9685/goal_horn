@@ -338,6 +338,7 @@ Every bug filed as an issue, plus bugs fixed in commits without one, has a test 
 | Issue #36: a blank ESPN score fires a false touchdown | Open | `test_blank_score_is_not_a_score` ❌, `test_fixture_variation` (some cases) ❌ |
 | Issue #37: unexpected API data crashes a monitor | Open | `test_empty_body_does_not_crash` ❌, `test_empty_game_data_does_not_crash` ❌, `test_null_score_does_not_crash` ❌, `test_fixture_variation` (some cases) ❌ |
 | Issue #38: a corrupted queue file loses every later event | Open | `test_monitor_recovers_from_corrupted_queue` ❌, `test_controller_recovers_from_corrupted_queue` ❌ |
+| Issue #39: the NHL API rate-limits requests (429 Too Many Requests) | Open | `test_fixture` and `test_fixture_variation` with `rangers_2026-11-11_cgy_live` (two real 429s; nothing is missed there, but Issue #33 shows what one at the wrong moment does) |
 | Commits `aebe461`, `af4fd3c`: the light keeps going off after a Yankees win | Fixed | `test_win_fires_once`, `test_lead_after_early_inning_is_not_a_win` |
 | Test tools: a repeated step in a replay file played back squared (5 → 25) | Fixed | `test_saved_repeats_replay_once` |
 | Test tools: a replay that didn't match the monitor's requests didn't fail, because the monitor caught the error | Fixed | `test_replay_that_doesnt_match_the_monitor_fails`, and every replay in the suite |

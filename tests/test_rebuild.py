@@ -75,7 +75,7 @@ def test_nhl_goals_and_shootout(replay):
 
 
 def test_nhl_real_time_is_estimated_from_the_game_clock(replay):
-    # Two goals 10 game minutes apart are about 17.5 real minutes apart, and
+    # Two goals 10 game minutes apart are about 19 real minutes apart, and
     # the replay spaces them out as polls (gaps over 10 minutes are shortened)
     module = load_script("rangers")
     tid    = team_id(module)

@@ -114,30 +114,53 @@ Install the microSD card into the Raspberry Pi and power it on. You can now SSH 
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repo. The steps below assume it's in `/home/coledallen/projects/goal_horn`; change the paths if yours is elsewhere.
    ```sh
-   git clone https://github.com/cda9685/goal_horn.git
+   git clone https://github.com/cda9685/goal_horn.git ~/projects/goal_horn
    ```
-2. Start a cron job:
-  `sudo crontab -e`
+2. Start the monitors at boot, **as yourself**:
+  `crontab -e` (no `sudo`)
   Add the following to the bottom of the file:
 ```
-  @reboot sudo python3 -u /path/to/goal_horn/controller.py >> /path/to/goal_horn/controller.log 2>&1
-  @reboot python3 -u /path/to/goal_horn/rangers_monitor.py >> /path/to/goal_horn/rangers_monitor.log 2>&1
-  @reboot python3 -u /path/to/goal_horn/yankees_monitor.py >> /path/to/goal_horn/yankees_monitor.log 2>&1
-  @reboot python3 -u /path/to/goal_horn/giants_monitor.py >> /path/to/goal_horn/giants_monitor.log 2>&1
-  @reboot python3 -u /path/to/goal_horn/panthers_monitor.py >> /path/to/goal_horn/panthers_monitor.log 2>&1
-  @reboot python3 -u /path/to/goal_horn/vols_monitor.py >> /path/to/goal_horn/vols_monitor.log 2>&1
-  @reboot python3 -u /path/to/goal_horn/dolphins_monitor.py >> /path/to/goal_horn/dolphins_monitor.log 2>&1
-  @reboot python3 -u /path/to/goal_horn/ny_giants_monitor.py >> /path/to/goal_horn/ny_giants_monitor.log 2>&1
+  @reboot python3 -u /home/coledallen/projects/goal_horn/rangers_monitor.py >> /home/coledallen/projects/goal_horn/rangers_monitor.log 2>&1
+  @reboot python3 -u /home/coledallen/projects/goal_horn/yankees_monitor.py >> /home/coledallen/projects/goal_horn/yankees_monitor.log 2>&1
+  @reboot python3 -u /home/coledallen/projects/goal_horn/giants_monitor.py >> /home/coledallen/projects/goal_horn/giants_monitor.log 2>&1
+  @reboot python3 -u /home/coledallen/projects/goal_horn/panthers_monitor.py >> /home/coledallen/projects/goal_horn/panthers_monitor.log 2>&1
+  @reboot python3 -u /home/coledallen/projects/goal_horn/vols_monitor.py >> /home/coledallen/projects/goal_horn/vols_monitor.log 2>&1
+  @reboot python3 -u /home/coledallen/projects/goal_horn/dolphins_monitor.py >> /home/coledallen/projects/goal_horn/dolphins_monitor.log 2>&1
+  @reboot python3 -u /home/coledallen/projects/goal_horn/ny_giants_monitor.py >> /home/coledallen/projects/goal_horn/ny_giants_monitor.log 2>&1
 ```
-  This will start the script in the background on boot and write its status to a log.
-  
-3. Set up a log rotation:
+  This will start each monitor in the background on boot and write its status to a log.
+
+3. Start the controller at boot, **as root**, since it drives the relay's GPIO pin and the speaker.
+  First, create the event queue and the controller's log **as yourself**. Otherwise the controller creates them at its first boot, owned by root, and then the monitors can't add events and `./restart.sh` can't restart the controller:
+  ```sh
+  cd /home/coledallen/projects/goal_horn
+  echo [] > goal_horn_events.json
+  touch controller.log
+  ```
+  Then `sudo crontab -e`
+  Add the following to the bottom of the file:
+```
+  @reboot python3 -u /home/coledallen/projects/goal_horn/controller.py >> /home/coledallen/projects/goal_horn/controller.log 2>&1
+```
+  Why two crontabs: lines in `sudo crontab -e` run as root, and lines in `crontab -e` run as you. The monitors don't need root, and `restart.sh` restarts them as you. If they also ran as root at boot, files they create (like `yankees_completed_games.json`) would be owned by root, and monitors restarted by `restart.sh` couldn't write them (Issue #40). The controller runs as root both ways. Keep each line in only one crontab, or it starts twice.
+
+  To start everything now without rebooting, run `./restart.sh` from the project folder.
+
+  **Upgrading from an older setup** that had every line in `sudo crontab -e`: move the monitor lines to `crontab -e`, then give yourself any files root created (finished-games files, the queue, logs), and restart:
+  ```sh
+  sudo chown -R coledallen:coledallen /home/coledallen/projects/goal_horn
+  ./restart.sh
+  ```
+  Check with `ps -o user,args -C python3`: every `*_monitor.py` should show your user, and `controller.py` root.
+
+4. Set up a log rotation:
   `sudo vim /etc/logrotate.d/goal_horn`
   Add the following:
   ```
   /home/coledallen/projects/goal_horn/*.log {
+          su coledallen coledallen
           daily
           rotate 3
           compress
@@ -146,6 +169,11 @@ Install the microSD card into the Raspberry Pi and power it on. You can now SSH 
           copytruncate
   }
   ```
+  The `su` line is needed because the project folder belongs to you, not root: without it, logrotate skips the logs ("parent directory has insecure permissions") and they grow without limit. Check the setup with:
+  ```sh
+  sudo logrotate -d /etc/logrotate.d/goal_horn
+  ```
+  It should list the logs it would rotate, with no "skipping" or "error" lines.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

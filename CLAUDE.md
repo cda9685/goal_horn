@@ -50,3 +50,4 @@ Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use
 ## Deployment
 
 - The Pi runs from `/home/coledallen/projects/goal_horn` on `master`. Scripts start on boot via `@reboot` cron jobs, and `restart.sh` restarts everything (`./restart.sh rangers vols` restarts only those; `-m` only starts scripts that aren't running).
+- The monitors' `@reboot` lines are in the user's crontab (`crontab -e`); only the controller's is in root's (`sudo crontab -e`), matching `restart.sh`, which starts the controller with `sudo` and the monitors without. Don't move a monitor to root's crontab: files it creates as root can't be written by the monitor after a `restart.sh` (Issue #40).

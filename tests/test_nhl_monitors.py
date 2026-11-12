@@ -3,7 +3,7 @@
 import pytest
 
 from builders import NHL, api_error
-from harness import monitors_using, team_id
+from harness import known_bug, monitors_using, team_id
 
 TEAMS = monitors_using("api-web.nhle.com")
 GAME  = 2026020001
@@ -117,10 +117,10 @@ def test_game_data_error_is_retried(team, nhl, replay):
     assert replay(team, steps).events == [f"{team}_goal"]
 
 # ─── Known Bugs ───────────────────────────────────────────────────────────────
-# strict=True: when the bug is fixed these start passing and fail the run, so
-# remember to remove the marker in the PR that fixes it.
+# These check the correct behavior and fail until the issue is fixed. When a
+# fix makes one pass, delete its @known_bug line in the same PR.
 
-@pytest.mark.xfail(strict=True, reason="#20: overturned goal hides the next goal")
+@known_bug(20, "overturned goal hides the next goal")
 def test_goal_after_overturned_goal(team, nhl, replay):
     steps = (nhl.poll(GAME, "LIVE", 1, 0)
              + nhl.poll(GAME, "LIVE", 2, 0)     # goal
@@ -131,7 +131,7 @@ def test_goal_after_overturned_goal(team, nhl, replay):
     assert replay(team, steps).events == [f"{team}_goal"] * 2
 
 
-@pytest.mark.xfail(strict=True, reason="#33: a failed API request resets the baseline")
+@known_bug(33, "a failed API request resets the baseline")
 def test_goal_during_schedule_api_error(team, nhl, replay):
     steps = (nhl.poll(GAME, "LIVE", 0, 0)
              + api_error("schedule/now")
@@ -139,13 +139,13 @@ def test_goal_during_schedule_api_error(team, nhl, replay):
     assert replay(team, steps).events == [f"{team}_goal"]
 
 
-@pytest.mark.xfail(strict=True, reason="#8/#27: postponed games aren't skipped")
+@known_bug(8, "postponed games are checked nonstop instead of idling")
 def test_postponed_game_idles(team, nhl, replay):
     result = replay(team, nhl.schedule(GAME, "PPD") * 3)
     assert result.clock.sleeps == [result.module.IDLE_INTERVAL] * 3
 
 
-@pytest.mark.xfail(strict=True, reason="#27: NHL monitors don't queue a win event")
+@known_bug(27, "NHL monitors don't queue a win event")
 def test_nhl_win(team, nhl, replay):
     steps = (nhl.poll(GAME, "LIVE", 1, 0) + nhl.poll(GAME, "LIVE", 2, 0)
              + nhl.poll(GAME, "OFF", 2, 0))

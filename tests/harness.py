@@ -34,6 +34,27 @@ def stub_gpio() -> bool:
         sys.modules["RPi.GPIO"] = gpio
         return True
 
+# ─── Known Bugs ───────────────────────────────────────────────────────────────
+
+def known_bug(issue: int, reason: str):
+    """
+    Mark a test as describing the correct behavior for an open bug, e.g.
+
+        @known_bug(20, "overturned goal hides the next goal")
+        def test_goal_after_overturned_goal(...):
+
+    The test fails until the issue is fixed, and that failure is expected: the
+    run stays green and lists it under "known bugs". Once the fix works the
+    test passes, and the run fails to remind you to delete this line (and set
+    the test's row in tests/README.md to ✅). The test itself doesn't change.
+    """
+    import pytest   # Here, not at the top: the tools in tests/ run without pytest
+
+    def mark(test):
+        test = pytest.mark.known_bug(issue=issue, reason=reason)(test)
+        return pytest.mark.xfail(strict=True, reason=f"Issue #{issue}: {reason}")(test)
+    return mark
+
 # ─── Loading Scripts ──────────────────────────────────────────────────────────
 
 def script_path(name: str) -> Path:

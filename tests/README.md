@@ -78,7 +78,37 @@ GitHub Actions runs these on every pull request (`.github/workflows/tests.yml`),
 
 ### Known bugs
 
-Tests marked `xfail(strict=True)` describe the correct behavior for a known bug and are expected to fail until it's fixed. When a fix makes one pass, the run fails with `XPASS(strict)`: remove the marker in the same PR. `python3 -m pytest tests -rx` lists them.
+Some tests are for bugs that are filed but not fixed yet. Each is marked with the issue it belongs to:
+
+```python
+@known_bug(20, "overturned goal hides the next goal")
+def test_goal_after_overturned_goal(team, nhl, replay):
+```
+
+The test checks the **correct** behavior, so it fails until the issue is fixed. That failure doesn't turn the run red: pytest counts it as `xfailed`, and the end of every run lists the known bugs by issue:
+
+```
+--------------------- known bugs: 55 tests, 9 open issues ----------------------
+Issue #20: overturned goal hides the next goal (2 tests)
+Issue #33: a failed API request resets the baseline (7 tests)
+...
+```
+
+Keeping them in the run means a new failure always stands out, and every open bug has a test ready to prove its fix.
+
+To see why one fails, run it with `--runxfail`, which runs it like a normal test. That shows what was expected, what happened, and everything the monitor printed:
+
+```sh
+python3 -m pytest tests -rx                                   # one line per known-bug test, with its issue
+python3 -m pytest tests --runxfail -k overturned_goal         # the full failure
+python3 -m pytest tests -m known_bug                          # only the known bugs
+python3 -m pytest tests -m "not known_bug"                    # everything else
+python3 -m pytest tests -rx > test_results.log 2>&1           # save the results to a file
+```
+
+**When a bug is fixed**, its tests start passing and the run fails, listing them under "known bugs that now pass". Delete the `@known_bug` line above each one and set its row in [Test cases](#test-cases) to ✅. The test itself doesn't change.
+
+**When filing a bug**, add a test for the correct behavior with `@known_bug(<issue number>, "<what's wrong>")`, and a row in the table. Don't use pytest's `xfail` directly; `test_docs.py` rejects it.
 
 ### How it works
 
@@ -113,9 +143,9 @@ python3 -m pytest "tests/test_nhl_monitors.py::test_shootout_goals[rangers]"   #
 - **Config:** the settings, files and scripts agree with each other.
 - **Tooling:** the test tools themselves work.
 
-**Status:** ✅ passes, or ❌ known bug: the test describes the correct behavior and fails until the issue is fixed. When the run says `XPASS(strict)` for one, the bug is fixed: remove its `xfail` marker and change it to ✅ here.
+**Status:** ✅ passes, or ❌ known bug: the test has `@known_bug` and fails until the issue is fixed (see [Known bugs](#known-bugs)). When the run lists one under "known bugs that now pass", delete its `@known_bug` line and change it to ✅ here.
 
-`test_docs.py` fails if a test is missing from this table, a row names a test that doesn't exist, or a row's status doesn't match the test's `xfail` marker.
+`test_docs.py` fails if a test is missing from this table, a row names a test that doesn't exist, or a row's status doesn't match the test's `@known_bug`.
 
 <!-- test-cases:start -->
 | File | Test | Type | Runs for | What it checks | Status |
@@ -212,7 +242,7 @@ python3 -m pytest "tests/test_nhl_monitors.py::test_shootout_goals[rangers]"   #
 | `test_record_game.py` | `test_espn_keeps_only_the_teams_game` | Tooling | Vols | Recordings keep only the team's game from the scoreboard | ✅ |
 | `test_record_game.py` | `test_raw_keeps_full_responses` | Tooling | Vols | `--raw` keeps full responses | ✅ |
 | `test_docs.py` | `test_test_case_table_lists_every_test` | Tooling | Tests | This table lists every test, and nothing else | ✅ |
-| `test_docs.py` | `test_test_case_table_status_matches_xfail` | Tooling | Tests | Each row's ❌ / ✅ and issue number match the test's `xfail` marker | ✅ |
+| `test_docs.py` | `test_test_case_table_status_matches_known_bug` | Tooling | Tests | Each row's ❌ / ✅ and issue number match the test's `@known_bug` | ✅ |
 <!-- test-cases:end -->
 
 "Runs for": NHL = Rangers, Panthers. MLB = Yankees, Giants. Football = Vols, Dolphins, NY Giants. NFL = Dolphins, NY Giants. All = every monitor. New monitors on these APIs are added automatically.

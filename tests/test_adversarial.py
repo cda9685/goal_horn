@@ -11,7 +11,7 @@ import os
 import pytest
 
 from builders import ESPN, MLB, NHL
-from harness import load_controller, load_script, monitors_using, team_id
+from harness import known_bug, load_controller, load_script, monitors_using, team_id
 from test_all_monitors import short_game
 from test_controller import StopAfter
 
@@ -21,9 +21,9 @@ ESPN_TEAMS = monitors_using("site.api.espn.com/apis/site/v2/sports/football/")
 ALL_TEAMS  = NHL_TEAMS + MLB_TEAMS + ESPN_TEAMS
 GAME       = 3001
 
-BLANK_SCORE = "#36: a blank score is read as 0"
-CRASH       = "#37: unexpected API data crashes the monitor"
-BAD_QUEUE   = "#38: a corrupted queue file loses every later event"
+BLANK_SCORE = known_bug(36, "a blank score is read as 0")
+CRASH       = known_bug(37, "unexpected API data crashes the monitor")
+BAD_QUEUE   = known_bug(38, "a corrupted queue file loses every later event")
 
 
 def builder(team):
@@ -89,7 +89,7 @@ def test_server_error_on_game_data_is_retried(team, replay):
     assert len(replay(team, steps).events) == 1
 
 
-@pytest.mark.xfail(strict=True, reason=CRASH)
+@CRASH
 @pytest.mark.parametrize("team", ALL_TEAMS)
 def test_empty_body_does_not_crash(team, replay):
     # A 200 response with "null" as its body
@@ -97,7 +97,7 @@ def test_empty_body_does_not_crash(team, replay):
     replay(team, steps)
 
 
-@pytest.mark.xfail(strict=True, reason=CRASH)
+@CRASH
 @pytest.mark.parametrize("team", NHL_TEAMS + MLB_TEAMS)
 def test_empty_game_data_does_not_crash(team, replay):
     steps = (live(team, 0)
@@ -106,7 +106,7 @@ def test_empty_game_data_does_not_crash(team, replay):
     replay(team, steps)
 
 
-@pytest.mark.xfail(strict=True, reason=CRASH)
+@CRASH
 @pytest.mark.parametrize("team", NHL_TEAMS + MLB_TEAMS)
 def test_null_score_does_not_crash(team, replay):
     # The score field is present but null for one poll
@@ -120,7 +120,7 @@ def test_null_score_does_not_crash(team, replay):
     assert len(replay(team, steps).events) == 1
 
 
-@pytest.mark.xfail(strict=True, reason=BLANK_SCORE)
+@BLANK_SCORE
 @pytest.mark.parametrize("team", ESPN_TEAMS)
 @pytest.mark.parametrize("blank", ["", None, "--"])
 def test_blank_score_is_not_a_score(team, replay, blank):
@@ -163,7 +163,7 @@ def test_other_teams_games_are_ignored(team, replay):
 HALF_WRITTEN = '[{"event": "rangers_go'
 
 
-@pytest.mark.xfail(strict=True, reason=BAD_QUEUE)
+@BAD_QUEUE
 @pytest.mark.parametrize("team", ALL_TEAMS)
 def test_monitor_recovers_from_corrupted_queue(team, monitor, replay):
     module = monitor(team)
@@ -174,7 +174,7 @@ def test_monitor_recovers_from_corrupted_queue(team, monitor, replay):
     assert len(result.events) == 1
 
 
-@pytest.mark.xfail(strict=True, reason=BAD_QUEUE)
+@BAD_QUEUE
 def test_controller_recovers_from_corrupted_queue(tmp_path):
     controller = load_controller(tmp_path)
     controller.time = StopAfter(polls=2, poll_interval=controller.POLL_INTERVAL)

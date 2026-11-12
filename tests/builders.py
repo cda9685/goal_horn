@@ -29,6 +29,7 @@ class NHL:
         """schedule/now with one game. state: FUT, PRE, LIVE, CRIT, FINAL, OFF, PPD."""
         home, away = self._sides()
         game = {"id": game_id, "gameState": state,
+                "gameScheduleState": "PPD" if state == "PPD" else "OK",
                 "homeTeam": {"abbrev": home}, "awayTeam": {"abbrev": away}}
         return [{"url": "schedule/now", "json": {"gameWeek": [{"games": [game]}]}}]
 

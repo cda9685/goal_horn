@@ -11,6 +11,31 @@ from harness import load_script, run_replay, stub_gpio  # noqa: E402
 stub_gpio()
 
 
+# Tests must never write to the real goal horn's files: on the Pi a test that
+# wrote to goal_horn_events.json would set off the light. The run fails if any
+# test leaves a new file in the project.
+IGNORED = ("__pycache__", ".pytest_cache", ".git", ".venv")
+
+
+def project_files() -> set:
+    root = Path(__file__).resolve().parent.parent
+    return {str(p.relative_to(root)) for p in root.rglob("*")
+            if p.is_file() and not any(part in IGNORED for part in p.parts)}
+
+
+def pytest_sessionstart(session):
+    session.config._files_before = project_files()
+
+
+def pytest_sessionfinish(session, exitstatus):
+    new = sorted(project_files() - session.config._files_before)
+    if new:
+        tr = session.config.pluginmanager.get_plugin("terminalreporter")
+        tr.write_sep("=", "FAILED: tests left new files in the project", red=True)
+        tr.write_line(f"{new}: tests must use a temp folder, never the goal horn's real files")
+        session.exitstatus = 1
+
+
 def pytest_configure(config):
     config.addinivalue_line(
         "markers", "known_bug(issue, reason): correct behavior for an open bug; "

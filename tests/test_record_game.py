@@ -11,11 +11,20 @@ from builders import ESPN, MLB, NHL
 from harness import FakeResponse, ReplayFinished, load_fixture, load_script, team_id
 
 
-def record(monkeypatch, tmp_path, team, steps, raw=False):
-    """Run record_game.py for team with the network serving steps. Returns the fixture path."""
+def record(monkeypatch, tmp_path, team, steps, raw=False, args=(), on_request=None):
+    """
+    Run record_game.py for team with the network serving steps. Returns the
+    fixture path. on_request(n, output) is called before the nth request.
+    """
     served = iter(steps)
+    output = tmp_path / "fixtures" / f"{team}.json"
+    count  = 0
 
-    def fake_get(url, *args, **kwargs):
+    def fake_get(url, *a, **kwargs):
+        nonlocal count
+        count += 1
+        if on_request:
+            on_request(count, output)
         step = next(served, None)
         if step is None:
             raise ReplayFinished()
@@ -24,12 +33,12 @@ def record(monkeypatch, tmp_path, team, steps, raw=False):
             raise requests.ConnectionError(step["error"])
         return FakeResponse(step["json"], url=url)
 
-    output = tmp_path / "fixtures" / f"{team}.json"
     monkeypatch.setattr(requests, "get", fake_get)
     monkeypatch.setattr(time, "sleep", lambda seconds: None)
     monkeypatch.setattr(sys, "argv", ["record_game.py", team, "-o", str(output)]
-                        + (["--raw"] if raw else []))
+                        + (["--raw"] if raw else []) + list(args))
     record_game.main()
+    record.requests = count     # How many requests the recorder made
     return output
 
 

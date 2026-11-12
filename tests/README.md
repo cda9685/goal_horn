@@ -7,6 +7,7 @@ Everything for testing the goal horn lives in this directory. Nothing here chang
 | `fire_event.py` | Set off the light and audio for any event right now | Pi |
 | `run_controller.py` | Run the controller without GPIO (and optionally without the speaker) | Laptop, Claude Code |
 | `record_game.py` | Save a live game's API responses to a replay file | Pi or laptop |
+| `dvr.py` | Schedule recordings of upcoming games ahead of time, like a DVR | Pi |
 | `rebuild_mlb_game.py`, `rebuild_nhl_game.py`, `rebuild_espn_game.py` | Build a replay of a past game from the API's history, no live recording needed | Anywhere |
 | `replay_game.py` | Play a replay file through its monitor in a second or two | Anywhere |
 | `pytest` | Automated tests of every monitor and the controller | Anywhere, and on every PR |
@@ -260,6 +261,32 @@ python3 -m pytest "tests/test_nhl_monitors.py::test_shootout_goals[rangers]"   #
 | `test_tools.py` | `test_fired_events_play_on_the_controller` | Positive | `fire_event.py`, controller | A fired event is played by the controller: light, song, light off | ✅ |
 | `test_tools.py` | `test_run_controller_fast_clock_skips_only_light_durations` | Tooling | `run_controller.py` | `--fast` skips light durations but still waits between queue checks | ✅ |
 | `test_tools.py` | `test_run_controller_finds_a_player_or_none` | Tooling | `run_controller.py` | `--audio` uses a player it finds, or skips audio when there's none | ✅ |
+| `test_dvr.py` | `test_recording_log_only_ever_grows` | Tooling | `record_game.py` | While recording, the log is only ever added to, never rewritten (spares the SD card) | ✅ |
+| `test_dvr.py` | `test_recording_log_survives_a_power_cut` | Adversarial | `record_game.py` | A log cut off mid-line by a power cut still loads, losing only the last line | ✅ |
+| `test_dvr.py` | `test_recording_carries_on_after_a_restart` | Boundary | `record_game.py` | Restarting the recorder with the same output carries on the interrupted recording | ✅ |
+| `test_dvr.py` | `test_finish_saves_a_crashed_recording` | Tooling | `record_game.py` | `--finish` turns a leftover log into a replay file | ✅ |
+| `test_dvr.py` | `test_stops_after_nhl_final` | Positive | `record_game.py` | `--stop-after-final` stops a few checks after an NHL game ends | ✅ |
+| `test_dvr.py` | `test_stops_after_mlb_final` | Positive | `record_game.py` | `--stop-after-final` stops a few checks after an MLB game ends | ✅ |
+| `test_dvr.py` | `test_stops_after_football_final` | Positive | `record_game.py` | `--stop-after-final` stops a few checks after a football game ends | ✅ |
+| `test_dvr.py` | `test_stops_when_the_game_is_postponed` | Boundary | `record_game.py` | A postponed game (NHL, football) stops the recording too | ✅ |
+| `test_dvr.py` | `test_game_picks_which_final_stops_it` | Boundary | `record_game.py` | With `--game`, a doubleheader's first game ending doesn't stop a recording of the second | ✅ |
+| `test_dvr.py` | `test_without_stop_after_final_it_keeps_going` | Negative | `record_game.py` | Without `--stop-after-final`, the recorder keeps going after the final | ✅ |
+| `test_dvr.py` | `test_nhl_upcoming_games` | Positive | `schedules.py` | An NHL team's upcoming games: finished and far-off games left out, soonest first, opponent right | ✅ |
+| `test_dvr.py` | `test_mlb_upcoming_games` | Positive | `schedules.py` | An MLB team's upcoming games, with the start time and opponent | ✅ |
+| `test_dvr.py` | `test_football_upcoming_games_include_one_under_way` | Boundary | `schedules.py` | A football game already under way can still be picked | ✅ |
+| `test_dvr.py` | `test_schedule_times_are_read_in_any_api_format` | Tooling | `schedules.py` | Start times in each API's format are read the same | ✅ |
+| `test_dvr.py` | `test_scheduling_a_game_names_its_recording` | Positive | `dvr.py` | A scheduled game gets a file named by team, date and opponent; scheduling it twice is refused | ✅ |
+| `test_dvr.py` | `test_recording_starts_at_lead_time` | Boundary | `dvr.py` | Recording starts 30 minutes before the game, not a minute sooner | ✅ |
+| `test_dvr.py` | `test_recording_missed_if_the_service_was_off` | Negative | `dvr.py` | A game the service was off for is marked missed | ✅ |
+| `test_dvr.py` | `test_finished_recording_is_done_or_failed` | Positive | `dvr.py` | A finished recording is marked done, or failed if it saved nothing | ✅ |
+| `test_dvr.py` | `test_recording_stopped_early_carries_on` | Adversarial | `dvr.py` | A recording cut off mid-game (e.g. a reboot) is started again and carries on | ✅ |
+| `test_dvr.py` | `test_recording_stopped_for_good_is_saved_as_interrupted` | Adversarial | `dvr.py` | A recording cut off and never resumed is saved and marked interrupted | ✅ |
+| `test_dvr.py` | `test_running_recording_is_left_alone` | Negative | `dvr.py` | A recording still running isn't touched | ✅ |
+| `test_dvr.py` | `test_service_starts_the_recorder_for_the_game` | Positive | `dvr.py` | The service runs the recorder for that game, stopping after the final | ✅ |
+| `test_dvr.py` | `test_picking_games_schedules_them` | Positive | `dvr.py` | Picking a game by number schedules it | ✅ |
+| `test_dvr.py` | `test_pick_all_and_cancel` | Positive | `dvr.py` | `--pick all` schedules every game; `--cancel` cancels one | ✅ |
+| `test_dvr.py` | `test_picking_nothing_schedules_nothing` | Negative | `dvr.py` | Picking nothing schedules nothing and writes no schedule file | ✅ |
+| `test_dvr.py` | `test_picking_a_number_not_listed_is_refused` | Negative | `dvr.py` | A number that isn't in the list is refused | ✅ |
 | `test_docs.py` | `test_test_case_table_lists_every_test` | Tooling | Tests | This table lists every test, and nothing else | ✅ |
 | `test_docs.py` | `test_test_case_table_status_matches_known_bug` | Tooling | Tests | Each row's ❌ / ✅ and issue number match the test's `@known_bug` | ✅ |
 <!-- test-cases:end -->
@@ -293,6 +320,7 @@ Every bug filed as an issue, plus bugs fixed in commits without one, has a test 
 | Test tools: `rebuild_mlb_game.py` added game data after the final, which the monitor never asks for | Fixed | `test_fixture` (the Yankees game) |
 | Test tools: `rebuild_nhl_game.py` crashed, or missed the first goal, when a game had no period-start play | Fixed | `test_nhl_goal_before_period_start` |
 | Test tools: rebuilt football games counted the stream delay twice after each score, so timing drifted 30s per score | Fixed | `test_espn_replay_timing_matches_live` |
+| Test tools: `dvr.py` read and wrote the real `tests/recordings.json` even when told to use another file | Fixed | the `dvr.py` tests, and `conftest.py` fails any run that leaves a new file in the project |
 
 When you fix or file a bug, add a test for it and a row here.
 
@@ -300,14 +328,70 @@ When you fix or file a bug, add a test for it and a row here.
 
 ### Record a live game
 
-Start before the game, stop with Ctrl+C after it ends:
+Start before the game. Stop with Ctrl+C after it ends, or let `--stop-after-final` stop it:
 
 ```sh
 python3 tests/record_game.py rangers                                    # tests/fixtures/rangers_<date>.json
+python3 tests/record_game.py rangers --stop-after-final                 # stops a few checks after the final
 python3 tests/record_game.py vols -o tests/fixtures/vols_overturned_td.json
 ```
 
-It runs the monitor against the live API with no stream delay and its own private queue, so it doesn't set the real goal horn off a second time; it's safe to run alongside the real monitor. Responses are trimmed to the fields the monitors read (a few MB per game instead of a few GB) and each distinct response is stored once. If a monitor starts reading a new field, older recordings won't have it: re-record, or record with `--raw` to keep full responses.
+It runs the monitor against the live API with no stream delay and its own private queue, so it doesn't set the real goal horn off a second time; it's safe to run alongside the real monitor.
+
+- **Trimmed responses.** Responses are trimmed to the fields the monitors read, and each distinct response is stored once.
+- **`--raw` keeps full responses:** every field the API sends, for looking into how the API reports something, or for a field a monitor doesn't read yet. It's about 30 times bigger (an NHL game reaches megabytes in minutes), so it's not for the Pi.
+- **Stopping by itself.** With `--stop-after-final`, the recorder stops a few checks after the game is over, postponed or canceled. `--game <ID>` says which game counts (e.g. the second game of a doubleheader); without it, it's the first game that goes live. `--max-hours` (default 8) stops it no matter what.
+
+**Saving without wearing out the SD card.** While recording, each new response and each step is added to the end of a log, `<output>.partial.jsonl`, one line at a time. Nothing already written is ever rewritten, so the card is written about as much as the recording's final size (around 1MB for a hockey game, 10MB for baseball). New lines are forced onto the card every 30 seconds. When the recording stops, the log is turned into the replay file once and deleted.
+
+**After a crash or power cut.** The log is still there, missing at most its last few seconds. A half-written last line is skipped. Then either:
+
+- Run the same command again (same `-o`) during the game to carry on where it left off.
+- Save what was recorded as it is: `python3 tests/record_game.py --finish tests/fixtures/<name>.partial.jsonl`.
+
+`replay_game.py` can also play a `.partial.jsonl` log directly.
+
+### Schedule recordings (DVR)
+
+`dvr.py` lists a team's upcoming games and records the ones you pick, like a DVR:
+
+```
+$ python3 tests/dvr.py rangers
+Upcoming rangers games:
+   1) Fri Nov 13  9:00 PM   NYR @ VAN
+   2) Mon Nov 16  7:30 PM   MTL @ NYR
+   ...
+Record which? (numbers like 1,3, "all", or Enter to cancel): 1
+Scheduled: Fri Nov 13  9:00 PM NYR @ VAN -> tests/fixtures/rangers_2026-11-13_van.json
+```
+
+```sh
+python3 tests/dvr.py rangers --pick 1,3    # pick without being asked
+python3 tests/dvr.py vols --pick all       # every game in the next 30 days
+python3 tests/dvr.py rangers --days 60     # look further ahead
+python3 tests/dvr.py --scheduled           # what's scheduled, recording, done, missed...
+python3 tests/dvr.py --cancel 2            # cancel one (stops it, keeping what's recorded, if it's under way)
+```
+
+Games come from the same API the team's monitor uses, and times are shown in the Pi's timezone. The schedule is kept in `tests/recordings.json` (not committed).
+
+**The DVR service makes the recordings.** It has to be running. It's light: it checks the schedule once a minute and otherwise sleeps. Each recording costs about as much as one more monitor. Start it now, and at every boot with a line in `crontab -e` next to the monitors' `@reboot` lines:
+
+```sh
+python3 -u tests/dvr.py --run >> dvr.log 2>&1 &
+```
+
+```
+@reboot python3 -u /home/coledallen/projects/goal_horn/tests/dvr.py --run >> /home/coledallen/projects/goal_horn/dvr.log 2>&1
+```
+
+For each scheduled game, the service:
+
+- **Starts** `record_game.py --game <ID> --stop-after-final` 30 minutes before the game, and the recorder stops itself after the final. Each recording's output goes to a `.log` next to its replay file.
+- **Carries on after a reboot mid-game:** the recording continues where it left off. If the game is over by then, what was recorded is saved and marked `interrupted`.
+- **Marks a game `missed`** when the service wasn't running at any point in the 8 hours after its start.
+
+When a recording is `done`, replay it, check its events against the real game's scoring, and fill in `expected_events` (see [Add a game to the tests](#add-a-game-to-the-tests)).
 
 ### Rebuild a past game
 

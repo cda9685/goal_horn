@@ -192,6 +192,7 @@ python3 -m pytest "tests/test_nhl_monitors.py::test_shootout_goals[rangers]"   #
 | `test_mlb_monitors.py` | `test_completed_games_are_forgotten_after_two_days` | Boundary | MLB | A finished game is skipped at 1.9 days and forgotten at 2.1 days (Issue #5) | ✅ |
 | `test_mlb_monitors.py` | `test_postponed_game_moves_on` | Negative | MLB | A postponed game (reported as Final) fires nothing and is skipped after (Issue #8) | ✅ |
 | `test_mlb_monitors.py` | `test_win_when_feed_jumps_to_final` | Boundary | MLB | The feed goes from 2 outs straight to Final: the win still fires | ❌ Issue #34 |
+| `test_mlb_monitors.py` | `test_doubleheader_when_finished_games_cant_be_saved` | Adversarial | MLB | The finished-games file can't be written (e.g. owned by root): game 2 of a doubleheader still fires | ❌ Issue #40 |
 | `test_espn_monitors.py` | `test_no_game_idles` | Negative | Football | No game this week: nothing fires, idle checks | ✅ |
 | `test_espn_monitors.py` | `test_not_playing_idles` | Negative | Football | Scheduled, postponed and canceled games idle (Issue #8) | ✅ |
 | `test_espn_monitors.py` | `test_touchdown_then_extra_point` | Positive | Football | A touchdown then its PAT fire one `<team>_touchdown`, after the stream delay | ✅ |
@@ -319,6 +320,7 @@ Every bug filed as an issue, plus bugs fixed in commits without one, has a test 
 | Issue #37: unexpected API data crashes a monitor | Open | `test_empty_body_does_not_crash` ❌, `test_empty_game_data_does_not_crash` ❌, `test_null_score_does_not_crash` ❌, `test_fixture_variation` (some cases) ❌ |
 | Issue #38: a corrupted queue file loses every later event | Open | `test_monitor_recovers_from_corrupted_queue` ❌, `test_controller_recovers_from_corrupted_queue` ❌ |
 | Issue #39: the NHL API rate-limits requests (429 Too Many Requests) | Open | `test_fixture` and `test_fixture_variation` with `rangers_2026-11-11_cgy_live` (two real 429s; nothing is missed there, but Issue #33 shows what one at the wrong moment does) |
+| Issue #40: an MLB monitor forgets a finished game when its save file can't be written | Open | `test_doubleheader_when_finished_games_cant_be_saved` ❌ |
 | Commits `aebe461`, `af4fd3c`: the light keeps going off after a Yankees win | Fixed | `test_win_fires_once`, `test_lead_after_early_inning_is_not_a_win` |
 | Test tools: a repeated step in a replay file played back squared (5 → 25) | Fixed | `test_saved_repeats_replay_once` |
 | Test tools: a replay that didn't match the monitor's requests didn't fail, because the monitor caught the error | Fixed | `test_replay_that_doesnt_match_the_monitor_fails`, and every replay in the suite |
@@ -388,7 +390,7 @@ Games come from the same API the team's monitor uses, and times are shown in the
 * * * * * /usr/bin/python3 /home/coledallen/projects/goal_horn/tests/dvr.py --tick >> /home/coledallen/projects/goal_horn/dvr.log 2>&1
 ```
 
-Why your own crontab: jobs in `sudo crontab -e` run as root. The schedule, the recordings and `dvr.log` would then be owned by root, so `dvr.py rangers`, run as you to pick games, couldn't change the schedule without `sudo`. Recording doesn't need root either: it only makes web requests and writes files. The two crontabs are separate lists, and both run, so the monitors' lines can stay in root's.
+Why your own crontab: jobs in `sudo crontab -e` run as root. The schedule, the recordings and `dvr.log` would then be owned by root, so `dvr.py rangers`, run as you to pick games, couldn't change the schedule without `sudo`. Recording doesn't need root either: it only makes web requests and writes files. The two crontabs are separate lists, and both run. The monitors' `@reboot` lines belong in your crontab too, and only the controller's in root's (see the main README's install steps, Issue #41).
 
 Nothing else needs starting. Cron is always running, including after a reboot, so no service has to be kept alive. A tick takes under a second, mostly Python starting up, and only writes to `dvr.log` when something changes.
 

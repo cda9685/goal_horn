@@ -236,3 +236,30 @@ def test_win_when_feed_jumps_to_final(team, mlb, replay):
     steps = (mlb.poll(GAME, "Live", 3, 1, inning=9, half="Top", outs=2)
              + mlb.poll(GAME, "Final", 3, 1, inning=9, half="Top", outs=3))
     assert replay(team, steps).events == [f"{team}_win"]
+
+
+@known_bug(40, "a finished game is forgotten when its save file can't be written")
+def test_doubleheader_when_finished_games_cant_be_saved(team, mlb, monitor, replay):
+    # The finished-games file can't be written (e.g. it's owned by root and the
+    # monitor runs as you). Game 1 must still be remembered for this run, or
+    # game 2 of a doubleheader never fires (Issue #5 again)
+    module = monitor(team)
+    real_open = open
+
+    def refuse_to_save(path, mode="r", *args, **kwargs):
+        if path == module.COMPLETED_GAMES_FILE and "w" in mode:
+            raise PermissionError(13, "Permission denied", path)
+        return real_open(path, mode, *args, **kwargs)
+    module.open = refuse_to_save
+
+    g1, g2 = GAME, GAME + 1
+    steps = (mlb.poll(g1, "Live", 0, 0, schedule=[(g1, "Live"), (g2, "Preview")])
+             + mlb.poll(g1, "Live", 1, 0, schedule=[(g1, "Live"), (g2, "Preview")],
+                        plays=["single"])
+             + mlb.poll(g1, "Final", 1, 0, schedule=[(g1, "Final"), (g2, "Preview")],
+                        plays=["single"])
+             + mlb.poll(g2, "Live", 0, 0, schedule=[(g1, "Final"), (g2, "Live")])
+             + mlb.poll(g2, "Live", 1, 0, schedule=[(g1, "Final"), (g2, "Live")],
+                        plays=["home_run"]))
+    result = replay(team, steps, module=module)
+    assert result.events == [f"{team}_run", f"{team}_home_run"]

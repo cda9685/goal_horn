@@ -123,13 +123,16 @@ class ReplayFinished(KeyboardInterrupt):
 class FakeResponse:
     """Stands in for requests.Response. Add any attribute the monitors start reading."""
 
-    def __init__(self, data, status_code: int = 200, url: str = ""):
+    def __init__(self, data, status_code: int = 200, url: str = "", text: str | None = None):
         self._data       = data
         self.status_code = status_code
         self.url         = url
         self.elapsed     = timedelta(0)     # Replayed responses arrive instantly
+        self.text        = text             # Set for a body that isn't JSON
 
     def json(self):
+        if self.text is not None:
+            raise ValueError(f"Response body is not JSON: {self.text[:40]!r} (replayed)")
         return self._data
 
     def raise_for_status(self):
@@ -174,7 +177,8 @@ class Replay:
     Serves API responses in order. Each step is a dict:
         {"url": "<substring of the requested URL>", "json": <response body>}
     Optional keys: "status" (HTTP status, default 200), "error" (raise a
-    connection error instead of responding), "repeat" (serve it n times in a row).
+    connection error instead of responding), "text" (a body that isn't JSON,
+    e.g. an HTML error page), "repeat" (serve it n times in a row).
     {"repeat": n, "steps": [...]} serves a group of steps n times in a row.
     """
 
@@ -182,11 +186,13 @@ class Replay:
         self.steps    = expand_steps(steps)
         self.index    = 0
         self.requests = []          # Every URL requested, in order
+        self.options  = []          # The keyword arguments of each request (timeout=...)
 
     def get(self, url: str, *args, **kwargs):
         if self.index >= len(self.steps):
             raise ReplayFinished()
         self.requests.append(url)
+        self.options.append(kwargs)
         step = self.steps[self.index]
         self.index += 1
 
@@ -197,7 +203,7 @@ class Replay:
         if step.get("error"):
             import requests
             raise requests.ConnectionError(f"{step['error']} (replayed)")
-        return FakeResponse(step.get("json"), step.get("status", 200), url)
+        return FakeResponse(step.get("json"), step.get("status", 200), url, step.get("text"))
 
 
 def load_fixture(path) -> dict:
@@ -221,9 +227,13 @@ class ReplayResult:
         self.clock  = clock
         self.replay = replay
         events = []
+        self.queue_readable = True
         if os.path.exists(module.EVENT_FILE):
-            with open(module.EVENT_FILE) as f:
-                events = json.load(f)
+            try:
+                with open(module.EVENT_FILE) as f:
+                    events = json.load(f)
+            except ValueError:
+                self.queue_readable = False     # Left corrupted; no events can be read
         self.queued = events        # Full event dicts as written to the queue
 
     @property

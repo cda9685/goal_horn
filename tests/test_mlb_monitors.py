@@ -5,7 +5,7 @@ import json
 import pytest
 
 from builders import MLB, api_error
-from harness import monitors_using, team_id
+from harness import FakeClock, monitors_using, team_id
 
 TEAMS = monitors_using("statsapi.mlb.com")
 GAME  = 776001
@@ -56,7 +56,7 @@ def test_multiple_runs_on_one_play_fire_once(team, mlb, replay):
     assert replay(team, steps).events == [f"{team}_run"]
 
 
-def test_away_team_run(team, monitor, replay):
+def test_run_when_team_plays_away(team, monitor, replay):
     mlb = MLB(team_id(monitor(team)), home=False)
     steps = (mlb.poll(GAME, "Live", 0, 0, plays=["walk"])
              + mlb.poll(GAME, "Live", 1, 0, plays=["walk", "single"]))
@@ -75,7 +75,7 @@ def test_first_poll_sets_baseline(team, mlb, replay):
     assert replay(team, steps).events == []
 
 
-def test_win_at_home(team, mlb, replay):
+def test_win_when_team_plays_home(team, mlb, replay):
     # Home team ahead after the top of the 9th: win fires once, before the API says Final
     steps = (mlb.poll(GAME, "Live", 3, 1, inning=9, half="Top", outs=2)
              + mlb.poll(GAME, "Live", 3, 1, inning=9, half="Top", outs=3)
@@ -84,7 +84,7 @@ def test_win_at_home(team, mlb, replay):
     assert replay(team, steps).events == [f"{team}_win"]
 
 
-def test_win_on_the_road(team, monitor, replay):
+def test_win_when_team_plays_away(team, monitor, replay):
     mlb = MLB(team_id(monitor(team)), home=False)
     steps = (mlb.poll(GAME, "Live", 3, 1, inning=9, half="Bottom", outs=2)
              + mlb.poll(GAME, "Live", 3, 1, inning=9, half="Bottom", outs=3)
@@ -134,7 +134,7 @@ def test_restart_after_final_is_quiet(team, mlb, replay):
     assert result.clock.sleeps == [result.module.IDLE_INTERVAL] * 2
 
 
-def test_api_error_recovers(team, mlb, replay):
+def test_game_data_error_is_retried(team, mlb, replay):
     steps = (mlb.poll(GAME, "Live", 0, 0, plays=["walk"])
              + mlb.schedule((GAME, "Live")) + api_error(f"game/{GAME}/feed/live")
              + mlb.poll(GAME, "Live", 1, 0, plays=["walk", "single"]))
@@ -161,3 +161,78 @@ def test_run_during_schedule_api_error(team, mlb, replay):
              + api_error("schedule?sportId=1")
              + mlb.poll(GAME, "Live", 1, 0, plays=["walk", "single"]))
     assert replay(team, steps).events == [f"{team}_run"]
+
+
+# ─── Former Bugs ──────────────────────────────────────────────────────────────
+
+def test_win_fires_once(team, mlb, replay):
+    # Commits aebe461/af4fd3c: the light kept going off after a win
+    steps = (mlb.poll(GAME, "Live", 3, 1, inning=9, half="Top", outs=3) * 10
+             + mlb.poll(GAME, "Final", 3, 1, inning=9, half="Top", outs=3))
+    assert replay(team, steps).events == [f"{team}_win"]
+
+
+def test_lead_after_early_inning_is_not_a_win(team, mlb, replay):
+    # Commit af4fd3c: the win check accepted any inning (>= 0), so every
+    # half-inning the team led after 3 outs set the light off
+    steps = (mlb.poll(GAME, "Live", 3, 1, inning=5, half="Top", outs=2)
+             + mlb.poll(GAME, "Live", 3, 1, inning=5, half="Top", outs=3)
+             + mlb.poll(GAME, "Live", 3, 1, inning=8, half="Top", outs=3))
+    assert replay(team, steps).events == []
+
+
+def test_extra_innings_win(team, monitor, replay):
+    # Boundary of the inning >= 9 check: a road win in the 10th
+    mlb   = MLB(team_id(monitor(team)), home=False)
+    steps = (mlb.poll(GAME, "Live", 4, 3, inning=10, half="Bottom", outs=2)
+             + mlb.poll(GAME, "Live", 4, 3, inning=10, half="Bottom", outs=3))
+    assert replay(team, steps).events == [f"{team}_win"]
+
+
+def test_doubleheader_after_restart(team, mlb, monitor, replay):
+    # Issue #5: the monitor restarts between games; game 1 is remembered on disk
+    g1, g2 = GAME, GAME + 1
+    module = monitor(team)
+    module.time = FakeClock()
+    module.save_completed_game(g1, set())
+    steps = (mlb.poll(g2, "Live", 0, 0, schedule=[(g1, "Final"), (g2, "Live")])
+             + mlb.poll(g2, "Live", 1, 0, schedule=[(g1, "Final"), (g2, "Live")],
+                        plays=["single"]))
+    result = replay(team, steps, module=module)
+    assert result.events == [f"{team}_run"]
+    assert not any(f"game/{g1}/" in url for url in result.replay.requests)
+
+
+@pytest.mark.parametrize("age_days, skipped", [(1.9, True), (2.1, False)])
+def test_completed_games_are_forgotten_after_two_days(team, mlb, monitor, replay,
+                                                       age_days, skipped):
+    # Issue #5 fix: finished games are skipped for 2 days, then forgotten
+    module = monitor(team)
+    clock  = FakeClock()
+    clock.now -= age_days * 86400
+    module.time = clock
+    module.save_completed_game(GAME, set())
+    # Skipped: one schedule poll, then idle. Forgotten: the game is fetched again
+    steps  = mlb.schedule((GAME, "Final"))
+    if not skipped:
+        steps += mlb.feed(GAME, "Final", 0, 0)
+    result = replay(team, steps, module=module)
+    assert any("feed/live" in url for url in result.replay.requests) != skipped
+    assert result.events == []
+
+
+def test_postponed_game_moves_on(team, mlb, replay):
+    # Issue #8: MLB reports a postponed game as Final; the monitor should treat
+    # it as over, fire nothing, and stop fetching it
+    steps = (mlb.poll(GAME, "Final", 0, 0, inning=1, half="Top", outs=0)
+             + mlb.schedule((GAME, "Final")))
+    result = replay(team, steps)
+    assert result.events == []
+    assert result.clock.sleeps == [result.module.IDLE_INTERVAL] * 2
+
+
+@pytest.mark.xfail(strict=True, reason="#34: no win when the feed goes straight to Final")
+def test_win_when_feed_jumps_to_final(team, mlb, replay):
+    steps = (mlb.poll(GAME, "Live", 3, 1, inning=9, half="Top", outs=2)
+             + mlb.poll(GAME, "Final", 3, 1, inning=9, half="Top", outs=3))
+    assert replay(team, steps).events == [f"{team}_win"]

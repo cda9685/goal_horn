@@ -6,7 +6,8 @@ import re
 
 import pytest
 
-from harness import FakeClock, ReplayFinished, all_monitors, load_controller, script_path
+from harness import (FakeClock, ReplayFinished, all_monitors, load_controller, load_script,
+                     script_path)
 
 
 @pytest.fixture
@@ -123,3 +124,29 @@ def test_main_plays_queue_in_priority_order(tmp_path):
     with open(controller.EVENT_FILE) as f:
         assert json.load(f) == []
     assert controller.GPIO.actions[-1][0] == "off"
+
+
+@pytest.mark.xfail(strict=True, reason="#26: the event queue isn't locked")
+def test_event_queued_while_controller_clears_is_kept(tmp_path):
+    # Issue #26: read_events() and clear_events() are two steps, so an event a
+    # monitor writes between them is wiped without playing
+    controller = load_controller(tmp_path)
+    controller.time = StopAfter(polls=3, poll_interval=controller.POLL_INTERVAL)
+    controller.played = []
+    controller.play_audio = lambda path: controller.played.append(path and os.path.basename(path))
+    monitor = load_script("yankees", tmp_path)
+    monitor.STREAM_DELAY_SECONDS = 0
+
+    with open(controller.EVENT_FILE, "w") as f:
+        json.dump([{"event": "rangers_goal", "priority": 2, "timestamp": 0}], f)
+
+    real_clear = controller.clear_events
+
+    def monitor_writes_then_clear():
+        if not controller.played:               # Only on the first clear
+            monitor.queue_event("yankees_run")
+        real_clear()
+
+    controller.clear_events = monitor_writes_then_clear
+    controller.main()
+    assert controller.played == ["rangers_goal_song.mp3", "yankees_doorbell.mp3"]

@@ -88,7 +88,7 @@ def test_opponent_score_does_nothing(team, espn, replay):
     assert replay(team, steps).events == []
 
 
-def test_away_team_touchdown(team, monitor, replay):
+def test_touchdown_when_team_plays_away(team, monitor, replay):
     espn = ESPN(team_id(monitor(team)), home=False)
     steps = espn.poll(GAME, "in", 0, 0) + espn.poll(GAME, "in", 7, 0)
     assert replay(team, steps).events == [f"{team}_touchdown"]
@@ -138,6 +138,16 @@ def test_score_during_api_error(team, espn, replay):
              + api_error("scoreboard")
              + espn.poll(GAME, "in", 3, 0))
     assert replay(team, steps).events == [f"{team}_score"]
+
+
+@pytest.mark.xfail(strict=True, reason="#20: a one-poll score glitch is taken as an overturn")
+def test_score_glitch_does_not_double_fire(team, espn, replay):
+    # #20's caveat: a lower score should only count after a few polls in a row,
+    # or a brief API glitch (7 -> 0 -> 7) sets the light off again
+    steps = (espn.poll(GAME, "in", 7, 0)
+             + espn.poll(GAME, "in", 0, 0)
+             + espn.poll(GAME, "in", 7, 0))
+    assert replay(team, steps).events == []
 
 
 @pytest.mark.xfail(strict=True, reason="#27: vols doesn't queue a win event")

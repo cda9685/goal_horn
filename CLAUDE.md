@@ -60,4 +60,4 @@ Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use
 ## Deployment
 
 - The Pi runs from `/home/coledallen/projects/goal_horn` on `master`. Scripts start on boot via `@reboot` cron jobs, and `restart.sh` restarts everything (`./restart.sh rangers vols` restarts only those; `-m` only starts scripts that aren't running; `-d` starts monitors with `--debug`).
-- Scheduled recordings (`tests/dvr.py`) are started by one cron line that runs `dvr.py --tick` every minute, in the user's own crontab (`crontab -e`), not root's (`sudo crontab -e`), so the schedule and recordings aren't owned by root; see `tests/README.md`. The monitors' and controller's `@reboot` lines are in root's crontab.
+- Scheduled recordings (`tests/dvr.py`) are started by one cron line that runs `dvr.py --tick` every minute, in the user's own crontab (`crontab -e`), not root's (`sudo crontab -e`), so the schedule and recordings aren't owned by root; see `tests/README.md`. The monitors' `@reboot` lines are in the user's crontab too; only the controller's is in root's, matching `restart.sh` (Issue #41).

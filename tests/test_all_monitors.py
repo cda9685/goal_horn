@@ -5,7 +5,7 @@ import json
 import pytest
 
 from builders import ESPN, MLB, NHL
-from harness import all_monitors, load_script, monitors_using, team_id
+from harness import all_monitors, known_bug, load_script, monitors_using, team_id
 
 GAME = 2001
 
@@ -36,7 +36,7 @@ def test_every_request_has_a_timeout(team, replay):
         assert options.get("timeout"), f"{url} was requested without a timeout"
 
 
-@pytest.mark.xfail(strict=True, reason="#26: the event queue isn't locked")
+@known_bug(26, "the event queue isn't locked")
 def test_two_monitors_queueing_at_once_keep_both_events(tmp_path):
     # Issue #26: monitor A reads the queue, monitor B appends its event, then
     # A writes back what it read plus its own event, wiping B's

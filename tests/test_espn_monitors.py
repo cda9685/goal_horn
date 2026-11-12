@@ -3,7 +3,7 @@
 import pytest
 
 from builders import ESPN, api_error
-from harness import monitors_using, team_id
+from harness import known_bug, monitors_using, team_id
 
 TEAMS     = monitors_using("site.api.espn.com/apis/site/v2/sports/football/")
 NFL_TEAMS = monitors_using("football/nfl/")
@@ -129,10 +129,10 @@ def test_nfl_restart_after_final_is_quiet(team, espn, replay):
     assert result.events == []
 
 # ─── Known Bugs ───────────────────────────────────────────────────────────────
-# strict=True: when the bug is fixed these start passing and fail the run, so
-# remember to remove the marker in the PR that fixes it.
+# These check the correct behavior and fail until the issue is fixed. When a
+# fix makes one pass, delete its @known_bug line in the same PR.
 
-@pytest.mark.xfail(strict=True, reason="#33: a failed API request resets the baseline")
+@known_bug(33, "a failed API request resets the baseline")
 def test_score_during_api_error(team, espn, replay):
     steps = (espn.poll(GAME, "in", 0, 0)
              + api_error("scoreboard")
@@ -140,7 +140,7 @@ def test_score_during_api_error(team, espn, replay):
     assert replay(team, steps).events == [f"{team}_score"]
 
 
-@pytest.mark.xfail(strict=True, reason="#20: a one-poll score glitch is taken as an overturn")
+@known_bug(20, "a one-poll score glitch is taken as an overturn")
 def test_score_glitch_does_not_double_fire(team, espn, replay):
     # #20's caveat: a lower score should only count after a few polls in a row,
     # or a brief API glitch (7 -> 0 -> 7) sets the light off again
@@ -150,7 +150,7 @@ def test_score_glitch_does_not_double_fire(team, espn, replay):
     assert replay(team, steps).events == []
 
 
-@pytest.mark.xfail(strict=True, reason="#27: vols doesn't queue a win event")
+@known_bug(27, "vols doesn't queue a win event")
 @pytest.mark.parametrize("team", ["vols"])
 def test_vols_win(team, espn, replay):
     steps = espn.poll(GAME, "in", 17, 14, 4) + espn.poll(GAME, "post", 17, 14, 4)

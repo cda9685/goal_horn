@@ -5,7 +5,7 @@ import json
 import pytest
 
 from builders import MLB, api_error
-from harness import FakeClock, monitors_using, team_id
+from harness import FakeClock, known_bug, monitors_using, team_id
 
 TEAMS = monitors_using("statsapi.mlb.com")
 GAME  = 776001
@@ -141,10 +141,10 @@ def test_game_data_error_is_retried(team, mlb, replay):
     assert replay(team, steps).events == [f"{team}_run"]
 
 # ─── Known Bugs ───────────────────────────────────────────────────────────────
-# strict=True: when the bug is fixed these start passing and fail the run, so
-# remember to remove the marker in the PR that fixes it.
+# These check the correct behavior and fail until the issue is fixed. When a
+# fix makes one pass, delete its @known_bug line in the same PR.
 
-@pytest.mark.xfail(strict=True, reason="#20: overturned run hides the next run")
+@known_bug(20, "overturned run hides the next run")
 def test_run_after_overturned_run(team, mlb, replay):
     steps = (mlb.poll(GAME, "Live", 1, 0, plays=["single"])
              + mlb.poll(GAME, "Live", 2, 0, plays=["single", "double"])
@@ -155,7 +155,7 @@ def test_run_after_overturned_run(team, mlb, replay):
     assert replay(team, steps).events == [f"{team}_run"] * 2
 
 
-@pytest.mark.xfail(strict=True, reason="#33: a failed API request resets the baseline")
+@known_bug(33, "a failed API request resets the baseline")
 def test_run_during_schedule_api_error(team, mlb, replay):
     steps = (mlb.poll(GAME, "Live", 0, 0, plays=["walk"])
              + api_error("schedule?sportId=1")
@@ -231,7 +231,7 @@ def test_postponed_game_moves_on(team, mlb, replay):
     assert result.clock.sleeps == [result.module.IDLE_INTERVAL] * 2
 
 
-@pytest.mark.xfail(strict=True, reason="#34: no win when the feed goes straight to Final")
+@known_bug(34, "no win when the feed goes straight to Final")
 def test_win_when_feed_jumps_to_final(team, mlb, replay):
     steps = (mlb.poll(GAME, "Live", 3, 1, inning=9, half="Top", outs=2)
              + mlb.poll(GAME, "Final", 3, 1, inning=9, half="Top", outs=3))

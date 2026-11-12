@@ -6,8 +6,8 @@ import re
 
 import pytest
 
-from harness import (FakeClock, ReplayFinished, all_monitors, load_controller, load_script,
-                     script_path)
+from harness import (FakeClock, ReplayFinished, all_monitors, known_bug, load_controller,
+                     load_script, script_path)
 
 
 @pytest.fixture
@@ -126,7 +126,7 @@ def test_main_plays_queue_in_priority_order(tmp_path):
     assert controller.GPIO.actions[-1][0] == "off"
 
 
-@pytest.mark.xfail(strict=True, reason="#26: the event queue isn't locked")
+@known_bug(26, "the event queue isn't locked")
 def test_event_queued_while_controller_clears_is_kept(tmp_path):
     # Issue #26: read_events() and clear_events() are two steps, so an event a
     # monitor writes between them is wiped without playing

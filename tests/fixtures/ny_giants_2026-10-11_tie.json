@@ -28,7 +28,7 @@
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
    "response": 3,
-   "repeat": 43
+   "repeat": 41
   },
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
@@ -53,7 +53,7 @@
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
    "response": 8,
-   "repeat": 44
+   "repeat": 42
   },
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
@@ -67,8 +67,7 @@
   },
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
-   "response": 11,
-   "repeat": 3
+   "response": 11
   },
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
@@ -93,7 +92,7 @@
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
    "response": 16,
-   "repeat": 6
+   "repeat": 4
   },
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
@@ -103,7 +102,7 @@
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
    "response": 18,
-   "repeat": 6
+   "repeat": 4
   },
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",

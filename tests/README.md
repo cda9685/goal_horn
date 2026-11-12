@@ -267,12 +267,23 @@ python3 -m pytest "tests/test_nhl_monitors.py::test_shootout_goals[rangers]"   #
 | `test_record_game.py` | `test_raw_keeps_full_responses` | Tooling | Vols | `--raw` keeps full responses | ✅ |
 | `test_record_game.py` | `test_recording_keeps_what_debug_lines_read` | Tooling | All | A recording keeps every field the debug lines log | ✅ |
 | `test_rebuild.py` | `test_saved_repeats_replay_once` | Tooling | Tests | A step repeated in a replay file plays the right number of times | ✅ |
+| `test_rebuild.py` | `test_replay_that_doesnt_match_the_monitor_fails` | Tooling | Tests | A replay the monitor asks different URLs of fails the test, though the monitor catches the error | ✅ |
 | `test_rebuild.py` | `test_nhl_goals_and_shootout` | Tooling | Rangers | A rebuilt NHL game fires its goals and shootout goals, not the opponent's | ✅ |
 | `test_rebuild.py` | `test_nhl_real_time_is_estimated_from_the_game_clock` | Tooling | Rangers | Goals 10 game minutes apart replay about 17.5 real minutes apart | ✅ |
+| `test_rebuild.py` | `test_nhl_goal_before_period_start` | Tooling | Rangers | A goal before any period-start play still fires | ✅ |
 | `test_rebuild.py` | `test_espn_touchdown_and_extra_point_are_split` | Tooling | Dolphins | A touchdown shown as +7 is rebuilt as +6, then the extra point | ✅ |
 | `test_rebuild.py` | `test_espn_two_point_conversion_and_missed_extra_point` | Tooling | Dolphins | +8 and +6 touchdowns and a field goal rebuild to the right events | ✅ |
 | `test_rebuild.py` | `test_espn_plays_are_put_in_time_order` | Tooling | Vols | Plays listed out of order are sorted by time, so a score doesn't fire twice | ✅ |
+| `test_rebuild.py` | `test_espn_replay_timing_matches_live` | Tooling | Dolphins | The stream delay isn't counted twice: a 2-point try 160s after a touchdown stays in the conversion window | ✅ |
 | `test_rebuild.py` | `test_espn_league_comes_from_the_monitor` | Tooling | Football | NFL and college monitors rebuild from the right league | ✅ |
+| `test_tools.py` | `test_fire_event_queues_events` | Positive | `fire_event.py` | Named events are queued with the given priority | ✅ |
+| `test_tools.py` | `test_fire_event_adds_to_events_already_queued` | Positive | `fire_event.py` | Events already in the queue are kept | ✅ |
+| `test_tools.py` | `test_fire_event_refuses_unknown_events` | Negative | `fire_event.py` | A misspelled event is refused and nothing is queued | ✅ |
+| `test_tools.py` | `test_fire_event_force_sends_unknown_events` | Positive | `fire_event.py` | `--force` queues an event the controller doesn't know | ✅ |
+| `test_tools.py` | `test_fire_event_list_shows_every_event` | Positive | `fire_event.py` | `--list` shows every configured event | ✅ |
+| `test_tools.py` | `test_fired_events_play_on_the_controller` | Positive | `fire_event.py`, controller | A fired event is played by the controller: light, song, light off | ✅ |
+| `test_tools.py` | `test_run_controller_fast_clock_skips_only_light_durations` | Tooling | `run_controller.py` | `--fast` skips light durations but still waits between queue checks | ✅ |
+| `test_tools.py` | `test_run_controller_finds_a_player_or_none` | Tooling | `run_controller.py` | `--audio` uses a player it finds, or skips audio when there's none | ✅ |
 | `test_docs.py` | `test_test_case_table_lists_every_test` | Tooling | Tests | This table lists every test, and nothing else | ✅ |
 | `test_docs.py` | `test_test_case_table_status_matches_known_bug` | Tooling | Tests | Each row's ❌ / ✅ and issue number match the test's `@known_bug` | ✅ |
 <!-- test-cases:end -->
@@ -301,6 +312,11 @@ Every bug filed as an issue, plus bugs fixed in commits without one, has a test 
 | Issue #37: unexpected API data crashes a monitor | Open | `test_empty_body_does_not_crash` ❌, `test_empty_game_data_does_not_crash` ❌, `test_null_score_does_not_crash` ❌, `test_fixture_variation` (some cases) ❌ |
 | Issue #38: a corrupted queue file loses every later event | Open | `test_monitor_recovers_from_corrupted_queue` ❌, `test_controller_recovers_from_corrupted_queue` ❌ |
 | Commits `aebe461`, `af4fd3c`: the light keeps going off after a Yankees win | Fixed | `test_win_fires_once`, `test_lead_after_early_inning_is_not_a_win` |
+| Test tools: a repeated step in a replay file played back squared (5 → 25) | Fixed | `test_saved_repeats_replay_once` |
+| Test tools: a replay that didn't match the monitor's requests didn't fail, because the monitor caught the error | Fixed | `test_replay_that_doesnt_match_the_monitor_fails`, and every replay in the suite |
+| Test tools: `rebuild_mlb_game.py` added game data after the final, which the monitor never asks for | Fixed | `test_fixture` (the Yankees game) |
+| Test tools: `rebuild_nhl_game.py` crashed, or missed the first goal, when a game had no period-start play | Fixed | `test_nhl_goal_before_period_start` |
+| Test tools: rebuilt football games counted the stream delay twice after each score, so timing drifted 30s per score | Fixed | `test_espn_replay_timing_matches_live` |
 
 When you fix or file a bug, add a test for it and a row here.
 

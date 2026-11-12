@@ -69,7 +69,7 @@
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
    "response": 11,
-   "repeat": 12
+   "repeat": 6
   },
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
@@ -84,7 +84,7 @@
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
    "response": 14,
-   "repeat": 12
+   "repeat": 6
   },
   {
    "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",

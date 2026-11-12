@@ -2,8 +2,11 @@
 
 import json
 
+import pytest
+
 import rebuild_espn_game
 import rebuild_nhl_game
+from builders import NHL
 from harness import expand_steps, load_fixture, load_script, save_fixture, team_id
 
 # ─── Replay Files ─────────────────────────────────────────────────────────────
@@ -18,6 +21,15 @@ def test_saved_repeats_replay_once(tmp_path):
     steps = load_fixture(path)["steps"]
     assert len(steps) == 6
     assert len(expand_steps(steps)) == 6        # Expanding again changes nothing
+
+def test_replay_that_doesnt_match_the_monitor_fails(replay):
+    # The monitors catch every exception from a request, so a replay that no
+    # longer matches what the monitor asks for must fail the test some other way
+    nhl   = NHL(team_id(load_script("rangers")))
+    steps = nhl.poll(1, "LIVE", 0, 0) + nhl.schedule(1, "LIVE") + nhl.schedule(1, "LIVE")
+    with pytest.raises(AssertionError, match="monitor requested .*landing"):
+        replay("rangers", steps)
+
 
 # ─── NHL ──────────────────────────────────────────────────────────────────────
 
@@ -122,3 +134,23 @@ def test_espn_plays_are_put_in_time_order(replay):
 def test_espn_league_comes_from_the_monitor():
     assert rebuild_espn_game.league_of(load_script("dolphins")) == "nfl"
     assert rebuild_espn_game.league_of(load_script("vols")) == "college-football"
+
+
+def test_espn_replay_timing_matches_live(replay):
+    # The live monitor spends STREAM_DELAY_SECONDS queuing each event before it
+    # checks again, so the rebuild must not add that time on top. A 2-point try
+    # 160 real seconds after a touchdown is inside the 180s conversion window,
+    # live and in the replay.
+    module = load_script("dolphins")
+    plays  = [play(0, 0, 0), play(5, 6, 0, "Rushing Touchdown"),
+              {**play(5, 8, 0), "wallclock": "2026-10-01T20:07:40Z"}, play(20, 8, 0)]
+    steps  = rebuild_espn_game.build_steps(espn_game(team_id(module), plays, (8, 0)), module)
+    assert replay("dolphins", steps).events == ["dolphins_touchdown", "dolphins_win"]
+
+
+def test_nhl_goal_before_period_start(replay):
+    # The play-by-play doesn't promise a period-start before the first goal
+    module = load_script("rangers")
+    plays  = goal(1, "01:00", 1, 0, 1)
+    steps  = rebuild_nhl_game.build_steps(nhl_game(team_id(module), 1, 0, plays), module)
+    assert replay("rangers", steps).events == ["rangers_goal"]

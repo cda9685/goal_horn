@@ -73,8 +73,9 @@ def build_steps(pbp: dict, module) -> list:
     # Walk the plays, recording each state the landing page would have shown
     state  = {"home": 0, "away": 0, "period": 1, "period_type": "REG", "clock": "20:00",
               "intermission": False, "shootout": []}
-    states = []     # (real seconds since puck drop, state)
+    states = [(0.0, dict(state))]   # (real seconds since puck drop, state), from 0-0
     t = 0.0
+    period_start    = 0.0
     last_period_end = 0.0
     for play in pbp["plays"]:
         kind   = play["typeDescKey"]
@@ -110,10 +111,18 @@ def build_steps(pbp: dict, module) -> list:
     # The final score counts the shootout winner's extra goal
     final = dict(state, home=pbp["homeTeam"]["score"], away=pbp["awayTeam"]["score"])
 
+    side  = "home" if home == tid else "away"
     steps = [schedule("PRE")] * 2
     for i, (t, s) in enumerate(states):
         next_t = states[i + 1][0] if i + 1 < len(states) else t + module.POLL_INTERVAL
-        polls  = polls_for_gap(next_t - t, module.POLL_INTERVAL)
+        # Live, the monitor spends the stream delay (plus 1s) queuing each goal
+        # before it checks again, so that time is already gone from the gap
+        prev   = states[i - 1][1] if i else s
+        goals  = max(0, s[side] - prev[side]) + sum(
+            1 for a in s["shootout"][len(prev["shootout"]):]
+            if a["teamAbbrev"] == tid and a["result"] == "goal")
+        gap    = next_t - t - goals * (module.STREAM_DELAY_SECONDS + 1)
+        polls  = polls_for_gap(gap, module.POLL_INTERVAL)
         steps += [schedule("LIVE"), landing(s)] * polls
     steps += [schedule("OFF"), landing(final)]
     return steps

@@ -48,12 +48,22 @@ def known_bug(issue: int, reason: str):
     test passes, and the run fails to remind you to delete this line (and set
     the test's row in tests/README.md to ✅). The test itself doesn't change.
     """
-    import pytest   # Here, not at the top: the tools in tests/ run without pytest
-
     def mark(test):
-        test = pytest.mark.known_bug(issue=issue, reason=reason)(test)
-        return pytest.mark.xfail(strict=True, reason=f"Issue #{issue}: {reason}")(test)
+        for m in known_bug_marks(issue, reason):
+            test = m(test)
+        return test
     return mark
+
+
+def known_bug_marks(issue: int, reason: str) -> list:
+    """
+    known_bug for one case of a parametrized test:
+
+        pytest.param("vols", marks=known_bug_marks(36, "a blank score is read as 0"))
+    """
+    import pytest   # Here, not at the top: the tools in tests/ run without pytest
+    return [pytest.mark.known_bug(issue=issue, reason=reason),
+            pytest.mark.xfail(strict=True, reason=f"Issue #{issue}: {reason}")]
 
 # ─── Loading Scripts ──────────────────────────────────────────────────────────
 
@@ -166,7 +176,10 @@ def expand_steps(steps: list) -> list:
     """Expand {"repeat": n} steps and {"repeat": n, "steps": [...]} groups into n copies."""
     out = []
     for step in steps:
-        body = expand_steps(step["steps"]) if "steps" in step else [step]
+        if "steps" in step:
+            body = expand_steps(step["steps"])
+        else:
+            body = [{k: v for k, v in step.items() if k != "repeat"}]
         out.extend(body * step.get("repeat", 1))
     return out
 
@@ -208,6 +221,7 @@ class Replay:
         self.index    = 0
         self.requests = []          # Every URL requested, in order
         self.options  = []          # The keyword arguments of each request (timeout=...)
+        self.mismatch = None        # Set if the monitor asked for a URL the replay didn't expect
 
     def get(self, url: str, *args, **kwargs):
         if self.index >= len(self.steps):
@@ -218,13 +232,49 @@ class Replay:
         self.index += 1
 
         if step["url"] not in url:
-            raise AssertionError(
-                f"Replay step {self.index - 1}: monitor requested {url!r}, "
-                f"but the replay expected a URL containing {step['url']!r}")
+            # Stop the monitor rather than raise an error it would catch as a failed request
+            self.mismatch = (f"Replay step {self.index - 1}: monitor requested {url!r}, "
+                             f"but the replay expected a URL containing {step['url']!r}")
+            raise ReplayFinished()
         if step.get("error"):
             import requests
             raise requests.ConnectionError(f"{step['error']} (replayed)")
         return FakeResponse(step.get("json"), step.get("status", 200), url, step.get("text"))
+
+
+def save_fixture(path, team: str, description: str, recorded: str, steps: list,
+                 expected_events: list | None = None):
+    """
+    Write steps to a replay file (see load_fixture). Each distinct response is
+    stored once in "responses", and repeated steps are collapsed.
+    """
+    responses, index, out = [], {}, []
+    for step in steps:
+        step = dict(step)
+        if "json" in step:
+            key = json.dumps(step["json"], sort_keys=True)
+            if key not in index:
+                index[key] = len(responses)
+                responses.append(step["json"])
+            step["response"] = index[key]
+            del step["json"]
+        out.append(step)
+    fixture = {"team": team, "description": description, "recorded": recorded,
+               "expected_events": expected_events, "steps": compress_steps(out),
+               "responses": responses}
+    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
+    with open(path, "w") as f:
+        json.dump(fixture, f, indent=1)
+
+
+def polls_for_gap(seconds: float, poll_interval: float, max_gap: float = 600) -> int:
+    """
+    How many identical polls stand for `seconds` of real time between two
+    changes in a rebuilt game, so the monitor's fake clock moves about as far
+    as it would have live. Gaps over max_gap are shortened: past a few
+    minutes, extra waiting doesn't change what any monitor does.
+    """
+    return max(1, round(min(seconds, max_gap) / poll_interval))
 
 
 def load_fixture(path) -> dict:
@@ -282,6 +332,8 @@ def run_replay(team: str, steps: list, state_dir, module=None) -> ReplayResult:
     module.requests = _requests_with(replay.get)
     module.main()
 
+    if replay.mismatch:
+        raise AssertionError(replay.mismatch)
     if replay.index < len(replay.steps):
         raise AssertionError(
             f"Monitor stopped after {replay.index} of {len(replay.steps)} replay steps")

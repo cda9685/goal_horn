@@ -13,8 +13,24 @@ Everything for testing the goal horn lives in this directory. Nothing here chang
 
 ## Setup
 
+The tests need `pytest` and `requests`.
+
+**On the Pi** (Raspberry Pi OS), install pytest from Raspberry Pi OS's own packages. `requests` is already there for the monitors.
+
 ```sh
-pip install -r tests/requirements.txt
+sudo apt install python3-pytest
+```
+
+Raspberry Pi OS refuses `pip install` into the system Python (`error: externally-managed-environment`), so use `apt` instead. Don't get around it with `--break-system-packages`: it can break the Python packages the goal horn itself runs on.
+
+Running the tests on the Pi is safe while the goal horn is running. Tests use their own temporary event queue, and `test_restart.py` uses fake `sudo`, `pkill` and `python3` commands, so nothing real is stopped, started or set off.
+
+**On a laptop or desktop**, use a virtual environment (many systems, like the Pi, refuse a system-wide `pip install`):
+
+```sh
+python3 -m venv .venv
+.venv/bin/pip install -r tests/requirements.txt
+.venv/bin/python -m pytest tests
 ```
 
 `RPi.GPIO` is only needed on the Pi. Off the Pi the tests replace it automatically.
@@ -59,7 +75,7 @@ python3 -m pytest tests -k vols  # one team
 
 Every test is listed in [Test cases](#test-cases).
 
-GitHub Actions runs these on every pull request (`.github/workflows/tests.yml`).
+GitHub Actions runs these on every pull request (`.github/workflows/tests.yml`), on the pytest and requests versions Raspberry Pi OS Bookworm and Trixie ship, and on the latest ones.
 
 ### Debug mode
 

@@ -7,11 +7,27 @@ on:
 
 jobs:
   pytest:
+    name: pytest (${{ matrix.name }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # What the Pi gets from `sudo apt install python3-pytest`
+          - name: Raspberry Pi OS Bookworm
+            python: "3.11"
+            packages: pytest==7.2.1 requests==2.28.1
+          - name: Raspberry Pi OS Trixie
+            python: "3.13"
+            packages: pytest==8.3.5 requests==2.32.3
+          # What a laptop gets from tests/requirements.txt
+          - name: latest
+            python: "3.13"
+            packages: -r tests/requirements.txt
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"    # Raspberry Pi OS Bookworm
-      - run: pip install -r tests/requirements.txt
+          python-version: ${{ matrix.python }}
+      - run: pip install ${{ matrix.packages }}
       - run: python -m pytest tests -rx

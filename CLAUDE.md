@@ -47,7 +47,7 @@ Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use
 ## Testing
 
 - Everything for testing lives in `tests/`; see `tests/README.md`. Keep test code, tools and recorded games there, not in the repo root, and don't add test hooks to the production scripts. The harness patches them from outside.
-- Run `pip install -r tests/requirements.txt` once, then `python3 -m pytest tests` before every commit. GitHub Actions runs the same on every PR.
+- Run `python3 -m pytest tests` before every commit. GitHub Actions runs the same on every PR. Set up pytest once: `sudo apt install python3-pytest` on the Pi (Raspberry Pi OS blocks system-wide `pip install`; never use `--break-system-packages`), or `pip install -r tests/requirements.txt` in a virtual environment elsewhere. The tests must keep passing on the pytest and requests versions Raspberry Pi OS ships.
 - Monitor tests run each monitor's real `main()` against scripted API responses (`tests/builders.py`) on a fake clock. Add a test for any behavior you change or bug you fix.
 - Debug lines must not change behavior. When adding or changing one, run `python3 -m pytest tests -k debug`, and if it logs a new API field, add the field to `tests/builders.py` and to the trimmers in `tests/record_game.py`.
 - Every test is listed in the test case table in `tests/README.md` (file, name, type, status). When you add, rename or remove a test, or a known bug is fixed, update its row; `test_docs.py` fails otherwise. "Team" in test names and the table means the monitor's own team; "plays away" means it's the away side, not that the opponent scored.

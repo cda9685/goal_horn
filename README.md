@@ -242,10 +242,16 @@ Everything for testing is in the `tests/` directory; see [tests/README.md](tests
   python3 tests/fire_event.py --list
   python3 tests/fire_event.py vols_touchdown
   ```
-- Run the automated tests on any computer (no Pi needed):
+- Run the automated tests on the Pi:
   ```sh
-  pip install -r tests/requirements.txt
+  sudo apt install python3-pytest   # once
   python3 -m pytest tests
+  ```
+  Or on any other computer, in a virtual environment (see [tests/README.md](tests/README.md#setup)):
+  ```sh
+  python3 -m venv .venv
+  .venv/bin/pip install -r tests/requirements.txt
+  .venv/bin/python -m pytest tests
   ```
 - Record a live game, or rebuild a past MLB game, and replay it through its monitor in seconds with `tests/record_game.py`, `tests/rebuild_mlb_game.py` and `tests/replay_game.py`.
 

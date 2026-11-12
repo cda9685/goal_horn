@@ -15,7 +15,8 @@ https://api-web.nhle.com/v1/club-schedule-season/NYR/now
 What a rebuilt game can't show (see tests/README.md, "Rebuilt games"):
 - Overturned goals: the play-by-play only keeps goals that stood.
 - API glitches and failed requests.
-- Real time: the play-by-play only has the game clock, so real time is estimated.
+- Real time: the play-by-play only has the game clock, so real time is estimated
+  (REAL_PER_GAME_SECOND, measured from a live game).
 test_fixtures.py adds the first two to every recorded game as variations.
 """
 
@@ -32,7 +33,9 @@ from harness import load_script, polls_for_gap, save_fixture, script_path, team_
 PBP_URL = "https://api-web.nhle.com/v1/gamecenter/{game_id}/play-by-play"
 
 # Estimating real time from the game clock
-REAL_PER_GAME_SECOND = 1.75     # A 20-minute period takes about 35 real minutes
+# Measured live (NYR @ CGY, 2026-11-11): 1.75 early in the 3rd period, 2.0
+# over the whole period, with more stoppages late and an empty net
+REAL_PER_GAME_SECOND = 1.9      # A 20-minute period takes about 38 real minutes
 INTERMISSION         = 18 * 60  # After the 1st and 2nd periods
 SHORT_BREAK          = 2 * 60   # Before overtime and the shootout
 SHOOTOUT_ATTEMPT     = 45       # Real seconds per shootout attempt

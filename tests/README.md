@@ -270,7 +270,7 @@ python3 -m pytest "tests/test_nhl_monitors.py::test_shootout_goals[rangers]"   #
 | `test_rebuild.py` | `test_saved_repeats_replay_once` | Tooling | Tests | A step repeated in a replay file plays the right number of times | ✅ |
 | `test_rebuild.py` | `test_replay_that_doesnt_match_the_monitor_fails` | Tooling | Tests | A replay the monitor asks different URLs of fails the test, though the monitor catches the error | ✅ |
 | `test_rebuild.py` | `test_nhl_goals_and_shootout` | Tooling | Rangers | A rebuilt NHL game fires its goals and shootout goals, not the opponent's | ✅ |
-| `test_rebuild.py` | `test_nhl_real_time_is_estimated_from_the_game_clock` | Tooling | Rangers | Goals 10 game minutes apart replay about 17.5 real minutes apart | ✅ |
+| `test_rebuild.py` | `test_nhl_real_time_is_estimated_from_the_game_clock` | Tooling | Rangers | Goals 10 game minutes apart replay about 10 real minutes apart (19, shortened to the 10-minute cap) | ✅ |
 | `test_rebuild.py` | `test_nhl_goal_before_period_start` | Tooling | Rangers | A goal before any period-start play still fires | ✅ |
 | `test_rebuild.py` | `test_espn_touchdown_and_extra_point_are_split` | Tooling | Dolphins | A touchdown shown as +7 is rebuilt as +6, then the extra point | ✅ |
 | `test_rebuild.py` | `test_espn_two_point_conversion_and_missed_extra_point` | Tooling | Dolphins | +8 and +6 touchdowns and a field goal rebuild to the right events | ✅ |
@@ -440,7 +440,7 @@ The APIs keep different kinds of history, so rebuilt games differ:
 | API | What it keeps | The rebuilt replay |
 | --- | --- | --- |
 | MLB | A snapshot of the live game at every update (`feed/live/timestamps`) | Exactly what the monitor would have seen, update by update |
-| NHL | Every play (goals, shootout attempts, period starts and ends) with the game clock | One poll per change. Real time is estimated: a 20-minute period takes about 35 minutes, plus intermissions |
+| NHL | Every play (goals, shootout attempts, period starts and ends) with the game clock | One poll per change. Real time is estimated: a 20-minute period takes about 38 minutes (measured in a live game), plus intermissions |
 | ESPN | Every play with the real time it happened and the score after it | One poll per score change, spaced by the real times. ESPN's play list isn't always in time order, so it's sorted first |
 
 Gaps longer than 10 minutes are shortened, since extra waiting doesn't change anything a monitor does.
@@ -454,7 +454,7 @@ A rebuilt game only has what the API kept, which leaves out the rare cases that 
 | Overturned scores: the NHL and ESPN histories only keep scores that stood | Scripted tests, and the `overturn` variation |
 | API glitches, blank scores, failed requests | Scripted and adversarial tests, and the `glitch`, `blank_score`, `request_error` and `game_data_error` variations |
 | A touchdown and its extra point or 2-point try as separate updates: ESPN's plays give the score after the try (+7 or +8) | The rebuild splits them: +6, then the try a minute later, as the live scoreboard shows them |
-| Real time between NHL plays: only the game clock is kept | Estimated. No NHL logic depends on how much time passes between goals |
+| Real time between NHL plays: only the game clock is kept | Estimated at 1.9 real seconds per game second, measured from a live recording (1.75 to 2.0). No NHL logic depends on how much time passes between goals |
 
 **Variations.** `test_fixture_variation` takes every recorded and rebuilt game and adds one of these to it (see `variations.py`). The monitor must still fire the game's expected events:
 

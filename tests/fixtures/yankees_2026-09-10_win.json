@@ -27,20 +27,7 @@
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
      "response": 3
-    }
-   ]
-  },
-  {
-   "repeat": 4,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -49,155 +36,176 @@
    ]
   },
   {
+   "repeat": 4,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 5
+    }
+   ]
+  },
+  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 5
+   "response": 6
   },
   {
    "repeat": 10,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 6
+     "response": 7
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 7
+   "response": 8
   },
   {
    "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 8
+     "response": 9
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 9
-  },
-  {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 8
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 10
   },
   {
-   "repeat": 4,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 11
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 12
-  },
-  {
-   "repeat": 4,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 13
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 14
-  },
-  {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 13
+     "response": 9
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 11
+  },
+  {
+   "repeat": 4,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 12
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 13
+  },
+  {
+   "repeat": 4,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 14
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 15
   },
   {
-   "repeat": 3,
+   "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 16
+     "response": 14
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 16
+  },
+  {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 17
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 18
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -205,246 +213,217 @@
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 16
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 18
-  },
-  {
-   "repeat": 3,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 16
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 19
   },
   {
-   "repeat": 5,
+   "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 20
+     "response": 17
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 21
+   "response": 20
+  },
+  {
+   "repeat": 5,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 21
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 22
   },
   {
    "repeat": 7,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 22
+     "response": 23
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 23
+   "response": 24
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 24
+     "response": 25
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 25
+   "response": 26
   },
   {
    "repeat": 4,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 26
+     "response": 27
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 27
-  },
-  {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 26
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 28
   },
   {
-   "repeat": 4,
+   "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 29
+     "response": 27
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 30
+   "response": 29
   },
   {
    "repeat": 4,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 29
+     "response": 30
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 31
   },
   {
-   "repeat": 6,
+   "repeat": 4,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 32
+     "response": 30
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 33
+   "response": 32
+  },
+  {
+   "repeat": 6,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 33
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 34
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 34
+     "response": 35
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 35
-  },
-  {
-   "repeat": 3,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 34
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -455,280 +434,288 @@
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 37
+     "response": 35
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 38
+   "response": 37
   },
   {
    "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 39
+     "response": 38
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 40
+   "response": 39
   },
   {
-   "repeat": 2,
+   "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 39
+     "response": 40
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 41
   },
   {
+   "repeat": 2,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 40
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 42
+  },
+  {
    "repeat": 9,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 42
+     "response": 43
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 43
+   "response": 44
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 44
+     "response": 45
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 45
+   "response": 46
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 46
+     "response": 47
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 47
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 48
   },
   {
-   "repeat": 3,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 49
-    }
-   ]
-  },
-  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 50
+   "response": 49
   },
   {
    "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 49
+     "response": 50
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 51
   },
   {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 50
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 52
+  },
+  {
    "repeat": 7,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 52
+     "response": 53
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 53
+   "response": 54
   },
   {
    "repeat": 8,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 54
+     "response": 55
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 55
+   "response": 56
   },
   {
    "repeat": 8,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 56
+     "response": 57
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 57
+   "response": 58
   },
   {
    "repeat": 5,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 58
+     "response": 59
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 59
+   "response": 60
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 60
-    }
-   ]
-  },
-  {
-   "repeat": 3,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -737,113 +724,105 @@
    ]
   },
   {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 62
+    }
+   ]
+  },
+  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 62
+   "response": 63
   },
   {
    "repeat": 5,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 63
+     "response": 64
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 64
+   "response": 65
   },
   {
    "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 65
+     "response": 66
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 66
+   "response": 67
   },
   {
    "repeat": 4,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 67
+     "response": 68
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 68
+   "response": 69
   },
   {
    "repeat": 6,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 69
+     "response": 70
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 70
-  },
-  {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 69
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -854,20 +833,28 @@
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 72
+     "response": 70
     }
    ]
   },
   {
-   "repeat": 7,
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 72
+  },
+  {
+   "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -876,40 +863,40 @@
    ]
   },
   {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "repeat": 7,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 74
+    }
+   ]
   },
   {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 74
-  },
-  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 75
   },
   {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 76
-    }
-   ]
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 76
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -918,8 +905,29 @@
    ]
   },
   {
+   "repeat": 2,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 78
+    }
+   ]
+  },
+  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 79
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -927,186 +935,165 @@
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 77
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 79
+   "response": 80
   },
   {
    "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 80
+     "response": 81
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 81
-  },
-  {
-   "repeat": 4,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 80
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 82
   },
   {
-   "repeat": 3,
+   "repeat": 4,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 83
+     "response": 81
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 84
+   "response": 83
   },
   {
    "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 83
+     "response": 84
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 85
   },
   {
-   "repeat": 6,
+   "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 86
+     "response": 84
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 87
+   "response": 86
+  },
+  {
+   "repeat": 6,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 87
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 88
   },
   {
    "repeat": 5,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 88
+     "response": 89
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 89
-  },
-  {
-   "repeat": 3,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 88
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 90
   },
   {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 91
-    }
-   ]
-  },
-  {
    "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 89
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 91
+  },
+  {
+   "repeat": 2,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -1115,208 +1102,208 @@
    ]
   },
   {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 93
+    }
+   ]
+  },
+  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 93
+   "response": 94
   },
   {
    "repeat": 5,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 94
+     "response": 95
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 95
+   "response": 96
   },
   {
    "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 96
+     "response": 97
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 97
+   "response": 98
   },
   {
    "repeat": 4,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 98
+     "response": 99
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 99
+   "response": 100
   },
   {
    "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 100
+     "response": 101
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 101
+   "response": 102
   },
   {
    "repeat": 5,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 102
+     "response": 103
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 103
+   "response": 104
   },
   {
    "repeat": 5,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 104
+     "response": 105
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 105
+   "response": 106
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 106
+     "response": 107
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 107
+   "response": 108
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 108
+     "response": 109
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 109
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 110
   },
   {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 111
+  },
+  {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 111
-    }
-   ]
-  },
-  {
-   "repeat": 3,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -1325,205 +1312,226 @@
    ]
   },
   {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 113
+    }
+   ]
+  },
+  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 113
+   "response": 114
   },
   {
    "repeat": 6,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 114
+     "response": 115
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 115
+   "response": 116
   },
   {
    "repeat": 6,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 116
+     "response": 117
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 117
+   "response": 118
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 118
+     "response": 119
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 119
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 120
   },
   {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 121
+  },
+  {
    "repeat": 6,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 121
+     "response": 122
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 122
+   "response": 123
   },
   {
    "repeat": 4,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 123
+     "response": 124
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 124
-  },
-  {
-   "repeat": 3,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 123
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 125
   },
   {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 124
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 126
+  },
+  {
    "repeat": 7,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 126
+     "response": 127
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 127
+   "response": 128
   },
   {
    "repeat": 4,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 128
+     "response": 129
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 129
+   "response": 130
   },
   {
    "repeat": 4,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 130
+     "response": 131
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 132
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -1531,57 +1539,28 @@
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 130
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 132
+   "response": 133
   },
   {
    "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 133
+     "response": 134
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 134
-  },
-  {
-   "repeat": 5,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 133
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -1592,293 +1571,298 @@
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 136
+     "response": 134
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 137
-  },
-  {
-   "repeat": 6,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 138
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 139
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 140
-  },
-  {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 141
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 142
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 143
-  },
-  {
-   "repeat": 7,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 144
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 145
-  },
-  {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 146
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 147
-  },
-  {
-   "repeat": 3,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 148
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 149
-  },
-  {
-   "repeat": 6,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 150
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 151
-  },
-  {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 152
-    }
-   ]
-  },
-  {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 153
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 154
-  },
-  {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 153
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 155
-  },
-  {
-   "repeat": 3,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 156
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 157
-  },
-  {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 158
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 159
+   "response": 136
   },
   {
    "repeat": 5,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 160
+     "response": 137
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 161
+   "response": 138
+  },
+  {
+   "repeat": 6,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 139
+    }
+   ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 140
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 141
+  },
+  {
+   "repeat": 2,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 142
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 143
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 144
+  },
+  {
+   "repeat": 7,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 145
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 146
+  },
+  {
+   "repeat": 2,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 147
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 148
+  },
+  {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 149
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 150
+  },
+  {
+   "repeat": 6,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 151
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 152
+  },
+  {
+   "repeat": 2,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 153
+    }
+   ]
+  },
+  {
+   "repeat": 2,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 154
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 155
+  },
+  {
+   "repeat": 2,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 154
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 156
+  },
+  {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 157
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 158
+  },
+  {
+   "repeat": 2,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 159
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 160
   },
   {
+   "repeat": 5,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 161
+    }
+   ]
+  },
+  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -1886,31 +1870,34 @@
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 161
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 163
   },
   {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 164
+  },
+  {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 164
-    }
-   ]
-  },
-  {
-   "repeat": 5,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -1919,53 +1906,53 @@
    ]
   },
   {
+   "repeat": 5,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 166
+    }
+   ]
+  },
+  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 166
+   "response": 167
   },
   {
    "repeat": 4,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 167
+     "response": 168
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 168
+   "response": 169
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 169
-    }
-   ]
-  },
-  {
-   "repeat": 6,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -1974,37 +1961,42 @@
    ]
   },
   {
+   "repeat": 6,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 171
+    }
+   ]
+  },
+  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 171
+   "response": 172
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 172
+     "response": 173
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 173
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -2012,7 +2004,7 @@
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -2020,7 +2012,7 @@
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -2028,144 +2020,139 @@
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 175
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 177
   },
   {
-   "repeat": 6,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 175
-    }
-   ]
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 176
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 178
   },
   {
-   "repeat": 4,
+   "repeat": 6,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 179
+     "response": 176
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 180
+   "response": 179
+  },
+  {
+   "repeat": 4,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 180
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 181
   },
   {
    "repeat": 3,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 181
+     "response": 182
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 182
-  },
-  {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 181
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
    "response": 183
   },
   {
-   "repeat": 3,
+   "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 184
+     "response": 182
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 185
+   "response": 184
+  },
+  {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 185
+    }
+   ]
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 186
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 186
-    }
-   ]
-  },
-  {
-   "repeat": 3,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -2174,116 +2161,116 @@
    ]
   },
   {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 188
+    }
+   ]
+  },
+  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 188
+   "response": 189
   },
   {
    "repeat": 7,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 189
+     "response": 190
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 190
+   "response": 191
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 191
+     "response": 192
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 192
+   "response": 193
   },
   {
    "repeat": 4,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 193
+     "response": 194
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 194
+   "response": 195
   },
   {
    "repeat": 7,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 195
+     "response": 196
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 196
+   "response": 197
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 197
-    }
-   ]
-  },
-  {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -2292,32 +2279,32 @@
    ]
   },
   {
+   "repeat": 2,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 199
+    }
+   ]
+  },
+  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 199
+   "response": 200
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 200
-    }
-   ]
-  },
-  {
-   "repeat": 4,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -2326,69 +2313,53 @@
    ]
   },
   {
+   "repeat": 4,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+     "response": 3
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 202
+    }
+   ]
+  },
+  {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 202
+   "response": 203
   },
   {
    "repeat": 6,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 203
+     "response": 204
     }
    ]
   },
   {
    "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
+   "response": 3
   },
   {
    "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 204
+   "response": 205
   },
   {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
-    },
-    {
-     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-     "response": 205
-    }
-   ]
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 206
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-   "response": 1
-  },
-  {
-   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
-   "response": 207
-  },
-  {
-   "repeat": 2,
-   "steps": [
-    {
-     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 1
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
@@ -2397,15 +2368,44 @@
    ]
   },
   {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 207
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
+   "response": 3
+  },
+  {
+   "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+   "response": 208
+  },
+  {
    "repeat": 2,
    "steps": [
     {
      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
-     "response": 208
+     "response": 3
     },
     {
      "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 207
+    }
+   ]
+  },
+  {
+   "repeat": 2,
+   "steps": [
+    {
+     "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147",
      "response": 209
+    },
+    {
+     "url": "https://statsapi.mlb.com/api/v1.1/game/823499/feed/live",
+     "response": 210
     }
    ]
   }
@@ -2418,7 +2418,8 @@
       {
        "gamePk": 823499,
        "status": {
-        "abstractGameState": "Preview"
+        "abstractGameState": "Preview",
+        "detailedState": "Pre-Game"
        },
        "teams": {
         "home": {
@@ -2446,7 +2447,8 @@
       {
        "gamePk": 823499,
        "status": {
-        "abstractGameState": "Live"
+        "abstractGameState": "Live",
+        "detailedState": "Warmup"
        },
        "teams": {
         "home": {
@@ -2470,7 +2472,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "Warmup"
     },
     "teams": {
      "home": {
@@ -2508,9 +2511,39 @@
    }
   },
   {
+   "dates": [
+    {
+     "games": [
+      {
+       "gamePk": 823499,
+       "status": {
+        "abstractGameState": "Live",
+        "detailedState": "In Progress"
+       },
+       "teams": {
+        "home": {
+         "team": {
+          "id": 147,
+          "name": "New York Yankees"
+         }
+        },
+        "away": {
+         "team": {
+          "id": 115,
+          "name": "Colorado Rockies"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -2550,7 +2583,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -2587,7 +2621,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -2627,7 +2662,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -2670,7 +2706,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -2716,7 +2753,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -2765,7 +2803,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -2817,7 +2856,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -2869,7 +2909,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -2924,7 +2965,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -2982,7 +3024,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3043,7 +3086,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3107,7 +3151,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3171,7 +3216,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3238,7 +3284,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3308,7 +3355,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3378,7 +3426,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3448,7 +3497,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3521,7 +3571,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3597,7 +3648,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3676,7 +3728,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3758,7 +3811,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3843,7 +3897,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -3931,7 +3986,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -4022,7 +4078,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -4116,7 +4173,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -4210,7 +4268,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -4307,7 +4366,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -4407,7 +4467,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -4507,7 +4568,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -4610,7 +4672,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -4716,7 +4779,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -4825,7 +4889,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -4937,7 +5002,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -5049,7 +5115,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -5164,7 +5231,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -5282,7 +5350,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -5403,7 +5472,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -5527,7 +5597,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -5651,7 +5722,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -5778,7 +5850,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -5908,7 +5981,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -6041,7 +6115,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -6177,7 +6252,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -6319,7 +6395,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -6458,7 +6535,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -6600,7 +6678,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -6745,7 +6824,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -6893,7 +6973,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -7041,7 +7122,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -7192,7 +7274,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -7346,7 +7429,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -7503,7 +7587,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -7663,7 +7748,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -7826,7 +7912,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -7992,7 +8079,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -8161,7 +8249,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -8333,7 +8422,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -8511,7 +8601,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -8686,7 +8777,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -8864,7 +8956,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -9045,7 +9138,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -9229,7 +9323,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -9416,7 +9511,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -9606,7 +9702,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -9799,7 +9896,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -9995,7 +10093,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -10194,7 +10293,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -10396,7 +10496,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -10598,7 +10699,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -10806,7 +10908,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -11011,7 +11114,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -11219,7 +11323,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -11433,7 +11538,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -11647,7 +11753,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -11858,7 +11965,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -12072,7 +12180,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -12286,7 +12395,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -12503,7 +12613,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -12723,7 +12834,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -12943,7 +13055,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -13166,7 +13279,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -13392,7 +13506,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -13618,7 +13733,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -13847,7 +13963,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -14079,7 +14196,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -14314,7 +14432,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -14552,7 +14671,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -14790,7 +14910,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -15034,7 +15155,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -15275,7 +15397,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -15519,7 +15642,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -15766,7 +15890,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -16016,7 +16141,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -16269,7 +16395,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -16525,7 +16652,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -16784,7 +16912,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -17046,7 +17175,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -17311,7 +17441,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -17579,7 +17710,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -17850,7 +17982,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -18124,7 +18257,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -18401,7 +18535,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -18681,7 +18816,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -18964,7 +19100,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -19250,7 +19387,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -19539,7 +19677,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -19831,7 +19970,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -20129,7 +20269,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -20427,7 +20568,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -20722,7 +20864,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -21020,7 +21163,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -21321,7 +21465,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -21625,7 +21770,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -21932,7 +22078,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -22242,7 +22389,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -22558,7 +22706,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -22871,7 +23020,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -23187,7 +23337,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -23506,7 +23657,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -23828,7 +23980,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -24153,7 +24306,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -24481,7 +24635,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -24809,7 +24964,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -25140,7 +25296,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -25474,7 +25631,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -25811,7 +25969,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -26151,7 +26310,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -26494,7 +26654,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -26840,7 +27001,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -27186,7 +27348,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -27535,7 +27698,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -27887,7 +28051,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -28239,7 +28404,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -28594,7 +28760,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -28952,7 +29119,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -29313,7 +29481,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -29677,7 +29846,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -30047,7 +30217,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -30417,7 +30588,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -30784,7 +30956,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -31154,7 +31327,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -31527,7 +31701,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -31903,7 +32078,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -32282,7 +32458,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -32664,7 +32841,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -33049,7 +33227,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -33437,7 +33616,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -33828,7 +34008,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -34222,7 +34403,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -34622,7 +34804,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -35019,7 +35202,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -35419,7 +35603,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -35819,7 +36004,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -36222,7 +36408,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -36628,7 +36815,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -37037,7 +37225,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -37449,7 +37638,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -37864,7 +38054,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -38282,7 +38473,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -38700,7 +38892,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -39124,7 +39317,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -39548,7 +39742,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -39969,7 +40164,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -40393,7 +40589,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -40820,7 +41017,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -41250,7 +41448,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -41686,7 +41885,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -42119,7 +42319,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -42555,7 +42756,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -42997,7 +43199,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -43436,7 +43639,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -43878,7 +44082,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -44323,7 +44528,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -44771,7 +44977,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -45219,7 +45426,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -45667,7 +45875,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -46118,7 +46327,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -46572,7 +46782,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -47029,7 +47240,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -47489,7 +47701,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -47949,7 +48162,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -48412,7 +48626,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -48878,7 +49093,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -49350,7 +49566,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -49819,7 +50036,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -50291,7 +50509,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -50766,7 +50985,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -51244,7 +51464,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -51725,7 +51946,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -52209,7 +52431,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -52696,7 +52919,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -53186,7 +53410,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -53679,7 +53904,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -54175,7 +54401,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -54677,7 +54904,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -55176,7 +55404,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -55678,7 +55907,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -56186,7 +56416,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -56691,7 +56922,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -57199,7 +57431,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -57710,7 +57943,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -58224,7 +58458,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -58744,7 +58979,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -59261,7 +59497,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Live"
+     "abstractGameState": "Live",
+     "detailedState": "In Progress"
     },
     "teams": {
      "home": {
@@ -59785,7 +60022,8 @@
       {
        "gamePk": 823499,
        "status": {
-        "abstractGameState": "Final"
+        "abstractGameState": "Final",
+        "detailedState": "Final"
        },
        "teams": {
         "home": {
@@ -59809,7 +60047,8 @@
   {
    "gameData": {
     "status": {
-     "abstractGameState": "Final"
+     "abstractGameState": "Final",
+     "detailedState": "Final"
     },
     "teams": {
      "home": {

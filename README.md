@@ -253,7 +253,7 @@ Everything for testing is in the `tests/` directory; see [tests/README.md](tests
   .venv/bin/pip install -r tests/requirements.txt
   .venv/bin/python -m pytest tests
   ```
-- Record a live game, or rebuild a past MLB, NHL or football game, and replay it through its monitor in seconds with `tests/record_game.py`, `tests/rebuild_mlb_game.py` and `tests/replay_game.py`.
+- Record a live game, schedule recordings of upcoming games (`tests/dvr.py`), or rebuild a past MLB, NHL or football game, and replay it through its monitor in seconds with `tests/record_game.py`, `tests/rebuild_mlb_game.py` and `tests/replay_game.py`.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

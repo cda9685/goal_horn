@@ -3,3 +3,5 @@ goal_horn_events.json
 *completed_games.json
 __pycache__/
 .venv/
+tests/recordings.json
+*.partial.jsonl

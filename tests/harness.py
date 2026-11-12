@@ -283,14 +283,118 @@ def load_fixture(path) -> dict:
     """
     Load a replay file: {"team", "description", "expected_events", "steps",
     "responses"}. Recorded steps hold {"response": i}, an index into
-    "responses"; these are swapped for the response itself.
+    "responses"; these are swapped for the response itself. A recording's
+    log (.partial.jsonl, see Journal) loads the same way.
     """
-    with open(path) as f:
-        fixture = json.load(f)
+    if str(path).endswith(".jsonl"):
+        fixture = read_journal(path)
+    else:
+        with open(path) as f:
+            fixture = json.load(f)
     responses = fixture.get("responses", [])
     fixture["steps"] = [{**s, "json": responses[s["response"]]} if "response" in s else s
                         for s in expand_steps(fixture["steps"])]
     return fixture
+
+# ─── Recording Logs ───────────────────────────────────────────────────────────
+# While recording, nothing already written is ever rewritten: each new
+# response and each step is added to the end of a log, one JSON object per
+# line. That keeps writes to the Pi's SD card to about the recording's final
+# size, and a power cut can only damage the last line, which read_journal()
+# skips. When the recording ends the log becomes a normal replay file.
+
+class Journal:
+    """An append-only recording log. Lines are {"header"}, {"response", "json"} or {"step"}."""
+
+    SYNC_INTERVAL = 30          # Seconds between forcing new lines onto the card
+
+    def __init__(self, path, header: dict):
+        self.path      = str(path)
+        self.index     = {}     # Serialized response -> its number
+        self.steps     = 0
+        self.last_sync = 0.0
+        resuming = os.path.exists(self.path)
+        if resuming:
+            # Carry on an interrupted recording: learn which responses it already has
+            for line in _journal_lines(self.path):
+                if "response" in line and "json" in line:
+                    self.index[json.dumps(line["json"], sort_keys=True)] = line["response"]
+                elif "step" in line:
+                    self.steps += 1
+        self.file = open(self.path, "a")
+        if not resuming:
+            self._write({"header": header})
+
+    def add(self, step: dict):
+        """Add one step; a "json" response is written once and referred to by number."""
+        step = dict(step)
+        if "json" in step:
+            data = step.pop("json")
+            key  = json.dumps(data, sort_keys=True)
+            if key not in self.index:
+                self.index[key] = len(self.index)
+                self._write({"response": self.index[key], "json": data})
+            step["response"] = self.index[key]
+        self._write({"step": step})
+        self.steps += 1
+
+    def _write(self, line: dict):
+        self.file.write(json.dumps(line) + "\n")
+        self.file.flush()
+        import time
+        if time.monotonic() - self.last_sync >= self.SYNC_INTERVAL:
+            os.fsync(self.file.fileno())
+            self.last_sync = time.monotonic()
+
+    def close(self):
+        if not self.file.closed:
+            self.file.flush()
+            os.fsync(self.file.fileno())
+            self.file.close()
+
+
+def _journal_lines(path):
+    """Each line of a log as a dict, skipping a damaged last line."""
+    with open(path) as f:
+        for line in f:
+            try:
+                yield json.loads(line)
+            except ValueError:
+                continue                # Half-written by a power cut or a crash
+
+
+def read_journal(path) -> dict:
+    """A recording log as a replay file's contents (steps still refer to responses)."""
+    fixture, responses, steps = {}, {}, []
+    for line in _journal_lines(path):
+        if "header" in line:
+            fixture = dict(line["header"])
+        elif "response" in line and "json" in line:
+            responses[line["response"]] = line["json"]
+        elif "step" in line:
+            steps.append(line["step"])
+    # A step whose response line was lost can't be replayed: stop there
+    for i, step in enumerate(steps):
+        if "response" in step and step["response"] not in responses:
+            steps = steps[:i]
+            break
+    fixture["responses"] = [responses.get(i) for i in range(max(responses, default=-1) + 1)]
+    fixture["steps"]     = steps
+    return fixture
+
+
+def finish_journal(path, output) -> int:
+    """Turn a recording log into a replay file at output, then delete the log. Returns the step count."""
+    fixture   = read_journal(path)
+    responses = fixture["responses"]
+    steps = [{**{k: v for k, v in s.items() if k != "response"}, "json": responses[s["response"]]}
+             if "response" in s else s for s in fixture["steps"]]
+    tmp = str(output) + ".tmp"
+    save_fixture(tmp, fixture.get("team", ""), fixture.get("description", ""),
+                 fixture.get("recorded", ""), steps, fixture.get("expected_events"))
+    os.replace(tmp, output)         # Never leave a half-written replay file
+    os.remove(path)
+    return len(steps)
 
 # ─── Running a Monitor ────────────────────────────────────────────────────────
 

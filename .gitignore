@@ -1,10 +1,13 @@
 *.log
+*.gz
 goal_horn_events.json
 *completed_games.json
 __pycache__/
 .venv/
 tests/dvr_schedule.json
 tests/dvr_schedule.json.lock
+tests/recordings.json
+tests/recordings.json.lock
 *.partial.jsonl
 # Recordings are yours; only the examples are committed
 tests/recordings/*

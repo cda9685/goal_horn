@@ -7,7 +7,7 @@ the monitor would have seen the game's score.
 
 Usage:
     python3 tests/rebuild_nhl_game.py rangers 2026010045
-    python3 tests/rebuild_nhl_game.py panthers 2026020289 -o tests/fixtures/panthers_win.json
+    python3 tests/rebuild_nhl_game.py panthers 2026020289 -o tests/recordings/panthers_win.json
 
 Find a game's ID in the team's schedule, e.g.
 https://api-web.nhle.com/v1/club-schedule-season/NYR/now
@@ -17,7 +17,7 @@ What a rebuilt game can't show (see tests/README.md, "Rebuilt games"):
 - API glitches and failed requests.
 - Real time: the play-by-play only has the game clock, so real time is estimated
   (REAL_PER_GAME_SECOND, measured from a live game).
-test_fixtures.py adds the first two to every recorded game as variations.
+test_recordings.py adds the first two to every recorded game as variations.
 """
 
 import argparse
@@ -28,7 +28,7 @@ import requests
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from harness import load_script, polls_for_gap, save_fixture, script_path, team_id  # noqa: E402
+from harness import load_script, polls_for_gap, save_recording, script_path, team_id  # noqa: E402
 
 PBP_URL = "https://api-web.nhle.com/v1/gamecenter/{game_id}/play-by-play"
 
@@ -135,18 +135,18 @@ def main():
     parser = argparse.ArgumentParser(description="Rebuild a past NHL game as a replay file.")
     parser.add_argument("team", help="monitor name, e.g. rangers")
     parser.add_argument("game_id", type=int, help="NHL game ID, e.g. 2026010045")
-    parser.add_argument("-o", "--output", help="replay file (default tests/fixtures/<team>_<game_id>.json)")
+    parser.add_argument("-o", "--output", help="replay file (default tests/recordings/<team>_<game_id>.json)")
     args = parser.parse_args()
 
     team   = os.path.basename(script_path(args.team)).removesuffix("_monitor.py")
     module = load_script(team)
     output = args.output or os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                         "fixtures", f"{team}_{args.game_id}.json")
+                                         "recordings", f"{team}_{args.game_id}.json")
 
     pbp   = requests.get(PBP_URL.format(game_id=args.game_id), timeout=30).json()
     steps = build_steps(pbp, module)
     home, away = pbp["homeTeam"], pbp["awayTeam"]
-    save_fixture(output, team,
+    save_recording(output, team,
                  f"{away['abbrev']} {away['score']} @ {home['abbrev']} {home['score']}, "
                  f"{pbp.get('gameDate', '')}, rebuilt from NHL play-by-play",
                  pbp.get("gameDate", ""), steps)

@@ -7,7 +7,7 @@ scoreboard per score change, spaced as the game really was.
 
 Usage:
     python3 tests/rebuild_espn_game.py dolphins 401873015
-    python3 tests/rebuild_espn_game.py vols 401856723 -o tests/fixtures/vols_alabama.json
+    python3 tests/rebuild_espn_game.py vols 401856723 -o tests/recordings/vols_alabama.json
 
 Find a game's ID in the team's schedule, e.g.
 https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/15/schedule
@@ -20,7 +20,7 @@ and the try a minute or so later; the rebuild splits them the same way.
 What a rebuilt game can't show (see tests/README.md, "Rebuilt games"):
 - Overturned scores that ESPN removed from the play list.
 - API glitches, blank scores and failed requests.
-test_fixtures.py adds those to every recorded game as variations.
+test_recordings.py adds those to every recorded game as variations.
 """
 
 import argparse
@@ -33,7 +33,7 @@ import requests
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from harness import load_script, polls_for_gap, save_fixture, script_path, team_id  # noqa: E402
+from harness import load_script, polls_for_gap, save_recording, script_path, team_id  # noqa: E402
 
 SUMMARY_URL = "https://site.api.espn.com/apis/site/v2/sports/football/{league}/summary?event={event}"
 TRY_DELAY   = 60    # Real seconds from a touchdown to its extra point or 2-point try
@@ -135,20 +135,20 @@ def main():
     parser = argparse.ArgumentParser(description="Rebuild a past football game as a replay file.")
     parser.add_argument("team", help="monitor name, e.g. dolphins or vols")
     parser.add_argument("event_id", help="ESPN game ID, e.g. 401873015")
-    parser.add_argument("-o", "--output", help="replay file (default tests/fixtures/<team>_<event_id>.json)")
+    parser.add_argument("-o", "--output", help="replay file (default tests/recordings/<team>_<event_id>.json)")
     args = parser.parse_args()
 
     team   = os.path.basename(script_path(args.team)).removesuffix("_monitor.py")
     module = load_script(team)
     output = args.output or os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                         "fixtures", f"{team}_{args.event_id}.json")
+                                         "recordings", f"{team}_{args.event_id}.json")
 
     url     = SUMMARY_URL.format(league=league_of(module), event=args.event_id)
     summary = requests.get(url, timeout=30).json()
     steps   = build_steps(summary, module)
     comp    = summary["header"]["competitions"][0]
     sides   = {c["homeAway"]: c for c in comp["competitors"]}
-    save_fixture(output, team,
+    save_recording(output, team,
                  f"{sides['away']['team']['abbreviation']} {sides['away']['score']} @ "
                  f"{sides['home']['team']['abbreviation']} {sides['home']['score']}, "
                  f"{comp.get('date', '')[:10]}, rebuilt from ESPN's play list",

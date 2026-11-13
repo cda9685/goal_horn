@@ -242,10 +242,10 @@ class Replay:
         return FakeResponse(step.get("json"), step.get("status", 200), url, step.get("text"))
 
 
-def save_fixture(path, team: str, description: str, recorded: str, steps: list,
+def save_recording(path, team: str, description: str, recorded: str, steps: list,
                  expected_events: list | None = None):
     """
-    Write steps to a replay file (see load_fixture). Each distinct response is
+    Write steps to a replay file (see load_recording). Each distinct response is
     stored once in "responses", and repeated steps are collapsed.
     """
     responses, index, out = [], {}, []
@@ -259,12 +259,12 @@ def save_fixture(path, team: str, description: str, recorded: str, steps: list,
             step["response"] = index[key]
             del step["json"]
         out.append(step)
-    fixture = {"team": team, "description": description, "recorded": recorded,
+    recording = {"team": team, "description": description, "recorded": recorded,
                "expected_events": expected_events, "steps": compress_steps(out),
                "responses": responses}
     os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
     with open(path, "w") as f:
-        json.dump(fixture, f, indent=1)
+        json.dump(recording, f, indent=1)
 
 
 def polls_for_gap(seconds: float, poll_interval: float, max_gap: float = 600) -> int:
@@ -277,7 +277,7 @@ def polls_for_gap(seconds: float, poll_interval: float, max_gap: float = 600) ->
     return max(1, round(min(seconds, max_gap) / poll_interval))
 
 
-def load_fixture(path) -> dict:
+def load_recording(path) -> dict:
     """
     Load a replay file: {"team", "description", "expected_events", "steps",
     "responses"}. Recorded steps hold {"response": i}, an index into
@@ -285,14 +285,14 @@ def load_fixture(path) -> dict:
     log (.partial.jsonl, see Journal) loads the same way.
     """
     if str(path).endswith(".jsonl"):
-        fixture = read_journal(path)
+        recording = read_journal(path)
     else:
         with open(path) as f:
-            fixture = json.load(f)
-    responses = fixture.get("responses", [])
-    fixture["steps"] = [{**s, "json": responses[s["response"]]} if "response" in s else s
-                        for s in expand_steps(fixture["steps"])]
-    return fixture
+            recording = json.load(f)
+    responses = recording.get("responses", [])
+    recording["steps"] = [{**s, "json": responses[s["response"]]} if "response" in s else s
+                        for s in expand_steps(recording["steps"])]
+    return recording
 
 # ─── Recording Logs ───────────────────────────────────────────────────────────
 # While recording, nothing already written is ever rewritten: each new
@@ -363,10 +363,10 @@ def _journal_lines(path):
 
 def read_journal(path) -> dict:
     """A recording log as a replay file's contents (steps still refer to responses)."""
-    fixture, responses, steps = {}, {}, []
+    recording, responses, steps = {}, {}, []
     for line in _journal_lines(path):
         if "header" in line:
-            fixture = dict(line["header"])
+            recording = dict(line["header"])
         elif "response" in line and "json" in line:
             responses[line["response"]] = line["json"]
         elif "step" in line:
@@ -376,20 +376,20 @@ def read_journal(path) -> dict:
         if "response" in step and step["response"] not in responses:
             steps = steps[:i]
             break
-    fixture["responses"] = [responses.get(i) for i in range(max(responses, default=-1) + 1)]
-    fixture["steps"]     = steps
-    return fixture
+    recording["responses"] = [responses.get(i) for i in range(max(responses, default=-1) + 1)]
+    recording["steps"]     = steps
+    return recording
 
 
 def finish_journal(path, output) -> int:
     """Turn a recording log into a replay file at output, then delete the log. Returns the step count."""
-    fixture   = read_journal(path)
-    responses = fixture["responses"]
+    recording   = read_journal(path)
+    responses = recording["responses"]
     steps = [{**{k: v for k, v in s.items() if k != "response"}, "json": responses[s["response"]]}
-             if "response" in s else s for s in fixture["steps"]]
+             if "response" in s else s for s in recording["steps"]]
     tmp = str(output) + ".tmp"
-    save_fixture(tmp, fixture.get("team", ""), fixture.get("description", ""),
-                 fixture.get("recorded", ""), steps, fixture.get("expected_events"))
+    save_recording(tmp, recording.get("team", ""), recording.get("description", ""),
+                 recording.get("recorded", ""), steps, recording.get("expected_events"))
     os.replace(tmp, output)         # Never leave a half-written replay file
     os.remove(path)
     return len(steps)

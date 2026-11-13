@@ -1,5 +1,5 @@
 """
-Every recorded game in tests/fixtures/ replays to its expected events, as it
+Every recorded game in tests/recordings/ replays to its expected events, as it
 happened and with each variation (see variations.py) added.
 """
 
@@ -9,17 +9,17 @@ from pathlib import Path
 import pytest
 
 import variations
-from harness import known_bug_marks, load_fixture, load_script, team_id
+from harness import known_bug_marks, load_recording, load_script, team_id
 
-FIXTURES = sorted((Path(__file__).parent / "fixtures").glob("*.json"))
+RECORDINGS = sorted((Path(__file__).parent / "recordings").glob("*.json"))
 
 
-@pytest.mark.parametrize("path", FIXTURES, ids=[p.stem for p in FIXTURES])
-def test_fixture(path, replay):
-    fixture = load_fixture(path)
-    if fixture.get("expected_events") is None:
+@pytest.mark.parametrize("path", RECORDINGS, ids=[p.stem for p in RECORDINGS])
+def test_recording(path, replay):
+    recording = load_recording(path)
+    if recording.get("expected_events") is None:
         pytest.skip(f'{path.name} has no "expected_events" yet')
-    assert replay(fixture["team"], fixture["steps"]).events == fixture["expected_events"]
+    assert replay(recording["team"], recording["steps"]).events == recording["expected_events"]
 
 # ─── Variations ───────────────────────────────────────────────────────────────
 
@@ -39,12 +39,12 @@ KNOWN_BUGS = {
 
 def variation_cases():
     cases = []
-    for path in FIXTURES:
+    for path in RECORDINGS:
         with open(path) as f:
-            fixture = json.load(f)
-        if fixture.get("expected_events") is None:
+            recording = json.load(f)
+        if recording.get("expected_events") is None:
             continue
-        api = variations.api_of(fixture["team"])
+        api = variations.api_of(recording["team"])
         for variation in variations.VARIATIONS:
             if not variations.applies(variation, api):
                 continue
@@ -56,13 +56,13 @@ def variation_cases():
 
 
 @pytest.mark.parametrize("path, variation", variation_cases())
-def test_fixture_variation(path, variation, replay):
-    fixture = load_fixture(path)
-    team    = fixture["team"]
+def test_recording_variation(path, variation, replay):
+    recording = load_recording(path)
+    team    = recording["team"]
     api     = variations.api_of(team)
     tid     = team_id(load_script(team))
-    polls   = variations.group_polls(fixture["steps"], api)
-    expected = fixture["expected_events"]
+    polls   = variations.group_polls(recording["steps"], api)
+    expected = recording["expected_events"]
 
     at = None
     if variation == "overturn":

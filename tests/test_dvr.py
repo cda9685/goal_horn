@@ -15,7 +15,7 @@ import dvr
 import record_game
 import schedules
 from builders import ESPN, MLB, NHL
-from harness import Journal, load_fixture, load_script, team_id
+from harness import Journal, load_recording, load_script, team_id
 from record_game import AFTER_FINAL_REQUESTS, journal_path
 from test_record_game import record
 
@@ -45,7 +45,7 @@ def test_recording_log_only_ever_grows(monkeypatch, tmp_path):
     for before, after in zip(seen, seen[1:]):
         assert after.startswith(before)
     assert not os.path.exists(journal_path(path))      # Turned into the replay file
-    assert len(load_fixture(path)["steps"]) == len(nhl_game())
+    assert len(load_recording(path)["steps"]) == len(nhl_game())
 
 
 def test_recording_log_survives_a_power_cut(monkeypatch, tmp_path, replay):
@@ -61,7 +61,7 @@ def test_recording_log_survives_a_power_cut(monkeypatch, tmp_path, replay):
             copies.append(copy)
 
     record(monkeypatch, tmp_path, "rangers", nhl_game(), on_request=cut)
-    steps = load_fixture(copies[0])["steps"]
+    steps = load_recording(copies[0])["steps"]
     assert 17 <= len(steps) <= 19       # Only the damaged last line is lost
     assert replay("rangers", steps).events == ["rangers_goal"]
 
@@ -69,16 +69,16 @@ def test_recording_log_survives_a_power_cut(monkeypatch, tmp_path, replay):
 def test_recording_carries_on_after_a_restart(monkeypatch, tmp_path, replay):
     # The first part of the game is already in a log left by a crash
     steps  = nhl_game()
-    output = tmp_path / "fixtures" / "rangers.json"
+    output = tmp_path / "recordings" / "rangers.json"
     output.parent.mkdir()
     log = Journal(journal_path(output), {"team": "rangers"})
     for step in steps[:9]:              # 3 pregame checks, then 3 live ones (2 requests each)
         log.add(step)
     log.close()
     path = record(monkeypatch, tmp_path, "rangers", steps[9:])
-    fixture = load_fixture(path)
-    assert len(fixture["steps"]) == len(steps)
-    assert replay("rangers", fixture["steps"]).events == ["rangers_goal", "rangers_goal"]
+    recording = load_recording(path)
+    assert len(recording["steps"]) == len(steps)
+    assert replay("rangers", recording["steps"]).events == ["rangers_goal", "rangers_goal"]
 
 
 def test_finish_saves_a_crashed_recording(monkeypatch, tmp_path):
@@ -90,7 +90,7 @@ def test_finish_saves_a_crashed_recording(monkeypatch, tmp_path):
     monkeypatch.setattr(sys, "argv", ["record_game.py", "--finish", str(log)])
     record_game.main()
     assert not log.exists()
-    assert len(load_fixture(tmp_path / "rangers.json")["steps"]) == 8
+    assert len(load_recording(tmp_path / "rangers.json")["steps"]) == 8
 
 # ─── Stopping by Itself ───────────────────────────────────────────────────────
 
@@ -272,7 +272,7 @@ def test_recording_stopped_for_good_is_saved_as_interrupted(tmp_path):
     log.close()
     assert tick(recordings, NOW + timedelta(hours=dvr.LONGEST_GAME + 1)) == []
     assert entry["status"] == "interrupted"
-    assert len(load_fixture(entry["output"])["steps"]) == 6
+    assert len(load_recording(entry["output"])["steps"]) == 6
 
 
 def test_running_recording_is_left_alone(tmp_path):
@@ -305,8 +305,8 @@ def test_service_starts_the_recorder_for_the_game(monkeypatch, tmp_path):
 @pytest.fixture
 def cli(tmp_path, monkeypatch, capsys):
     """cli(*args) runs dvr.py with its schedule in a temp dir and two upcoming games."""
-    monkeypatch.setattr(dvr, "SCHEDULE_FILE", str(tmp_path / "recordings.json"))
-    monkeypatch.setattr(dvr, "FIXTURE_DIR", str(tmp_path))
+    monkeypatch.setattr(dvr, "SCHEDULE_FILE", str(tmp_path / "dvr_schedule.json"))
+    monkeypatch.setattr(dvr, "RECORDINGS_DIR", str(tmp_path))
     monkeypatch.setattr(dvr, "upcoming_games", lambda team, days: [
         game("2", NOW + timedelta(days=1), "VAN"), game("3", NOW + timedelta(days=4), "MTL")])
 
@@ -334,7 +334,7 @@ def test_pick_all_and_cancel(cli):
 
 def test_picking_nothing_schedules_nothing(cli, tmp_path):
     assert "Nothing scheduled" in cli("rangers", "--pick", "")
-    assert not (tmp_path / "recordings.json").exists()
+    assert not (tmp_path / "dvr_schedule.json").exists()
 
 
 def test_picking_a_number_not_listed_is_refused(cli):

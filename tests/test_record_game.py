@@ -1,0 +1,100 @@
+"""record_game.py writes a replay that plays back the same events as the live run."""
+
+import json
+import sys
+import time
+
+import requests
+
+import record_game
+from builders import ESPN, MLB, NHL
+from harness import FakeResponse, ReplayFinished, load_recording, load_script, team_id
+
+
+def record(monkeypatch, tmp_path, team, steps, raw=False, args=(), on_request=None):
+    """
+    Run record_game.py for team with the network serving steps. Returns the
+    recording path. on_request(n, output) is called before the nth request.
+    """
+    served = iter(steps)
+    output = tmp_path / "recordings" / f"{team}.json"
+    count  = 0
+
+    def fake_get(url, *a, **kwargs):
+        nonlocal count
+        count += 1
+        if on_request:
+            on_request(count, output)
+        step = next(served, None)
+        if step is None:
+            raise ReplayFinished()
+        assert step["url"] in url
+        if step.get("error"):
+            raise requests.ConnectionError(step["error"])
+        return FakeResponse(step["json"], url=url)
+
+    monkeypatch.setattr(requests, "get", fake_get)
+    monkeypatch.setattr(time, "sleep", lambda seconds: None)
+    monkeypatch.setattr(sys, "argv", ["record_game.py", team, "-o", str(output)]
+                        + (["--raw"] if raw else []) + list(args))
+    record_game.main()
+    record.requests = count     # How many requests the recorder made
+    return output
+
+
+def test_record_and_replay_nhl(monkeypatch, tmp_path, replay):
+    nhl   = NHL(team_id(load_script("rangers")))
+    steps = (nhl.poll(1, "PRE") * 3
+             + nhl.poll(1, "LIVE", 0, 0) * 5
+             + nhl.poll(1, "LIVE", 1, 0) * 5
+             + nhl.schedule(1, "LIVE") + [{"url": "landing", "error": "Connection reset"}]
+             + nhl.poll(1, "LIVE", 2, 0) * 5
+             + nhl.poll(1, "OFF", 2, 0))
+    path    = record(monkeypatch, tmp_path, "rangers", steps)
+    recording = load_recording(path)
+
+    assert recording["team"] == "rangers"
+    assert len(recording["steps"]) == len(steps)
+    # Repeated polls are stored once
+    with open(path) as f:
+        saved = json.load(f)
+    assert len(saved["steps"]) < len(steps) / 3
+    assert replay("rangers", recording["steps"]).events == ["rangers_goal"] * 2
+
+
+def test_trimmed_mlb_replays_like_the_original(monkeypatch, tmp_path, replay):
+    mlb   = MLB(team_id(load_script("yankees")))
+    steps = (mlb.poll(1, "Live", 0, 0, plays=["walk"])
+             + mlb.poll(1, "Live", 1, 0, plays=["walk", "home_run"])
+             + mlb.poll(1, "Live", 3, 0, plays=["walk", "home_run", "single", "double"])
+             + mlb.poll(1, "Live", 3, 1, inning=9, half="Top", outs=3,
+                        plays=["walk", "home_run", "single", "double", "out"]))
+    # Extra fields a real response has, which trimming should drop
+    for step in steps:
+        step["json"]["copyright"] = "x" * 1000
+
+    path    = record(monkeypatch, tmp_path, "yankees", steps)
+    recording = load_recording(path)
+    assert all("copyright" not in s["json"] for s in recording["steps"])
+    assert (replay("yankees", recording["steps"]).events
+            == replay("yankees", steps).events
+            == ["yankees_home_run", "yankees_run", "yankees_win"])
+
+
+def test_espn_keeps_only_the_teams_game(monkeypatch, tmp_path):
+    espn  = ESPN(team_id(load_script("vols")))
+    other = ESPN("1", "2").scoreboard("999", "in", 7, 0)[0]["json"]["events"][0]
+    steps = espn.poll("5", "in", 0, 0) + espn.poll("5", "in", 7, 0)
+    for step in steps:
+        step["json"]["events"].insert(0, other)
+
+    recording = load_recording(record(monkeypatch, tmp_path, "vols", steps))
+    assert all([e["id"] for e in s["json"]["events"]] == ["5"] for s in recording["steps"])
+
+
+def test_raw_keeps_full_responses(monkeypatch, tmp_path):
+    espn  = ESPN(team_id(load_script("vols")))
+    steps = espn.poll("5", "in", 0, 0)
+    steps[0]["json"]["leagues"] = ["extra"]
+    recording = load_recording(record(monkeypatch, tmp_path, "vols", steps, raw=True))
+    assert recording["steps"][0]["json"] == steps[0]["json"]

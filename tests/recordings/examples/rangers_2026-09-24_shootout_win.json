@@ -1,0 +1,867 @@
+{
+ "team": "rangers",
+ "description": "NJD 3 @ NYR 4 (shootout), 2026-09-24 preseason, rebuilt from NHL play-by-play. Rangers score 3 in the 3rd period, then win the shootout. rangers_win isn't fired yet (Issue #27).",
+ "recorded": "2026-09-24",
+ "expected_events": [
+  "rangers_goal",
+  "rangers_goal",
+  "rangers_goal",
+  "rangers_shootout"
+ ],
+ "steps": [
+  {
+   "url": "https://api-web.nhle.com/v1/schedule/now",
+   "response": 0,
+   "repeat": 2
+  },
+  {
+   "repeat": 121,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 2
+    }
+   ]
+  },
+  {
+   "repeat": 120,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 3
+    }
+   ]
+  },
+  {
+   "repeat": 120,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 4
+    }
+   ]
+  },
+  {
+   "repeat": 120,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 5
+    }
+   ]
+  },
+  {
+   "repeat": 120,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 6
+    }
+   ]
+  },
+  {
+   "repeat": 120,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 7
+    }
+   ]
+  },
+  {
+   "repeat": 72,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 8
+    }
+   ]
+  },
+  {
+   "repeat": 44,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 9
+    }
+   ]
+  },
+  {
+   "repeat": 101,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 10
+    }
+   ]
+  },
+  {
+   "repeat": 120,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 11
+    }
+   ]
+  },
+  {
+   "repeat": 38,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 12
+    }
+   ]
+  },
+  {
+   "repeat": 24,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 13
+    }
+   ]
+  },
+  {
+   "repeat": 114,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 14
+    }
+   ]
+  },
+  {
+   "repeat": 24,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 15
+    }
+   ]
+  },
+  {
+   "repeat": 9,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 16
+    }
+   ]
+  },
+  {
+   "repeat": 9,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 17
+    }
+   ]
+  },
+  {
+   "repeat": 9,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 18
+    }
+   ]
+  },
+  {
+   "repeat": 9,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 19
+    }
+   ]
+  },
+  {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 1
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+     "response": 20
+    }
+   ]
+  },
+  {
+   "url": "https://api-web.nhle.com/v1/schedule/now",
+   "response": 1
+  },
+  {
+   "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+   "response": 21
+  },
+  {
+   "url": "https://api-web.nhle.com/v1/schedule/now",
+   "response": 22
+  },
+  {
+   "url": "https://api-web.nhle.com/v1/gamecenter/2026010045/landing",
+   "response": 23
+  }
+ ],
+ "responses": [
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026010045,
+       "gameState": "PRE",
+       "gameScheduleState": "OK",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026010045,
+       "gameState": "LIVE",
+       "gameScheduleState": "OK",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 0
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 0
+   },
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG"
+   },
+   "clock": {
+    "timeRemaining": "20:00",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 0
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 1
+   },
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG"
+   },
+   "clock": {
+    "timeRemaining": "11:09",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 0
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 1
+   },
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG"
+   },
+   "clock": {
+    "timeRemaining": "00:00",
+    "inIntermission": true
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 0
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 1
+   },
+   "periodDescriptor": {
+    "number": 2,
+    "periodType": "REG"
+   },
+   "clock": {
+    "timeRemaining": "20:00",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 0
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 2
+   },
+   "periodDescriptor": {
+    "number": 2,
+    "periodType": "REG"
+   },
+   "clock": {
+    "timeRemaining": "07:51",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 0
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 2
+   },
+   "periodDescriptor": {
+    "number": 2,
+    "periodType": "REG"
+   },
+   "clock": {
+    "timeRemaining": "00:00",
+    "inIntermission": true
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 0
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 2
+   },
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG"
+   },
+   "clock": {
+    "timeRemaining": "20:00",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 1
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 2
+   },
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG"
+   },
+   "clock": {
+    "timeRemaining": "16:50",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 2
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 2
+   },
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG"
+   },
+   "clock": {
+    "timeRemaining": "14:39",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 3
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 2
+   },
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG"
+   },
+   "clock": {
+    "timeRemaining": "09:57",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 3
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG"
+   },
+   "clock": {
+    "timeRemaining": "01:39",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 3
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG"
+   },
+   "clock": {
+    "timeRemaining": "00:00",
+    "inIntermission": true
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 3
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 4,
+    "periodType": "OT"
+   },
+   "clock": {
+    "timeRemaining": "05:00",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 3
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 4,
+    "periodType": "OT"
+   },
+   "clock": {
+    "timeRemaining": "00:00",
+    "inIntermission": true
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 3
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 5,
+    "periodType": "SO"
+   },
+   "clock": {
+    "timeRemaining": "00:00",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": []
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 3
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 5,
+    "periodType": "SO"
+   },
+   "clock": {
+    "timeRemaining": "00:00",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": [
+     {
+      "teamAbbrev": "NJD",
+      "result": "save"
+     }
+    ]
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 3
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 5,
+    "periodType": "SO"
+   },
+   "clock": {
+    "timeRemaining": "00:00",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": [
+     {
+      "teamAbbrev": "NJD",
+      "result": "save"
+     },
+     {
+      "teamAbbrev": "NYR",
+      "result": "save"
+     }
+    ]
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 3
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 5,
+    "periodType": "SO"
+   },
+   "clock": {
+    "timeRemaining": "00:00",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": [
+     {
+      "teamAbbrev": "NJD",
+      "result": "save"
+     },
+     {
+      "teamAbbrev": "NYR",
+      "result": "save"
+     },
+     {
+      "teamAbbrev": "NJD",
+      "result": "save"
+     }
+    ]
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 3
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 5,
+    "periodType": "SO"
+   },
+   "clock": {
+    "timeRemaining": "00:00",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": [
+     {
+      "teamAbbrev": "NJD",
+      "result": "save"
+     },
+     {
+      "teamAbbrev": "NYR",
+      "result": "save"
+     },
+     {
+      "teamAbbrev": "NJD",
+      "result": "save"
+     },
+     {
+      "teamAbbrev": "NYR",
+      "result": "goal"
+     }
+    ]
+   }
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 3
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 5,
+    "periodType": "SO"
+   },
+   "clock": {
+    "timeRemaining": "00:00",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": [
+     {
+      "teamAbbrev": "NJD",
+      "result": "save"
+     },
+     {
+      "teamAbbrev": "NYR",
+      "result": "save"
+     },
+     {
+      "teamAbbrev": "NJD",
+      "result": "save"
+     },
+     {
+      "teamAbbrev": "NYR",
+      "result": "goal"
+     },
+     {
+      "teamAbbrev": "NJD",
+      "result": "save"
+     }
+    ]
+   }
+  },
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026010045,
+       "gameState": "OFF",
+       "gameScheduleState": "OK",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "homeTeam": {
+    "abbrev": "NYR",
+    "score": 4
+   },
+   "awayTeam": {
+    "abbrev": "NJD",
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 5,
+    "periodType": "SO"
+   },
+   "clock": {
+    "timeRemaining": "00:00",
+    "inIntermission": false
+   },
+   "summary": {
+    "shootout": [
+     {
+      "teamAbbrev": "NJD",
+      "result": "save"
+     },
+     {
+      "teamAbbrev": "NYR",
+      "result": "save"
+     },
+     {
+      "teamAbbrev": "NJD",
+      "result": "save"
+     },
+     {
+      "teamAbbrev": "NYR",
+      "result": "goal"
+     },
+     {
+      "teamAbbrev": "NJD",
+      "result": "save"
+     }
+    ]
+   }
+  }
+ ]
+}

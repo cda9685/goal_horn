@@ -36,6 +36,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#testing">Testing</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -205,6 +206,33 @@ These scripts are designed to run at boot and remain running in the background. 
   - GOAL_LIGHT_PIN: The GPIO pin used to trip the relay (NOT the physical pin number)
   - ALSA_DEVICE: The card and device value assigned to the USB speaker
   - POLL_INTERVAL: How often the script will view the event queue from the other scripts (changing is NOT recommended)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- TESTING -->
+## Testing
+
+Everything for testing is in the `tests/` directory; see [tests/README.md](tests/README.md) for details.
+
+- Set off the light and audio for any event on the Pi, without waiting for a game:
+  ```sh
+  python3 tests/fire_event.py --list
+  python3 tests/fire_event.py vols_touchdown
+  ```
+- Run the automated tests on the Pi:
+  ```sh
+  sudo apt install python3-pytest   # once
+  python3 -m pytest tests
+  ```
+  Or on any other computer, in a virtual environment (see [tests/README.md](tests/README.md#setup)):
+  ```sh
+  python3 -m venv .venv
+  .venv/bin/pip install -r tests/requirements.txt
+  .venv/bin/python -m pytest tests
+  ```
+- Record a live game, schedule recordings of upcoming games (`tests/dvr.py`), or rebuild a past MLB, NHL or football game, and replay it through its monitor in seconds with `tests/record_game.py`, `tests/rebuild_mlb_game.py` and `tests/replay_game.py`.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -18,6 +18,7 @@ A Raspberry Pi goal light: when a tracked team scores, a relay turns on a rotati
 3. In `restart.sh`, add the team's name (the monitor file name without `_monitor.py`) to `ALL`.
 4. In `README.md`, add the `@reboot` cron line and the monitor's config variables under Usage.
 5. Add the audio to `audio/`.
+6. Run `python3 -m pytest tests -k <team>`. Monitors on the NHL, MLB and ESPN football APIs are picked up by the tests automatically; a new API or sport needs its own tests (see `tests/README.md`).
 
 ### Team names shared across sports
 
@@ -35,7 +36,9 @@ Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use
 
 ## Git and GitHub workflow
 
-- Every change starts from a GitHub issue. Branch from `master` as `feature/issue-N` (new things) or `fix/issue-N` (bugs).
+- Every change starts from a GitHub issue. Branch from `master` as `feature/issue-N` (new things) or `fix/issue-N` (bugs), where `N` is the issue number.
+- **Branch names are a hard requirement.** Never commit or push to a branch with any other name, including names generated or assigned by a tool, harness, or session (e.g. `claude/<random-words>`). If you start on such a branch, create the correct `feature/issue-N` or `fix/issue-N` branch from `master` before your first commit. If you don't know the issue number, ask before committing.
+- When mentioning a GitHub number, always say whether it's an issue or a PR (e.g. "Issue #28", "PR #35"). Issues and PRs share one numbering, so a bare `#N` is ambiguous.
 - Commit messages are short, often prefixed `feature:`, `feat:`, `fix:`, or `docs:`.
 - PR titles match the issue title, and the body starts with `Closes #N`.
 - PRs are **squash merged** (not merge commits or rebase), so each PR lands on `master` as one commit. After a squash merge, start any follow-up work on a new branch from `master`.
@@ -43,10 +46,17 @@ Existing files don't follow this yet (`giants_monitor.py` is the SF Giants). Use
 
 ## Testing
 
-- There's no test suite. `RPi.GPIO` only exists on the Pi, so off the Pi, test by stubbing it (`sys.modules['RPi.GPIO'] = MagicMock()`) and replacing `play_audio` and `time.sleep`.
-- Monitor logic can be tested by replacing the API helper with a scripted sequence of scores.
-- Live API behavior is checked on the Pi in `<team>_monitor.log`.
+- Everything for testing lives in `tests/`; see `tests/README.md`. Keep test code, tools and recorded games there, not in the repo root, and don't add test hooks to the production scripts. The harness patches them from outside.
+- Run `python3 -m pytest tests` before every commit. GitHub Actions runs the same on every PR. Set up pytest once: `sudo apt install python3-pytest` on the Pi (Raspberry Pi OS blocks system-wide `pip install`; never use `--break-system-packages`), or `pip install -r tests/requirements.txt` in a virtual environment elsewhere. The tests must keep passing on the pytest and requests versions Raspberry Pi OS ships.
+- Monitor tests run each monitor's real `main()` against scripted API responses (`tests/builders.py`) on a fake clock. Add a test for any behavior you change or bug you fix.
+- Every test is listed in the test case table in `tests/README.md` (file, name, type, status). When you add, rename or remove a test, or a known bug is fixed, update its row; `test_docs.py` fails otherwise. "Team" in test names and the table means the monitor's own team; "plays away" means it's the away side, not that the opponent scored.
+- Every bug, open or fixed, gets a test and a row under "Bugs covered" in `tests/README.md`. When filing or fixing a bug, add both.
+- Known bugs have tests for the correct behavior marked `@known_bug(<issue number>, "<what's wrong>")` (from `tests/harness.py`; never pytest's `xfail` directly). They fail until the bug is fixed without turning the run red. When a fix makes one pass, the run lists it under "known bugs that now pass": delete its `@known_bug` line in the same PR. Don't mark a new failure `@known_bug` to get CI green unless it's a real bug with an issue.
+- Recordings are made with `record_game.py` (a live game), `dvr.py` (scheduled ahead of time) or `rebuild_mlb_game.py`, `rebuild_nhl_game.py`, `rebuild_espn_game.py` (a past game). They're saved in `tests/recordings/`, which git ignores; only the examples in `tests/recordings/examples/` are committed. `test_recordings.py` checks each example (which must have `expected_events`; other recordings aren't tested, only checked by hand with `replay_game.py`), as it happened and with each variation in `tests/variations.py` added (overturn, glitch, blank score, failed request). Check `expected_events` against the real game's scoring, not just against what the replay fires.
+- The recorder only ever appends while recording (`Journal` in `tests/harness.py`), to spare the Pi's SD card: don't add code that rewrites a growing file. Tests must never write to the goal horn's real files (the event queue, `dvr_schedule.json`) or start real processes; `conftest.py` fails the run if any test leaves a new file in the project (logs and recordings the live goal horn makes during the run don't count), and fails any test where `dvr.py` tries to start a recorder. Look up module-level settings and functions when a function runs, not as default arguments, so tests can replace them.
+- On the Pi, `python3 tests/fire_event.py <event>` sets off the light and audio for any event. Live API behavior is checked in `<team>_monitor.log`.
 
 ## Deployment
 
 - The Pi runs from `/home/coledallen/projects/goal_horn` on `master`. Scripts start on boot via `@reboot` cron jobs, and `restart.sh` restarts everything (`./restart.sh rangers vols` restarts only those; `-m` only starts scripts that aren't running).
+- Scheduled recordings (`tests/dvr.py`) are started by one cron line that runs `dvr.py --tick` every minute, in the user's own crontab (`crontab -e`), not root's (`sudo crontab -e`), so the schedule and recordings aren't owned by root; see `tests/README.md`. The monitors' `@reboot` lines are in the user's crontab too; only the controller's is in root's, matching `restart.sh` (Issue #41).

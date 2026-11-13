@@ -1,0 +1,764 @@
+{
+ "team": "vols",
+ "description": "ALA 10 @ TENN 26, 2026-10-17, rebuilt from ESPN's play list. Four Vols field goals, then two touchdowns with PATs. vols_win isn't fired yet (Issue #27).",
+ "recorded": "2026-10-17T19:30Z",
+ "expected_events": [
+  "vols_score",
+  "vols_score",
+  "vols_score",
+  "vols_score",
+  "vols_touchdown",
+  "vols_touchdown"
+ ],
+ "steps": [
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 0,
+   "repeat": 2
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 1,
+   "repeat": 114
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 2,
+   "repeat": 120
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 3,
+   "repeat": 120
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 4,
+   "repeat": 120
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 5,
+   "repeat": 120
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 6,
+   "repeat": 4
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 7,
+   "repeat": 120
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 8,
+   "repeat": 120
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 9,
+   "repeat": 120
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 10,
+   "repeat": 120
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 11,
+   "repeat": 6
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 12,
+   "repeat": 120
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 13,
+   "repeat": 120
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 14,
+   "repeat": 6
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 15
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",
+   "response": 16,
+   "repeat": 2
+  }
+ ],
+ "responses": [
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 0,
+      "displayClock": "15:00",
+      "type": {
+       "state": "pre",
+       "name": "STATUS_SCHEDULED"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "0",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "0",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 1,
+      "displayClock": "15:00",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "0",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "0",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 1,
+      "displayClock": "10:05",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "3",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "0",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 1,
+      "displayClock": "8:59",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "6",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "0",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 1,
+      "displayClock": "4:32",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "9",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "0",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 2,
+      "displayClock": "14:54",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "9",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "0",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 2,
+      "displayClock": "10:13",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "9",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "6",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 2,
+      "displayClock": "10:13",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "9",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "7",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 2,
+      "displayClock": "5:19",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "12",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "7",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 2,
+      "displayClock": "0:05",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "12",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "10",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 3,
+      "displayClock": "15:00",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "12",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "10",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 3,
+      "displayClock": "5:05",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "18",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "10",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 3,
+      "displayClock": "5:05",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "19",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "10",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 4,
+      "displayClock": "14:53",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "19",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "10",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 4,
+      "displayClock": "3:17",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "25",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "10",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 4,
+      "displayClock": "3:17",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "26",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "10",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401856723",
+     "status": {
+      "period": 4,
+      "displayClock": "0:00",
+      "type": {
+       "state": "post",
+       "name": "STATUS_FINAL"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "2633",
+         "homeAway": "home",
+         "score": "26",
+         "team": {
+          "id": "2633",
+          "abbreviation": "TENN"
+         }
+        },
+        {
+         "id": "333",
+         "homeAway": "away",
+         "score": "10",
+         "team": {
+          "id": "333",
+          "abbreviation": "ALA"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

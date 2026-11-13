@@ -1,0 +1,982 @@
+{
+ "team": "ny_giants",
+ "description": "NYG 27 @ WSH 27 (tie), 2026-10-11, rebuilt from ESPN's play list. Two Giants field goals and three touchdowns; a tie fires no win. Washington misses a PAT (+6) and makes a 2-point try (+8).",
+ "recorded": "2026-10-11T17:00Z",
+ "expected_events": [
+  "ny_giants_score",
+  "ny_giants_score",
+  "ny_giants_touchdown",
+  "ny_giants_touchdown",
+  "ny_giants_touchdown"
+ ],
+ "steps": [
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 0,
+   "repeat": 2
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 1,
+   "repeat": 16
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 2,
+   "repeat": 60
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 3,
+   "repeat": 41
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 4,
+   "repeat": 58
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 5,
+   "repeat": 60
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 6,
+   "repeat": 60
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 7,
+   "repeat": 35
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 8,
+   "repeat": 42
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 9,
+   "repeat": 3
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 10,
+   "repeat": 60
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 11
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 12,
+   "repeat": 58
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 13,
+   "repeat": 43
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 14,
+   "repeat": 5
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 15,
+   "repeat": 60
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 16,
+   "repeat": 4
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 17,
+   "repeat": 60
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 18,
+   "repeat": 4
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 19,
+   "repeat": 60
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 20
+  },
+  {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+   "response": 21,
+   "repeat": 2
+  }
+ ],
+ "responses": [
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 0,
+      "displayClock": "15:00",
+      "type": {
+       "state": "pre",
+       "name": "STATUS_SCHEDULED"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "0",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "0",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 1,
+      "displayClock": "15:00",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "0",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "0",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 1,
+      "displayClock": "13:00",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "6",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "0",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 1,
+      "displayClock": "0:55",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "6",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "3",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 2,
+      "displayClock": "15:00",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "6",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "3",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 2,
+      "displayClock": "8:57",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "9",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "3",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 2,
+      "displayClock": "1:02",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "12",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "3",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 3,
+      "displayClock": "15:00",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "12",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "3",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 3,
+      "displayClock": "10:54",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "12",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "6",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 3,
+      "displayClock": "7:47",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "18",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "6",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 3,
+      "displayClock": "7:47",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "19",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "6",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 3,
+      "displayClock": "0:44",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "19",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "12",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 3,
+      "displayClock": "0:44",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "19",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "13",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 4,
+      "displayClock": "15:00",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "19",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "13",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 4,
+      "displayClock": "11:05",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "25",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "13",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 4,
+      "displayClock": "11:05",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "27",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "13",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 4,
+      "displayClock": "7:20",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "27",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "19",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 4,
+      "displayClock": "7:20",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "27",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "20",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 4,
+      "displayClock": "1:43",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "27",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "26",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 4,
+      "displayClock": "1:43",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "27",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "27",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 5,
+      "displayClock": "10:00",
+      "type": {
+       "state": "in",
+       "name": "STATUS_IN_PROGRESS"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "27",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "27",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "events": [
+    {
+     "id": "401872988",
+     "status": {
+      "period": 5,
+      "displayClock": "0:00",
+      "type": {
+       "state": "post",
+       "name": "STATUS_FINAL"
+      }
+     },
+     "competitions": [
+      {
+       "competitors": [
+        {
+         "id": "28",
+         "homeAway": "home",
+         "score": "27",
+         "team": {
+          "id": "28",
+          "abbreviation": "WSH"
+         }
+        },
+        {
+         "id": "19",
+         "homeAway": "away",
+         "score": "27",
+         "team": {
+          "id": "19",
+          "abbreviation": "NYG"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

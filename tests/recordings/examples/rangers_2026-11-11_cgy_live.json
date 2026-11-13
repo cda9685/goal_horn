@@ -1,0 +1,5701 @@
+{
+ "team": "rangers",
+ "description": "NYR 3 @ CGY 1, 2026-11-11, recorded live from the 2nd intermission (Rangers up 2-0). Calgary scores at 7:41 of the 3rd, the Rangers at 19:53. Includes two real 429 Too Many Requests errors from the NHL API (one on game data, one on the schedule) early in the 3rd.",
+ "recorded": "2026-11-12T02:34:31",
+ "expected_events": [
+  "rangers_goal"
+ ],
+ "steps": [
+  {
+   "repeat": 21,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 0
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 1
+    }
+   ]
+  },
+  {
+   "repeat": 26,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 2
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 1
+    }
+   ]
+  },
+  {
+   "repeat": 8,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 2
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 3
+    }
+   ]
+  },
+  {
+   "url": "https://api-web.nhle.com/v1/schedule/now",
+   "response": 2
+  },
+  {
+   "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+   "status": 429,
+   "response": 4
+  },
+  {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 2
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 3
+    }
+   ]
+  },
+  {
+   "url": "https://api-web.nhle.com/v1/schedule/now",
+   "status": 429,
+   "response": 4
+  },
+  {
+   "repeat": 51,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 2
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 3
+    }
+   ]
+  },
+  {
+   "repeat": 3,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 5
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 3
+    }
+   ]
+  },
+  {
+   "repeat": 8,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 6
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 3
+    }
+   ]
+  },
+  {
+   "repeat": 56,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 7
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 3
+    }
+   ]
+  },
+  {
+   "repeat": 148,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 7
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 8
+    }
+   ]
+  },
+  {
+   "repeat": 11,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 9
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 8
+    }
+   ]
+  },
+  {
+   "repeat": 18,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 10
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 8
+    }
+   ]
+  },
+  {
+   "repeat": 66,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 11
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 8
+    }
+   ]
+  },
+  {
+   "repeat": 30,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 12
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 8
+    }
+   ]
+  },
+  {
+   "repeat": 6,
+   "steps": [
+    {
+     "url": "https://api-web.nhle.com/v1/schedule/now",
+     "response": 12
+    },
+    {
+     "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+     "response": 13
+    }
+   ]
+  },
+  {
+   "url": "https://api-web.nhle.com/v1/schedule/now",
+   "response": 14
+  },
+  {
+   "url": "https://api-web.nhle.com/v1/gamecenter/2026020294/landing",
+   "response": 13
+  }
+ ],
+ "responses": [
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026020293,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "BUF"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020294,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "CGY"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020295,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "EDM"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020296,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "UTA"
+       }
+      },
+      {
+       "id": 2026020297,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020298,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "PIT"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020309,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SEA"
+       },
+       "awayTeam": {
+        "abbrev": "CAR"
+       }
+      },
+      {
+       "id": 2026020299,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020300,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020301,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "OTT"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020303,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NJD"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020304,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020302,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020305,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020306,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020307,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "STL"
+       }
+      },
+      {
+       "id": 2026020308,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020310,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VAN"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020311,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020321,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CAR"
+       },
+       "awayTeam": {
+        "abbrev": "SEA"
+       }
+      },
+      {
+       "id": 2026020312,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020313,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020314,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020315,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MTL"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020316,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020317,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PIT"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020318,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WSH"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      },
+      {
+       "id": 2026020319,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020320,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020322,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020323,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "SJS"
+       }
+      },
+      {
+       "id": 2026020324,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      },
+      {
+       "id": 2026020325,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020326,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020327,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020328,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      },
+      {
+       "id": 2026020329,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      },
+      {
+       "id": 2026020330,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020331,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020332,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020333,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "LAK"
+       }
+      },
+      {
+       "id": 2026020335,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020336,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYI"
+       },
+       "awayTeam": {
+        "abbrev": "CBJ"
+       }
+      },
+      {
+       "id": 2026020337,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020341,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WPG"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020334,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020338,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "TOR"
+       }
+      },
+      {
+       "id": 2026020339,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "ANA"
+       }
+      },
+      {
+       "id": 2026020340,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MIN"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020342,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "DAL"
+       }
+      },
+      {
+       "id": 2026020343,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "homeTeam": {
+    "abbrev": "CGY",
+    "score": 0
+   },
+   "awayTeam": {
+    "abbrev": "NYR",
+    "score": 2
+   },
+   "periodDescriptor": {
+    "number": 2,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "summary": {}
+  },
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026020293,
+       "gameState": "CRIT",
+       "homeTeam": {
+        "abbrev": "BUF"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020294,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "CGY"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020295,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "EDM"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020296,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "UTA"
+       }
+      },
+      {
+       "id": 2026020297,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020298,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "PIT"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020309,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SEA"
+       },
+       "awayTeam": {
+        "abbrev": "CAR"
+       }
+      },
+      {
+       "id": 2026020299,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020300,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020301,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "OTT"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020303,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NJD"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020304,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020302,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020305,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020306,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020307,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "STL"
+       }
+      },
+      {
+       "id": 2026020308,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020310,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VAN"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020311,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020321,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CAR"
+       },
+       "awayTeam": {
+        "abbrev": "SEA"
+       }
+      },
+      {
+       "id": 2026020312,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020313,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020314,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020315,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MTL"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020316,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020317,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PIT"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020318,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WSH"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      },
+      {
+       "id": 2026020319,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020320,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020322,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020323,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "SJS"
+       }
+      },
+      {
+       "id": 2026020324,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      },
+      {
+       "id": 2026020325,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020326,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020327,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020328,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      },
+      {
+       "id": 2026020329,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      },
+      {
+       "id": 2026020330,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020331,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020332,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020333,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "LAK"
+       }
+      },
+      {
+       "id": 2026020335,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020336,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYI"
+       },
+       "awayTeam": {
+        "abbrev": "CBJ"
+       }
+      },
+      {
+       "id": 2026020337,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020341,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WPG"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020334,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020338,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "TOR"
+       }
+      },
+      {
+       "id": 2026020339,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "ANA"
+       }
+      },
+      {
+       "id": 2026020340,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MIN"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020342,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "DAL"
+       }
+      },
+      {
+       "id": 2026020343,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "homeTeam": {
+    "abbrev": "CGY",
+    "score": 0
+   },
+   "awayTeam": {
+    "abbrev": "NYR",
+    "score": 2
+   },
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "summary": {}
+  },
+  null,
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026020293,
+       "gameState": "CRIT",
+       "homeTeam": {
+        "abbrev": "BUF"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020294,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "CGY"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020295,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "EDM"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020296,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "UTA"
+       }
+      },
+      {
+       "id": 2026020297,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020298,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "PIT"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020309,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SEA"
+       },
+       "awayTeam": {
+        "abbrev": "CAR"
+       }
+      },
+      {
+       "id": 2026020299,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020300,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020301,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "OTT"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020303,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NJD"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020304,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020302,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020305,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020306,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020307,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "STL"
+       }
+      },
+      {
+       "id": 2026020308,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020310,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VAN"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020311,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020321,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CAR"
+       },
+       "awayTeam": {
+        "abbrev": "SEA"
+       }
+      },
+      {
+       "id": 2026020312,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020313,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020314,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020315,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MTL"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020316,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020317,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PIT"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020318,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WSH"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      },
+      {
+       "id": 2026020319,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020320,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020322,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020323,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "SJS"
+       }
+      },
+      {
+       "id": 2026020324,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      },
+      {
+       "id": 2026020325,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020326,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020327,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020328,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      },
+      {
+       "id": 2026020329,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      },
+      {
+       "id": 2026020330,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020331,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020332,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020333,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "LAK"
+       }
+      },
+      {
+       "id": 2026020335,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020336,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYI"
+       },
+       "awayTeam": {
+        "abbrev": "CBJ"
+       }
+      },
+      {
+       "id": 2026020337,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020341,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WPG"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020334,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020338,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "TOR"
+       }
+      },
+      {
+       "id": 2026020339,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "ANA"
+       }
+      },
+      {
+       "id": 2026020340,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MIN"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020342,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "DAL"
+       }
+      },
+      {
+       "id": 2026020343,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026020293,
+       "gameState": "OVER",
+       "homeTeam": {
+        "abbrev": "BUF"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020294,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "CGY"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020295,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "EDM"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020296,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "UTA"
+       }
+      },
+      {
+       "id": 2026020297,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020298,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "PIT"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020309,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SEA"
+       },
+       "awayTeam": {
+        "abbrev": "CAR"
+       }
+      },
+      {
+       "id": 2026020299,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020300,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020301,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "OTT"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020303,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NJD"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020304,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020302,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020305,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020306,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020307,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "STL"
+       }
+      },
+      {
+       "id": 2026020308,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020310,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VAN"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020311,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020321,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CAR"
+       },
+       "awayTeam": {
+        "abbrev": "SEA"
+       }
+      },
+      {
+       "id": 2026020312,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020313,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020314,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020315,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MTL"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020316,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020317,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PIT"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020318,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WSH"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      },
+      {
+       "id": 2026020319,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020320,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020322,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020323,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "SJS"
+       }
+      },
+      {
+       "id": 2026020324,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      },
+      {
+       "id": 2026020325,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020326,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020327,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020328,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      },
+      {
+       "id": 2026020329,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      },
+      {
+       "id": 2026020330,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020331,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020332,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020333,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "LAK"
+       }
+      },
+      {
+       "id": 2026020335,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020336,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYI"
+       },
+       "awayTeam": {
+        "abbrev": "CBJ"
+       }
+      },
+      {
+       "id": 2026020337,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020341,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WPG"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020334,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020338,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "TOR"
+       }
+      },
+      {
+       "id": 2026020339,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "ANA"
+       }
+      },
+      {
+       "id": 2026020340,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MIN"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020342,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "DAL"
+       }
+      },
+      {
+       "id": 2026020343,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026020293,
+       "gameState": "FINAL",
+       "homeTeam": {
+        "abbrev": "BUF"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020294,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "CGY"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020295,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "EDM"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020296,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "UTA"
+       }
+      },
+      {
+       "id": 2026020297,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020298,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "PIT"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020309,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SEA"
+       },
+       "awayTeam": {
+        "abbrev": "CAR"
+       }
+      },
+      {
+       "id": 2026020299,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020300,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020301,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "OTT"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020303,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NJD"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020304,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020302,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020305,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020306,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020307,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "STL"
+       }
+      },
+      {
+       "id": 2026020308,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020310,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VAN"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020311,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020321,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CAR"
+       },
+       "awayTeam": {
+        "abbrev": "SEA"
+       }
+      },
+      {
+       "id": 2026020312,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020313,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020314,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020315,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MTL"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020316,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020317,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PIT"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020318,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WSH"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      },
+      {
+       "id": 2026020319,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020320,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020322,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020323,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "SJS"
+       }
+      },
+      {
+       "id": 2026020324,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      },
+      {
+       "id": 2026020325,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020326,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020327,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020328,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      },
+      {
+       "id": 2026020329,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      },
+      {
+       "id": 2026020330,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020331,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020332,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020333,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "LAK"
+       }
+      },
+      {
+       "id": 2026020335,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020336,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYI"
+       },
+       "awayTeam": {
+        "abbrev": "CBJ"
+       }
+      },
+      {
+       "id": 2026020337,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020341,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WPG"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020334,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020338,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "TOR"
+       }
+      },
+      {
+       "id": 2026020339,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "ANA"
+       }
+      },
+      {
+       "id": 2026020340,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MIN"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020342,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "DAL"
+       }
+      },
+      {
+       "id": 2026020343,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "homeTeam": {
+    "abbrev": "CGY",
+    "score": 1
+   },
+   "awayTeam": {
+    "abbrev": "NYR",
+    "score": 2
+   },
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "summary": {}
+  },
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026020293,
+       "gameState": "FINAL",
+       "homeTeam": {
+        "abbrev": "BUF"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020294,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "CGY"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020295,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "EDM"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020296,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "UTA"
+       }
+      },
+      {
+       "id": 2026020297,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020298,
+       "gameState": "PRE",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "PIT"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020309,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SEA"
+       },
+       "awayTeam": {
+        "abbrev": "CAR"
+       }
+      },
+      {
+       "id": 2026020299,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020300,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020301,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "OTT"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020303,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NJD"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020304,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020302,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020305,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020306,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020307,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "STL"
+       }
+      },
+      {
+       "id": 2026020308,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020310,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VAN"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020311,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020321,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CAR"
+       },
+       "awayTeam": {
+        "abbrev": "SEA"
+       }
+      },
+      {
+       "id": 2026020312,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020313,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020314,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020315,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MTL"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020316,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020317,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PIT"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020318,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WSH"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      },
+      {
+       "id": 2026020319,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020320,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020322,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020323,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "SJS"
+       }
+      },
+      {
+       "id": 2026020324,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      },
+      {
+       "id": 2026020325,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020326,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020327,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020328,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      },
+      {
+       "id": 2026020329,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      },
+      {
+       "id": 2026020330,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020331,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020332,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020333,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "LAK"
+       }
+      },
+      {
+       "id": 2026020335,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020336,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYI"
+       },
+       "awayTeam": {
+        "abbrev": "CBJ"
+       }
+      },
+      {
+       "id": 2026020337,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020341,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WPG"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020334,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020338,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "TOR"
+       }
+      },
+      {
+       "id": 2026020339,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "ANA"
+       }
+      },
+      {
+       "id": 2026020340,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MIN"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020342,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "DAL"
+       }
+      },
+      {
+       "id": 2026020343,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026020293,
+       "gameState": "FINAL",
+       "homeTeam": {
+        "abbrev": "BUF"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020294,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "CGY"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020295,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "EDM"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020296,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "UTA"
+       }
+      },
+      {
+       "id": 2026020297,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020298,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "PIT"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020309,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SEA"
+       },
+       "awayTeam": {
+        "abbrev": "CAR"
+       }
+      },
+      {
+       "id": 2026020299,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020300,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020301,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "OTT"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020303,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NJD"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020304,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020302,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020305,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020306,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020307,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "STL"
+       }
+      },
+      {
+       "id": 2026020308,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020310,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VAN"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020311,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020321,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CAR"
+       },
+       "awayTeam": {
+        "abbrev": "SEA"
+       }
+      },
+      {
+       "id": 2026020312,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020313,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020314,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020315,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MTL"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020316,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020317,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PIT"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020318,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WSH"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      },
+      {
+       "id": 2026020319,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020320,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020322,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020323,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "SJS"
+       }
+      },
+      {
+       "id": 2026020324,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      },
+      {
+       "id": 2026020325,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020326,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020327,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020328,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      },
+      {
+       "id": 2026020329,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      },
+      {
+       "id": 2026020330,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020331,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020332,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020333,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "LAK"
+       }
+      },
+      {
+       "id": 2026020335,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020336,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYI"
+       },
+       "awayTeam": {
+        "abbrev": "CBJ"
+       }
+      },
+      {
+       "id": 2026020337,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020341,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WPG"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020334,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020338,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "TOR"
+       }
+      },
+      {
+       "id": 2026020339,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "ANA"
+       }
+      },
+      {
+       "id": 2026020340,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MIN"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020342,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "DAL"
+       }
+      },
+      {
+       "id": 2026020343,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026020293,
+       "gameState": "FINAL",
+       "homeTeam": {
+        "abbrev": "BUF"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020294,
+       "gameState": "CRIT",
+       "homeTeam": {
+        "abbrev": "CGY"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020295,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "EDM"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020296,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "UTA"
+       }
+      },
+      {
+       "id": 2026020297,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020298,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "PIT"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020309,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SEA"
+       },
+       "awayTeam": {
+        "abbrev": "CAR"
+       }
+      },
+      {
+       "id": 2026020299,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020300,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020301,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "OTT"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020303,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NJD"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020304,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020302,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020305,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020306,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020307,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "STL"
+       }
+      },
+      {
+       "id": 2026020308,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020310,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VAN"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020311,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020321,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CAR"
+       },
+       "awayTeam": {
+        "abbrev": "SEA"
+       }
+      },
+      {
+       "id": 2026020312,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020313,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020314,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020315,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MTL"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020316,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020317,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PIT"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020318,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WSH"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      },
+      {
+       "id": 2026020319,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020320,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020322,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020323,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "SJS"
+       }
+      },
+      {
+       "id": 2026020324,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      },
+      {
+       "id": 2026020325,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020326,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020327,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020328,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      },
+      {
+       "id": 2026020329,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      },
+      {
+       "id": 2026020330,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020331,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020332,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020333,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "LAK"
+       }
+      },
+      {
+       "id": 2026020335,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020336,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYI"
+       },
+       "awayTeam": {
+        "abbrev": "CBJ"
+       }
+      },
+      {
+       "id": 2026020337,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020341,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WPG"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020334,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020338,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "TOR"
+       }
+      },
+      {
+       "id": 2026020339,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "ANA"
+       }
+      },
+      {
+       "id": 2026020340,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MIN"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020342,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "DAL"
+       }
+      },
+      {
+       "id": 2026020343,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026020293,
+       "gameState": "OFF",
+       "homeTeam": {
+        "abbrev": "BUF"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020294,
+       "gameState": "CRIT",
+       "homeTeam": {
+        "abbrev": "CGY"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020295,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "EDM"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020296,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "UTA"
+       }
+      },
+      {
+       "id": 2026020297,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020298,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "PIT"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020309,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SEA"
+       },
+       "awayTeam": {
+        "abbrev": "CAR"
+       }
+      },
+      {
+       "id": 2026020299,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020300,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020301,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "OTT"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020303,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NJD"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020304,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020302,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020305,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020306,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020307,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "STL"
+       }
+      },
+      {
+       "id": 2026020308,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020310,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VAN"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020311,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020321,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CAR"
+       },
+       "awayTeam": {
+        "abbrev": "SEA"
+       }
+      },
+      {
+       "id": 2026020312,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020313,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020314,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020315,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MTL"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020316,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020317,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PIT"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020318,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WSH"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      },
+      {
+       "id": 2026020319,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020320,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020322,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020323,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "SJS"
+       }
+      },
+      {
+       "id": 2026020324,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      },
+      {
+       "id": 2026020325,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020326,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020327,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020328,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      },
+      {
+       "id": 2026020329,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      },
+      {
+       "id": 2026020330,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020331,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020332,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020333,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "LAK"
+       }
+      },
+      {
+       "id": 2026020335,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020336,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYI"
+       },
+       "awayTeam": {
+        "abbrev": "CBJ"
+       }
+      },
+      {
+       "id": 2026020337,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020341,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WPG"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020334,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020338,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "TOR"
+       }
+      },
+      {
+       "id": 2026020339,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "ANA"
+       }
+      },
+      {
+       "id": 2026020340,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MIN"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020342,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "DAL"
+       }
+      },
+      {
+       "id": 2026020343,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "homeTeam": {
+    "abbrev": "CGY",
+    "score": 1
+   },
+   "awayTeam": {
+    "abbrev": "NYR",
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "summary": {}
+  },
+  {
+   "gameWeek": [
+    {
+     "games": [
+      {
+       "id": 2026020293,
+       "gameState": "OFF",
+       "homeTeam": {
+        "abbrev": "BUF"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020294,
+       "gameState": "FINAL",
+       "homeTeam": {
+        "abbrev": "CGY"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020295,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "EDM"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020296,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "UTA"
+       }
+      },
+      {
+       "id": 2026020297,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020298,
+       "gameState": "LIVE",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "PIT"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020309,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SEA"
+       },
+       "awayTeam": {
+        "abbrev": "CAR"
+       }
+      },
+      {
+       "id": 2026020299,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020300,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020301,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "OTT"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020303,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NJD"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020304,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "TBL"
+       }
+      },
+      {
+       "id": 2026020302,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020305,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020306,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020307,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "STL"
+       }
+      },
+      {
+       "id": 2026020308,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020310,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VAN"
+       },
+       "awayTeam": {
+        "abbrev": "NYR"
+       }
+      },
+      {
+       "id": 2026020311,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020321,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CAR"
+       },
+       "awayTeam": {
+        "abbrev": "SEA"
+       }
+      },
+      {
+       "id": 2026020312,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "WPG"
+       }
+      },
+      {
+       "id": 2026020313,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "MIN"
+       }
+      },
+      {
+       "id": 2026020314,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TOR"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020315,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MTL"
+       },
+       "awayTeam": {
+        "abbrev": "COL"
+       }
+      },
+      {
+       "id": 2026020316,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "DET"
+       }
+      },
+      {
+       "id": 2026020317,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PIT"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020318,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WSH"
+       },
+       "awayTeam": {
+        "abbrev": "NJD"
+       }
+      },
+      {
+       "id": 2026020319,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CBJ"
+       },
+       "awayTeam": {
+        "abbrev": "PHI"
+       }
+      },
+      {
+       "id": 2026020320,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020322,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020323,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "SJS"
+       }
+      },
+      {
+       "id": 2026020324,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "NYI"
+       }
+      },
+      {
+       "id": 2026020325,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "LAK"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020326,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020327,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "DAL"
+       },
+       "awayTeam": {
+        "abbrev": "FLA"
+       }
+      },
+      {
+       "id": 2026020328,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "ANA"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      },
+      {
+       "id": 2026020329,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      },
+      {
+       "id": 2026020330,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020331,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYR"
+       },
+       "awayTeam": {
+        "abbrev": "MTL"
+       }
+      },
+      {
+       "id": 2026020332,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "UTA"
+       },
+       "awayTeam": {
+        "abbrev": "VAN"
+       }
+      }
+     ]
+    },
+    {
+     "games": [
+      {
+       "id": 2026020333,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "BOS"
+       },
+       "awayTeam": {
+        "abbrev": "LAK"
+       }
+      },
+      {
+       "id": 2026020335,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "FLA"
+       },
+       "awayTeam": {
+        "abbrev": "EDM"
+       }
+      },
+      {
+       "id": 2026020336,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "NYI"
+       },
+       "awayTeam": {
+        "abbrev": "CBJ"
+       }
+      },
+      {
+       "id": 2026020337,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "PHI"
+       },
+       "awayTeam": {
+        "abbrev": "BUF"
+       }
+      },
+      {
+       "id": 2026020341,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "WPG"
+       },
+       "awayTeam": {
+        "abbrev": "OTT"
+       }
+      },
+      {
+       "id": 2026020334,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "TBL"
+       },
+       "awayTeam": {
+        "abbrev": "WSH"
+       }
+      },
+      {
+       "id": 2026020338,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "CHI"
+       },
+       "awayTeam": {
+        "abbrev": "TOR"
+       }
+      },
+      {
+       "id": 2026020339,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "STL"
+       },
+       "awayTeam": {
+        "abbrev": "ANA"
+       }
+      },
+      {
+       "id": 2026020340,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "MIN"
+       },
+       "awayTeam": {
+        "abbrev": "NSH"
+       }
+      },
+      {
+       "id": 2026020342,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "VGK"
+       },
+       "awayTeam": {
+        "abbrev": "DAL"
+       }
+      },
+      {
+       "id": 2026020343,
+       "gameState": "FUT",
+       "homeTeam": {
+        "abbrev": "SJS"
+       },
+       "awayTeam": {
+        "abbrev": "CGY"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

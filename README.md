@@ -226,7 +226,7 @@ Every monitor can print extra `[DEBUG]` lines to its log: the raw scores, period
 
 Then watch the log with `tail -f yankees_monitor.log`. Debug mode lasts until the monitor is restarted without `-d` or the Pi reboots. `-m -d` only starts monitors that aren't running, so it won't turn on debug for one that already is. To keep debug on across reboots, set `DEBUG = True` in the monitor instead.
 
-To see debug output without waiting for a game, replay a recorded one in debug mode: `python3 tests/replay_game.py tests/recordings/yankees_2026-09-10_win.json -v -d` (see [tests/README.md](tests/README.md)).
+To see debug output without waiting for a game, replay a recorded one in debug mode: `python3 tests/replay_game.py tests/recordings/examples/yankees_2026-09-10_win.json -v -d` (see [tests/README.md](tests/README.md)).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

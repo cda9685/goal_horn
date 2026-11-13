@@ -1,3 +1,4 @@
+import fnmatch
 import re
 import sys
 from pathlib import Path
@@ -14,13 +15,25 @@ stub_gpio()
 # Tests must never write to the real goal horn's files: on the Pi a test that
 # wrote to goal_horn_events.json would set off the light. The run fails if any
 # test leaves a new file in the project.
-IGNORED = ("__pycache__", ".pytest_cache", ".git", ".venv")
+# On the Pi the goal horn keeps running during a test run, so files it makes
+# on its own don't count: logs (and logrotate's rotated copies), temporary
+# files, and recordings the DVR saves in tests/recordings/ (not examples/).
+IGNORED      = ("__pycache__", ".pytest_cache", ".git", ".venv")
+LIVE_SYSTEM  = ("*.log", "*.log.*", "*.tmp", "tests/recordings/*")
 
 
 def project_files() -> set:
-    root = Path(__file__).resolve().parent.parent
-    return {str(p.relative_to(root)) for p in root.rglob("*")
-            if p.is_file() and not any(part in IGNORED for part in p.parts)}
+    root  = Path(__file__).resolve().parent.parent
+    files = set()
+    for p in root.rglob("*"):
+        rel = p.relative_to(root)
+        if not p.is_file() or any(part in IGNORED for part in rel.parts):
+            continue
+        if rel.parts[:3] != ("tests", "recordings", "examples") and any(
+                fnmatch.fnmatch(str(rel), pattern) for pattern in LIVE_SYSTEM):
+            continue
+        files.add(str(rel))
+    return files
 
 
 def pytest_sessionstart(session):

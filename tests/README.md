@@ -69,7 +69,7 @@ python3 -m pytest tests -k vols  # one team
 - `test_all_monitors.py` has checks that apply to every monitor, and `test_adversarial.py` feeds them broken data: bad responses, blank scores, a corrupted queue.
 - `test_restart.py` runs `restart.sh` against fake process tools, so nothing is really stopped or started.
 - `test_controller.py` checks the light and audio for an event, priority order, and that every event a monitor queues is in `AUDIO` and `LIGHT_DURATION` with an audio file that exists.
-- `test_recordings.py` replays every recorded game in `recordings/` and checks it fires the expected events.
+- `test_recordings.py` replays every recorded game and checks it fires the expected events: the examples in `recordings/examples/`, and your own in `recordings/` once their `expected_events` is filled in.
 - `test_record_game.py` checks recordings replay the same as the live run.
 - `test_docs.py` checks the test case table below matches the tests.
 
@@ -238,8 +238,8 @@ python3 -m pytest "tests/test_nhl_monitors.py::test_shootout_goals[rangers]"   #
 | `test_restart.py` | `test_restart_everything` | Positive | `restart.sh` | No names restarts the controller and every monitor | ✅ |
 | `test_restart.py` | `test_accepts_any_form_of_a_name` | Positive | `restart.sh` | `rangers`, `rangers_monitor` and `rangers_monitor.py` all work | ✅ |
 | `test_restart.py` | `test_unknown_name_or_flag_changes_nothing` | Negative | `restart.sh` | An unknown name or flag prints usage and stops or starts nothing | ✅ |
-| `test_recordings.py` | `test_recording` | Positive | Recorded games | Each recorded or rebuilt game in `recordings/` fires its expected events | ✅ |
-| `test_recordings.py` | `test_recording_variation` | Boundary | Recorded games | Each game in `recordings/` with a glitch, blank score, failed request or overturn added still fires the right events | ❌ Issue #20, Issue #33, Issue #36, Issue #37 (some cases) |
+| `test_recordings.py` | `test_recording` | Positive | Recorded games | Each example recording, and each of yours with `expected_events`, fires its expected events | ✅ |
+| `test_recordings.py` | `test_recording_variation` | Boundary | Recorded games | Each recording with a glitch, blank score, failed request or overturn added still fires the right events | ❌ Issue #20, Issue #33, Issue #36, Issue #37 (some cases) |
 | `test_record_game.py` | `test_record_and_replay_nhl` | Tooling | Rangers | A recording replays to the same events and stores repeats once | ✅ |
 | `test_record_game.py` | `test_trimmed_mlb_replays_like_the_original` | Tooling | Yankees | Trimmed MLB responses replay exactly like the full ones | ✅ |
 | `test_record_game.py` | `test_espn_keeps_only_the_teams_game` | Tooling | Vols | Recordings keep only the team's game from the scoreboard | ✅ |
@@ -460,17 +460,33 @@ So every real game also tests the rare cases. A new recording gets all of them a
 ### Replay a game
 
 ```sh
-python3 tests/replay_game.py tests/recordings/yankees_2026-09-10_win.json      # events and when they fired
-python3 tests/replay_game.py tests/recordings/yankees_2026-09-10_win.json -v   # with the monitor's log
+python3 tests/replay_game.py tests/recordings/examples/yankees_2026-09-10_win.json      # events and when they fired
+python3 tests/replay_game.py tests/recordings/examples/yankees_2026-09-10_win.json -v   # with the monitor's log
 ```
+
+### Where recordings live
+
+| Folder | What's in it | Committed? |
+| --- | --- | --- |
+| `tests/recordings/` | Your recordings: everything `record_game.py`, `dvr.py` and the rebuild tools save, plus their `.log` and unfinished `.partial.jsonl` files | No: ignored by git |
+| `tests/recordings/examples/` | Example games, each checked against the real game's scoring | Yes |
 
 ### Add a game to the tests
 
-1. Record it or rebuild it into `tests/recordings/`.
+1. Record it or rebuild it. It's saved in `tests/recordings/`.
 2. Replay it and check the events against what really happened in the game.
 3. Fill in `"description"` (what makes the game worth keeping) and `"expected_events"` in the file.
 
-From then on `test_recordings.py` replays it on every test run, as it happened and with each variation. Games worth keeping: overturned goals (Issue #20), double goals (Issue #16), doubleheaders (Issue #5), shootouts, postponed games (Issue #8), missed extra points and 2-point tries, and ties.
+From then on `test_recordings.py` replays it on every test run on your machine, as it happened and with each variation. A recording without `expected_events` is skipped.
+
+**To share it as an example,** so it's tested everywhere, including CI, move it into `examples/` and commit it:
+
+```sh
+mv tests/recordings/rangers_2026-11-13_van.json tests/recordings/examples/
+git add tests/recordings/examples/rangers_2026-11-13_van.json
+```
+
+Games worth keeping as examples: overturned goals (Issue #20), double goals (Issue #16), doubleheaders (Issue #5), shootouts, postponed games (Issue #8), missed extra points and 2-point tries, and ties.
 
 ### Replay file format
 

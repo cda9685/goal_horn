@@ -1,6 +1,9 @@
 """
-Every recorded game in tests/recordings/ replays to its expected events, as it
-happened and with each variation (see variations.py) added.
+Every recorded game replays to its expected events, as it happened and with
+each variation (see variations.py) added: the example recordings in
+tests/recordings/examples/ (committed, so tested everywhere), and your own in
+tests/recordings/ (not committed, so tested only on your machine) once their
+"expected_events" is filled in.
 """
 
 import json
@@ -11,7 +14,8 @@ import pytest
 import variations
 from harness import known_bug_marks, load_recording, load_script, team_id
 
-RECORDINGS = sorted((Path(__file__).parent / "recordings").glob("*.json"))
+FOLDER     = Path(__file__).parent / "recordings"
+RECORDINGS = sorted(FOLDER.glob("examples/*.json")) + sorted(FOLDER.glob("*.json"))
 
 
 @pytest.mark.parametrize("path", RECORDINGS, ids=[p.stem for p in RECORDINGS])

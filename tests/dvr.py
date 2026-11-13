@@ -18,7 +18,7 @@ up once with crontab -e; see tests/README.md):
 Each tick starts the recordings that are due (LEAD_MINUTES before the game),
 carries on any that a reboot cut off, and exits. The recordings themselves run
 on their own with record_game.py and stop once the game is over. They're
-saved to tests/fixtures/. (`dvr.py --run` does the same checks in one
+saved to tests/recordings/. (`dvr.py --run` does the same checks in one
 long-running process instead, for anyone who prefers that to cron.)
 """
 
@@ -35,18 +35,18 @@ from datetime import datetime, timedelta, timezone
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from harness import finish_journal, script_path  # noqa: E402
-from record_game import FIXTURE_DIR, journal_path  # noqa: E402
+from record_game import RECORDINGS_DIR, journal_path  # noqa: E402
 from schedules import parse_time, upcoming_games  # noqa: E402
 
 TESTS_DIR     = os.path.dirname(os.path.abspath(__file__))
-SCHEDULE_FILE = os.path.join(TESTS_DIR, "recordings.json")
+SCHEDULE_FILE = os.path.join(TESTS_DIR, "dvr_schedule.json")
 RECORDER      = os.path.join(TESTS_DIR, "record_game.py")
 LEAD_MINUTES  = 30          # Start recording this long before the game
 LONGEST_GAME  = 8           # Hours after the start a game must be over by
 CHECK_EVERY   = 60          # Seconds between the service's checks
 
 # ─── The Schedule File ────────────────────────────────────────────────────────
-# tests/recordings.json: one entry per recording, with a status of scheduled,
+# tests/dvr_schedule.json: one entry per recording, with a status of scheduled,
 # recording, done, interrupted, missed or failed.
 
 def load(path=None) -> list:
@@ -89,17 +89,17 @@ def local(when: str) -> str:
     return parse_time(when).astimezone().strftime("%a %b %d %l:%M %p")
 
 
-def add(recordings, team, game, fixture_dir=None) -> dict | None:
+def add(recordings, team, game, recordings_dir=None) -> dict | None:
     """Schedule a game (a schedules.Game). Returns the new entry, or None if it's already scheduled."""
-    fixture_dir = fixture_dir or FIXTURE_DIR
+    recordings_dir = recordings_dir or RECORDINGS_DIR
     if any(r["team"] == team and r["game_id"] == game.id for r in recordings):
         return None
     date = game.start.astimezone().strftime("%Y-%m-%d")
     name = "".join(c for c in game.opponent.lower() if c.isalnum())
-    output, n = os.path.join(fixture_dir, f"{team}_{date}_{name}.json"), 2
+    output, n = os.path.join(recordings_dir, f"{team}_{date}_{name}.json"), 2
     taken = {r["output"] for r in recordings}
     while output in taken or os.path.exists(output):
-        output, n = os.path.join(fixture_dir, f"{team}_{date}_{name}-{n}.json"), n + 1
+        output, n = os.path.join(recordings_dir, f"{team}_{date}_{name}-{n}.json"), n + 1
     entry = {"team": team, "game_id": game.id, "start": game.start.isoformat(),
              "matchup": game.matchup, "output": output, "status": "scheduled", "pid": None}
     recordings.append(entry)

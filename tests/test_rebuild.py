@@ -7,7 +7,7 @@ import pytest
 import rebuild_espn_game
 import rebuild_nhl_game
 from builders import NHL
-from harness import expand_steps, load_fixture, load_script, save_fixture, team_id
+from harness import expand_steps, load_recording, load_script, save_recording, team_id
 
 # ─── Replay Files ─────────────────────────────────────────────────────────────
 
@@ -15,10 +15,10 @@ def test_saved_repeats_replay_once(tmp_path):
     # A step repeated n times must replay n times, not n * n
     step  = {"url": "scoreboard", "json": {"events": []}}
     path  = tmp_path / "game.json"
-    save_fixture(path, "vols", "", "", [step] * 5 + [{"url": "scoreboard", "json": None}])
+    save_recording(path, "vols", "", "", [step] * 5 + [{"url": "scoreboard", "json": None}])
     with open(path) as f:
         assert json.load(f)["steps"][0]["repeat"] == 5
-    steps = load_fixture(path)["steps"]
+    steps = load_recording(path)["steps"]
     assert len(steps) == 6
     assert len(expand_steps(steps)) == 6        # Expanding again changes nothing
 

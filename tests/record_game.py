@@ -9,9 +9,9 @@ let --stop-after-final stop it. To schedule recordings ahead of time, use dvr.py
 Usage:
     python3 tests/record_game.py rangers
     python3 tests/record_game.py rangers --stop-after-final
-    python3 tests/record_game.py vols -o tests/fixtures/vols_overturned_td.json
+    python3 tests/record_game.py vols -o tests/recordings/vols_overturned_td.json
     python3 tests/record_game.py yankees --raw    # keep full responses (large; not for the Pi)
-    python3 tests/record_game.py --finish tests/fixtures/rangers_2026-11-13.partial.jsonl
+    python3 tests/record_game.py --finish tests/recordings/rangers_2026-11-13.partial.jsonl
 
 While recording, responses are added to the end of a log (<output>.partial.jsonl)
 and nothing already written is rewritten, which spares the Pi's SD card. When
@@ -19,7 +19,7 @@ the recording stops, the log becomes the replay file. After a crash or power
 cut the log is still there, missing at most its last few seconds: run the
 recorder again with the same -o to carry on, or --finish to save it as is.
 Once the game is over, fill in "description" and "expected_events" so
-test_fixtures.py checks the replay on every test run.
+test_recordings.py checks the replay on every test run.
 """
 
 import argparse
@@ -33,7 +33,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from harness import Journal, finish_journal, load_script, script_path, team_id  # noqa: E402
 
-FIXTURE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures")
+RECORDINGS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "recordings")
 
 # ─── Trimming ─────────────────────────────────────────────────────────────────
 # Responses are cut down to the fields the monitors read, so a game is a few MB
@@ -172,7 +172,7 @@ def journal_path(output) -> str:
 def main():
     parser = argparse.ArgumentParser(description="Record a live game to a replay file.")
     parser.add_argument("team", nargs="?", help="monitor name, e.g. rangers")
-    parser.add_argument("-o", "--output", help="replay file (default tests/fixtures/<team>_<date>.json)")
+    parser.add_argument("-o", "--output", help="replay file (default tests/recordings/<team>_<date>.json)")
     parser.add_argument("--raw", action="store_true", help="save full API responses (large; not for the Pi)")
     parser.add_argument("--game", help="the game to record (its API ID); others are ignored for stopping")
     parser.add_argument("--stop-after-final", action="store_true",
@@ -191,7 +191,7 @@ def main():
 
     team   = os.path.basename(script_path(args.team)).removesuffix("_monitor.py")
     output = args.output or os.path.join(
-        FIXTURE_DIR, f"{team}_{datetime.now().strftime('%Y-%m-%d')}.json")
+        RECORDINGS_DIR, f"{team}_{datetime.now().strftime('%Y-%m-%d')}.json")
     os.makedirs(os.path.dirname(os.path.abspath(output)), exist_ok=True)
 
     module = load_script(team, tempfile.mkdtemp(prefix="goal_horn_record_"))

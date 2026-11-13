@@ -10,16 +10,16 @@ import requests
 import record_game
 from builders import ESPN, MLB, NHL
 from test_debug import GAMES
-from harness import FakeResponse, ReplayFinished, load_fixture, load_script, team_id
+from harness import FakeResponse, ReplayFinished, load_recording, load_script, team_id
 
 
 def record(monkeypatch, tmp_path, team, steps, raw=False, args=(), on_request=None):
     """
     Run record_game.py for team with the network serving steps. Returns the
-    fixture path. on_request(n, output) is called before the nth request.
+    recording path. on_request(n, output) is called before the nth request.
     """
     served = iter(steps)
-    output = tmp_path / "fixtures" / f"{team}.json"
+    output = tmp_path / "recordings" / f"{team}.json"
     count  = 0
 
     def fake_get(url, *a, **kwargs):
@@ -53,15 +53,15 @@ def test_record_and_replay_nhl(monkeypatch, tmp_path, replay):
              + nhl.poll(1, "LIVE", 2, 0) * 5
              + nhl.poll(1, "OFF", 2, 0))
     path    = record(monkeypatch, tmp_path, "rangers", steps)
-    fixture = load_fixture(path)
+    recording = load_recording(path)
 
-    assert fixture["team"] == "rangers"
-    assert len(fixture["steps"]) == len(steps)
+    assert recording["team"] == "rangers"
+    assert len(recording["steps"]) == len(steps)
     # Repeated polls are stored once
     with open(path) as f:
         saved = json.load(f)
     assert len(saved["steps"]) < len(steps) / 3
-    assert replay("rangers", fixture["steps"]).events == ["rangers_goal"] * 2
+    assert replay("rangers", recording["steps"]).events == ["rangers_goal"] * 2
 
 
 def test_trimmed_mlb_replays_like_the_original(monkeypatch, tmp_path, replay):
@@ -76,9 +76,9 @@ def test_trimmed_mlb_replays_like_the_original(monkeypatch, tmp_path, replay):
         step["json"]["copyright"] = "x" * 1000
 
     path    = record(monkeypatch, tmp_path, "yankees", steps)
-    fixture = load_fixture(path)
-    assert all("copyright" not in s["json"] for s in fixture["steps"])
-    assert (replay("yankees", fixture["steps"]).events
+    recording = load_recording(path)
+    assert all("copyright" not in s["json"] for s in recording["steps"])
+    assert (replay("yankees", recording["steps"]).events
             == replay("yankees", steps).events
             == ["yankees_home_run", "yankees_run", "yankees_win"])
 
@@ -90,24 +90,24 @@ def test_espn_keeps_only_the_teams_game(monkeypatch, tmp_path):
     for step in steps:
         step["json"]["events"].insert(0, other)
 
-    fixture = load_fixture(record(monkeypatch, tmp_path, "vols", steps))
-    assert all([e["id"] for e in s["json"]["events"]] == ["5"] for s in fixture["steps"])
+    recording = load_recording(record(monkeypatch, tmp_path, "vols", steps))
+    assert all([e["id"] for e in s["json"]["events"]] == ["5"] for s in recording["steps"])
 
 
 def test_raw_keeps_full_responses(monkeypatch, tmp_path):
     espn  = ESPN(team_id(load_script("vols")))
     steps = espn.poll("5", "in", 0, 0)
     steps[0]["json"]["leagues"] = ["extra"]
-    fixture = load_fixture(record(monkeypatch, tmp_path, "vols", steps, raw=True))
-    assert fixture["steps"][0]["json"] == steps[0]["json"]
+    recording = load_recording(record(monkeypatch, tmp_path, "vols", steps, raw=True))
+    assert recording["steps"][0]["json"] == steps[0]["json"]
 
 
 @pytest.mark.parametrize("team, game", GAMES, ids=[t for t, _ in GAMES])
 def test_recording_keeps_what_debug_lines_read(team, game, monkeypatch, tmp_path, replay):
     # If a trimmer drops a field a debug line logs, the replayed log differs
     steps   = game(team)
-    fixture = load_fixture(record(monkeypatch, tmp_path, team, steps))
+    recording = load_recording(record(monkeypatch, tmp_path, team, steps))
     live    = replay(team, steps, debug=True)
-    played  = replay(team, fixture["steps"], debug=True)
+    played  = replay(team, recording["steps"], debug=True)
     assert played.debug_lines == live.debug_lines
     assert played.events == live.events

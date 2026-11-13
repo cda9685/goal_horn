@@ -7,7 +7,7 @@ would have seen it, one poll per update.
 
 Usage:
     python3 tests/rebuild_mlb_game.py yankees 825028
-    python3 tests/rebuild_mlb_game.py giants 825100 -o tests/fixtures/giants_walk_off.json
+    python3 tests/rebuild_mlb_game.py giants 825100 -o tests/recordings/giants_walk_off.json
 
 Find a game's ID (gamePk) in the schedule, e.g.
 https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147&date=2026-09-20
@@ -25,7 +25,7 @@ import requests
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from harness import compress_steps, load_script, script_path, team_id  # noqa: E402
-from record_game import FIXTURE_DIR, trim  # noqa: E402
+from record_game import RECORDINGS_DIR, trim  # noqa: E402
 
 TIMESTAMPS_URL = "https://statsapi.mlb.com/api/v1.1/game/{game_pk}/feed/live/timestamps"
 RETRIES        = 4          # A dropped connection shouldn't throw away a long rebuild
@@ -51,13 +51,13 @@ def main():
     parser = argparse.ArgumentParser(description="Rebuild a past MLB game as a replay file.")
     parser.add_argument("team", help="monitor name, e.g. yankees")
     parser.add_argument("game_pk", type=int, help="MLB game ID (gamePk)")
-    parser.add_argument("-o", "--output", help="replay file (default tests/fixtures/<team>_<gamePk>.json)")
+    parser.add_argument("-o", "--output", help="replay file (default tests/recordings/<team>_<gamePk>.json)")
     args = parser.parse_args()
 
     team   = os.path.basename(script_path(args.team)).removesuffix("_monitor.py")
     module = load_script(team)
     tid    = team_id(module)
-    output = args.output or os.path.join(FIXTURE_DIR, f"{team}_{args.game_pk}.json")
+    output = args.output or os.path.join(RECORDINGS_DIR, f"{team}_{args.game_pk}.json")
 
     timestamps = get_json(TIMESTAMPS_URL.format(game_pk=args.game_pk))
     print(f"[REBUILD] {len(timestamps)} updates for game {args.game_pk}")
@@ -99,7 +99,7 @@ def main():
         if i % 25 == 0:
             print(f"[REBUILD] {i}/{len(timestamps)} ({timecode})")
 
-    fixture = {
+    recording = {
         "team":            team,
         "description":     f"MLB game {args.game_pk}, rebuilt from MLB API timestamps",
         "recorded":        f"{timestamps[0]} to {timestamps[-1]}" if timestamps else "",
@@ -109,7 +109,7 @@ def main():
     }
     os.makedirs(os.path.dirname(os.path.abspath(output)), exist_ok=True)
     with open(output, "w") as f:
-        json.dump(fixture, f, indent=1)
+        json.dump(recording, f, indent=1)
     print(f"[REBUILD] Saved {len(steps)} responses to {output}")
 
 

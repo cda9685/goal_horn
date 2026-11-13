@@ -4,9 +4,9 @@ Replay a recorded game through its monitor in a second or two: no stream delay
 waits, no live API, no light. Prints the events the monitor queued and when.
 
 Usage:
-    python3 tests/replay_game.py tests/fixtures/rangers_2026-10-25.json
-    python3 tests/replay_game.py tests/fixtures/rangers_2026-10-25.json -v   # monitor log too
-    python3 tests/replay_game.py tests/fixtures/rangers_2026-10-25.json -v --debug   # with [DEBUG] lines
+    python3 tests/replay_game.py tests/recordings/rangers_2026-10-25.json
+    python3 tests/replay_game.py tests/recordings/rangers_2026-10-25.json -v   # monitor log too
+    python3 tests/replay_game.py tests/recordings/rangers_2026-10-25.json -v --debug   # with [DEBUG] lines
 """
 
 import argparse
@@ -18,24 +18,24 @@ import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from harness import load_fixture, run_replay  # noqa: E402
+from harness import load_recording, run_replay  # noqa: E402
 
 
 def main():
     parser = argparse.ArgumentParser(description="Replay a recorded game through its monitor.")
-    parser.add_argument("fixture", help="replay file made by record_game.py")
+    parser.add_argument("recording", help="replay file made by record_game.py")
     parser.add_argument("-v", "--verbose", action="store_true", help="show the monitor's log")
     parser.add_argument("-d", "--debug", action="store_true",
                         help="run the monitor in debug mode, as --debug does on the Pi")
     args = parser.parse_args()
 
-    fixture = load_fixture(args.fixture)
+    recording = load_recording(args.recording)
     log     = io.StringIO()
     with tempfile.TemporaryDirectory() as state_dir:
         with contextlib.redirect_stdout(sys.stdout if args.verbose else log):
-            result = run_replay(fixture["team"], fixture["steps"], state_dir, debug=args.debug)
+            result = run_replay(recording["team"], recording["steps"], state_dir, debug=args.debug)
 
-    print(f"{fixture['team']}: {fixture.get('description') or os.path.basename(args.fixture)}")
+    print(f"{recording['team']}: {recording.get('description') or os.path.basename(args.recording)}")
     print(f"Replayed {len(result.replay.requests)} responses "
           f"({result.clock.elapsed() / 3600:.1f}h of monitor time)")
     for event, at in result.event_times():
@@ -43,7 +43,7 @@ def main():
     if not result.events:
         print("  (no events)")
 
-    expected = fixture.get("expected_events")
+    expected = recording.get("expected_events")
     if expected is None:
         print('No "expected_events" in the file yet. If the events above are right, '
               'copy them in so the tests check this game.')

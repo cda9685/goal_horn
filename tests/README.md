@@ -69,7 +69,7 @@ python3 -m pytest tests -k vols  # one team
 - `test_all_monitors.py` has checks that apply to every monitor, and `test_adversarial.py` feeds them broken data: bad responses, blank scores, a corrupted queue.
 - `test_restart.py` runs `restart.sh` against fake process tools, so nothing is really stopped or started.
 - `test_controller.py` checks the light and audio for an event, priority order, and that every event a monitor queues is in `AUDIO` and `LIGHT_DURATION` with an audio file that exists.
-- `test_fixtures.py` replays every recorded game in `fixtures/` and checks it fires the expected events.
+- `test_recordings.py` replays every recorded game in `recordings/` and checks it fires the expected events.
 - `test_debug.py` checks debug mode (`DEBUG = True` or `--debug`) for every monitor, as described below.
 - `test_record_game.py` checks recordings replay the same as the live run, including what the debug lines log.
 - `test_docs.py` checks the test case table below matches the tests.
@@ -87,7 +87,7 @@ Debug lines only print what the monitor read from the API, so a replay shows the
 - The lines for the situations debug mode is for show up: API calls and response times, the queue size, overturned scores, doubleheader skips, the PAT conversion window, and "no game" checks. Tests look for key phrases, not exact wording, so rewording a message doesn't break them.
 - No debug line prints `None`. That means a line reads a field the response doesn't have. When a monitor starts logging a new field, add it to the responses in `builders.py` and to the trimmers in `record_game.py`. `test_record_game.py` fails if the trimmers drop a field a debug line logs.
 
-Every recorded game in `fixtures/` is also replayed with debug on. The `--debug` command-line flag and `./restart.sh -d` aren't tested, since they only run when the script is started directly; check those on the Pi.
+Every recorded game in `recordings/` is also replayed with debug on. The `--debug` command-line flag and `./restart.sh -d` aren't tested, since they only run when the script is started directly; check those on the Pi.
 
 ### Known bugs
 
@@ -261,8 +261,8 @@ python3 -m pytest "tests/test_nhl_monitors.py::test_shootout_goals[rangers]"   #
 | `test_debug.py` | `test_mlb_doubleheader_skip_is_logged` | Positive | MLB | Skipping a finished doubleheader game is logged | ✅ |
 | `test_debug.py` | `test_espn_conversion_window_is_logged` | Positive | Football | A PAT logs how long after the touchdown it came, and the window | ✅ |
 | `test_debug.py` | `test_espn_not_on_scoreboard_is_logged` | Positive | Football | "Not on scoreboard" checks are logged | ✅ |
-| `test_fixtures.py` | `test_fixture` | Positive | Recorded games | Each recorded or rebuilt game in `fixtures/` fires its expected events, with debug off and on | ✅ |
-| `test_fixtures.py` | `test_fixture_variation` | Boundary | Recorded games | Each game in `fixtures/` with a glitch, blank score, failed request or overturn added still fires the right events | ❌ Issue #20, Issue #33, Issue #36, Issue #37 (some cases) |
+| `test_recordings.py` | `test_recording` | Positive | Recorded games | Each recorded or rebuilt game in `recordings/` fires its expected events, with debug off and on | ✅ |
+| `test_recordings.py` | `test_recording_variation` | Boundary | Recorded games | Each game in `recordings/` with a glitch, blank score, failed request or overturn added still fires the right events | ❌ Issue #20, Issue #33, Issue #36, Issue #37 (some cases) |
 | `test_record_game.py` | `test_record_and_replay_nhl` | Tooling | Rangers | A recording replays to the same events and stores repeats once | ✅ |
 | `test_record_game.py` | `test_trimmed_mlb_replays_like_the_original` | Tooling | Yankees | Trimmed MLB responses replay exactly like the full ones | ✅ |
 | `test_record_game.py` | `test_espn_keeps_only_the_teams_game` | Tooling | Vols | Recordings keep only the team's game from the scoreboard | ✅ |
@@ -334,24 +334,24 @@ Every bug filed as an issue, plus bugs fixed in commits without one, has a test 
 | Issue #5: the second game of a doubleheader never fires | Fixed | `test_doubleheader`, `test_doubleheader_after_restart`, `test_completed_games_are_forgotten_after_two_days` |
 | Issue #8: postponed games are checked every few seconds | Open (NHL) | `test_postponed_game_idles` ❌, `test_not_playing_idles`, `test_postponed_game_moves_on` |
 | Issue #16: a goal sometimes plays twice | Open, cause unknown | `test_score_glitch_does_not_double_fire` (NHL), `test_goal_fires_once_across_state_changes` |
-| Issue #20: the next score after an overturn is missed | Open | `test_goal_after_overturned_goal` ❌, `test_run_after_overturned_run` ❌, `test_touchdown_after_overturned_touchdown`, `test_score_glitch_does_not_double_fire` (Football) ❌, `test_fixture_variation` (some cases) ❌ |
+| Issue #20: the next score after an overturn is missed | Open | `test_goal_after_overturned_goal` ❌, `test_run_after_overturned_run` ❌, `test_touchdown_after_overturned_touchdown`, `test_score_glitch_does_not_double_fire` (Football) ❌, `test_recording_variation` (some cases) ❌ |
 | Issue #25: restarting `giants` also stops `ny_giants` | Fixed | `test_restart_giants_leaves_ny_giants_running`, `test_missing_only_starts_giants_when_only_ny_giants_runs` |
 | Issue #26: events lost when the queue is written at the same moment | Open | `test_two_monitors_queueing_at_once_keep_both_events` ❌, `test_event_queued_while_controller_clears_is_kept` ❌ |
 | Issue #27: some monitors have no win event | Open | `test_nhl_win` ❌, `test_vols_win` ❌ |
-| Issue #33: a failed request mid-game misses scores | Open | `test_goal_during_schedule_api_error` ❌, `test_run_during_schedule_api_error` ❌, `test_score_during_api_error` ❌, `test_fixture_variation` (some cases) ❌ |
+| Issue #33: a failed request mid-game misses scores | Open | `test_goal_during_schedule_api_error` ❌, `test_run_during_schedule_api_error` ❌, `test_score_during_api_error` ❌, `test_recording_variation` (some cases) ❌ |
 | Issue #34: no MLB win when the feed goes straight to Final | Open | `test_win_when_feed_jumps_to_final` ❌, the Yankees recorded game |
-| Issue #36: a blank ESPN score fires a false touchdown | Open | `test_blank_score_is_not_a_score` ❌, `test_fixture_variation` (some cases) ❌ |
-| Issue #37: unexpected API data crashes a monitor | Open | `test_empty_body_does_not_crash` ❌, `test_empty_game_data_does_not_crash` ❌, `test_null_score_does_not_crash` ❌, `test_fixture_variation` (some cases) ❌ |
+| Issue #36: a blank ESPN score fires a false touchdown | Open | `test_blank_score_is_not_a_score` ❌, `test_recording_variation` (some cases) ❌ |
+| Issue #37: unexpected API data crashes a monitor | Open | `test_empty_body_does_not_crash` ❌, `test_empty_game_data_does_not_crash` ❌, `test_null_score_does_not_crash` ❌, `test_recording_variation` (some cases) ❌ |
 | Issue #38: a corrupted queue file loses every later event | Open | `test_monitor_recovers_from_corrupted_queue` ❌, `test_controller_recovers_from_corrupted_queue` ❌ |
-| Issue #39: the NHL API rate-limits requests (429 Too Many Requests) | Open | `test_fixture` and `test_fixture_variation` with `rangers_2026-11-11_cgy_live` (two real 429s; nothing is missed there, but Issue #33 shows what one at the wrong moment does) |
+| Issue #39: the NHL API rate-limits requests (429 Too Many Requests) | Open | `test_recording` and `test_recording_variation` with `rangers_2026-11-11_cgy_live` (two real 429s; nothing is missed there, but Issue #33 shows what one at the wrong moment does) |
 | Issue #40: an MLB monitor forgets a finished game when its save file can't be written | Open | `test_doubleheader_when_finished_games_cant_be_saved` ❌ |
 | Commits `aebe461`, `af4fd3c`: the light keeps going off after a Yankees win | Fixed | `test_win_fires_once`, `test_lead_after_early_inning_is_not_a_win` |
 | Test tools: a repeated step in a replay file played back squared (5 → 25) | Fixed | `test_saved_repeats_replay_once` |
 | Test tools: a replay that didn't match the monitor's requests didn't fail, because the monitor caught the error | Fixed | `test_replay_that_doesnt_match_the_monitor_fails`, and every replay in the suite |
-| Test tools: `rebuild_mlb_game.py` added game data after the final, which the monitor never asks for | Fixed | `test_fixture` (the Yankees game) |
+| Test tools: `rebuild_mlb_game.py` added game data after the final, which the monitor never asks for | Fixed | `test_recording` (the Yankees game) |
 | Test tools: `rebuild_nhl_game.py` crashed, or missed the first goal, when a game had no period-start play | Fixed | `test_nhl_goal_before_period_start` |
 | Test tools: rebuilt football games counted the stream delay twice after each score, so timing drifted 30s per score | Fixed | `test_espn_replay_timing_matches_live` |
-| Test tools: `dvr.py` read and wrote the real `tests/recordings.json` even when told to use another file | Fixed | the `dvr.py` tests, and `conftest.py` fails any run that leaves a new file in the project |
+| Test tools: `dvr.py` read and wrote the real `tests/dvr_schedule.json` even when told to use another file | Fixed | the `dvr.py` tests, and `conftest.py` fails any run that leaves a new file in the project |
 | Test tools: `dvr.py` looked up how to start and check recorders once at startup, so tests couldn't replace them and started real recorders | Fixed | `test_tick_starts_due_recordings_and_exits`, and `conftest.py` fails any test where `dvr.py` tries to start a real process |
 | Test tools: `dvr.py` took a recorder running as another user (e.g. root) for a finished one, and would start a second | Fixed | `test_recorder_running_as_another_user_counts_as_running` |
 
@@ -364,9 +364,9 @@ When you fix or file a bug, add a test for it and a row here.
 Start before the game. Stop with Ctrl+C after it ends, or let `--stop-after-final` stop it:
 
 ```sh
-python3 tests/record_game.py rangers                                    # tests/fixtures/rangers_<date>.json
+python3 tests/record_game.py rangers                                    # tests/recordings/rangers_<date>.json
 python3 tests/record_game.py rangers --stop-after-final                 # stops a few checks after the final
-python3 tests/record_game.py vols -o tests/fixtures/vols_overturned_td.json
+python3 tests/record_game.py vols -o tests/recordings/vols_overturned_td.json
 ```
 
 It runs the monitor against the live API with no stream delay and its own private queue, so it doesn't set the real goal horn off a second time; it's safe to run alongside the real monitor.
@@ -380,7 +380,7 @@ It runs the monitor against the live API with no stream delay and its own privat
 **After a crash or power cut.** The log is still there, missing at most its last few seconds. A half-written last line is skipped. Then either:
 
 - Run the same command again (same `-o`) during the game to carry on where it left off.
-- Save what was recorded as it is: `python3 tests/record_game.py --finish tests/fixtures/<name>.partial.jsonl`.
+- Save what was recorded as it is: `python3 tests/record_game.py --finish tests/recordings/<name>.partial.jsonl`.
 
 `replay_game.py` can also play a `.partial.jsonl` log directly.
 
@@ -395,7 +395,7 @@ Upcoming rangers games:
    2) Mon Nov 16  7:30 PM   MTL @ NYR
    ...
 Record which? (numbers like 1,3, "all", or Enter to cancel): 1
-Scheduled: Fri Nov 13  9:00 PM NYR @ VAN -> tests/fixtures/rangers_2026-11-13_van.json
+Scheduled: Fri Nov 13  9:00 PM NYR @ VAN -> tests/recordings/rangers_2026-11-13_van.json
 ```
 
 ```sh
@@ -406,7 +406,7 @@ python3 tests/dvr.py --scheduled           # what's scheduled, recording, done, 
 python3 tests/dvr.py --cancel 2            # cancel one (stops it, keeping what's recorded, if it's under way)
 ```
 
-Games come from the same API the team's monitor uses, and times are shown in the Pi's timezone. The schedule is kept in `tests/recordings.json` (not committed). Picked games are recorded once the cron line below is set up.
+Games come from the same API the team's monitor uses, and times are shown in the Pi's timezone. The schedule is kept in `tests/dvr_schedule.json` (not committed). Picked games are recorded once the cron line below is set up.
 
 **Setup, once: one cron line.** Recordings are started by `dvr.py --tick`, which checks the schedule, starts any recording that's due, and exits. Cron runs it once a minute. Add this line to **your own** crontab with `crontab -e`, not `sudo crontab -e`:
 
@@ -469,7 +469,7 @@ A rebuilt game only has what the API kept, which leaves out the rare cases that 
 | A touchdown and its extra point or 2-point try as separate updates: ESPN's plays give the score after the try (+7 or +8) | The rebuild splits them: +6, then the try a minute later, as the live scoreboard shows them |
 | Real time between NHL plays: only the game clock is kept | Estimated at 1.9 real seconds per game second, measured from a live recording (1.75 to 2.0). No NHL logic depends on how much time passes between goals |
 
-**Variations.** `test_fixture_variation` takes every recorded and rebuilt game and adds one of these to it (see `variations.py`). The monitor must still fire the game's expected events:
+**Variations.** `test_recording_variation` takes every recorded and rebuilt game and adds one of these to it (see `variations.py`). The monitor must still fire the game's expected events:
 
 - `glitch`: once the team has scored, its score drops by one for a single poll, then comes back.
 - `blank_score`: the same, but the score is blank (football) or `null` (NHL, MLB).
@@ -477,25 +477,25 @@ A rebuilt game only has what the API kept, which leaves out the rare cases that 
 - `game_data_error`: the same, for the game-data request (NHL and MLB; ESPN has only one request).
 - `overturn`: the team's last score shows for 3 polls, comes off for 3, then comes back. That counts as scored again, so its event fires a second time.
 
-So every real game also tests the rare cases. A new fixture gets all of them automatically.
+So every real game also tests the rare cases. A new recording gets all of them automatically.
 
 **Checking the simulations against reality.** `record_game.py` during a live game is still worth running when something rare happens, like an overturned goal. That shows how the API really reports it: whether the score drops right away, and for how long. Compare it with the variation, and adjust `variations.py` if they differ.
 
 ### Replay a game
 
 ```sh
-python3 tests/replay_game.py tests/fixtures/yankees_2026-09-10_win.json      # events and when they fired
-python3 tests/replay_game.py tests/fixtures/yankees_2026-09-10_win.json -v   # with the monitor's log
-python3 tests/replay_game.py tests/fixtures/yankees_2026-09-10_win.json -v -d   # in debug mode, with [DEBUG] lines
+python3 tests/replay_game.py tests/recordings/yankees_2026-09-10_win.json      # events and when they fired
+python3 tests/replay_game.py tests/recordings/yankees_2026-09-10_win.json -v   # with the monitor's log
+python3 tests/replay_game.py tests/recordings/yankees_2026-09-10_win.json -v -d   # in debug mode, with [DEBUG] lines
 ```
 
 ### Add a game to the tests
 
-1. Record it or rebuild it into `tests/fixtures/`.
+1. Record it or rebuild it into `tests/recordings/`.
 2. Replay it and check the events against what really happened in the game.
 3. Fill in `"description"` (what makes the game worth keeping) and `"expected_events"` in the file.
 
-From then on `test_fixtures.py` replays it on every test run, as it happened and with each variation. Games worth keeping: overturned goals (Issue #20), double goals (Issue #16), doubleheaders (Issue #5), shootouts, postponed games (Issue #8), missed extra points and 2-point tries, and ties.
+From then on `test_recordings.py` replays it on every test run, as it happened and with each variation. Games worth keeping: overturned goals (Issue #20), double goals (Issue #16), doubleheaders (Issue #5), shootouts, postponed games (Issue #8), missed extra points and 2-point tries, and ties.
 
 ### Replay file format
 

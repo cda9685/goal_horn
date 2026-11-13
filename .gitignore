@@ -3,6 +3,6 @@ goal_horn_events.json
 *completed_games.json
 __pycache__/
 .venv/
-tests/recordings.json
-tests/recordings.json.lock
+tests/dvr_schedule.json
+tests/dvr_schedule.json.lock
 *.partial.jsonl

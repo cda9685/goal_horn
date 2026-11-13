@@ -1,9 +1,8 @@
 """
-Every recorded game replays to its expected events, as it happened (with
-debug off and on) and with each variation (see variations.py) added: the
-example recordings in tests/recordings/examples/ (committed, so tested
-everywhere), and your own in tests/recordings/ (not committed, so tested only
-on your machine) once their "expected_events" is filled in.
+Every example recording in tests/recordings/examples/ replays to its expected
+events, as it happened (with debug off and on) and with each variation (see
+variations.py) added. Your own recordings in tests/recordings/ aren't tested
+here: check one with replay_game.py, and move it into examples/ to make it a test.
 """
 
 import json
@@ -14,16 +13,15 @@ import pytest
 import variations
 from harness import known_bug_marks, load_recording, load_script, team_id
 
-FOLDER     = Path(__file__).parent / "recordings"
-RECORDINGS = sorted(FOLDER.glob("examples/*.json")) + sorted(FOLDER.glob("*.json"))
+RECORDINGS = sorted((Path(__file__).parent / "recordings" / "examples").glob("*.json"))
 
 
 @pytest.mark.parametrize("debug", [False, True], ids=["normal", "debug"])
 @pytest.mark.parametrize("path", RECORDINGS, ids=[p.stem for p in RECORDINGS])
 def test_recording(path, debug, replay):
     recording = load_recording(path)
-    if recording.get("expected_events") is None:
-        pytest.skip(f'{path.name} has no "expected_events" yet')
+    assert recording.get("expected_events") is not None, (
+        f'{path.name} is an example, so it needs "expected_events" (see tests/README.md)')
     result = replay(recording["team"], recording["steps"], debug=debug)
     assert result.events == recording["expected_events"]
     assert bool(result.debug_lines) == debug
